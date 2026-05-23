@@ -40,6 +40,8 @@ exports.handler = async function (event) {
   ]);
 
   const errors = results.filter(r => r.status === 'rejected');
+  // Log ALL errors for debugging
+  errors.forEach((e, i) => console.error('Erreur operation', i, ':', e.reason?.message, e.reason?.stack));
   if (errors.length === 2) {
     console.error('Double échec:', errors.map(e => e.reason?.message));
     return { statusCode: 500, headers: cors(), body: JSON.stringify({ error: 'Erreur serveur' }) };
