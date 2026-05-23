@@ -65,8 +65,11 @@ async function writeToGoogleSheets(name, email, phone) {
 
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, auth);
   await doc.loadInfo();
+  console.log('Sheets: doc loaded, title=', doc.title, 'sheets=', Object.keys(doc.sheetsByTitle));
   const sheet = doc.sheetsByTitle['📋 Leads'] || doc.sheetsByIndex[0];
+  console.log('Sheets: using sheet title=', sheet.title, 'id=', sheet.sheetId);
   await sheet.loadHeaderRow();
+  console.log('Sheets: headers loaded=', sheet.headerValues);
 
   const now = new Date().toLocaleDateString('fr-FR', {
     day: '2-digit', month: '2-digit', year: 'numeric',
