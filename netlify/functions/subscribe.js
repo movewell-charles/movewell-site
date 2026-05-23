@@ -6,7 +6,7 @@
 //   BREVO_API_KEY                → Clé API Brevo
 //   BREVO_LIST_ID                → ID de la liste (ex: 3)
 //   BREVO_TEMPLATE_ID            → ID du template email (ex: 12)
-//   PDF_URL                      → https://movewell.fr/guide-movewell.pdf
+//   PDF_URL                      → URL publique du guide PDF
 // ─────────────────────────────────────────────────────────────
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
@@ -120,7 +120,7 @@ async function addToBrevoAndSendGuide(name, email, phone) {
       templateId: Number(process.env.BREVO_TEMPLATE_ID),
       params: {
         PRENOM:  name  || 'toi',
-        PDF_URL: process.env.PDF_URL || 'https://movewell.fr/guide-movewell.pdf',
+        PDF_URL: process.env.PDF_URL,
         PHONE:   phone || '',
       },
       sender: {
