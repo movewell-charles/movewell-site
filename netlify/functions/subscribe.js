@@ -40,8 +40,6 @@ exports.handler = async function (event) {
   ]);
 
   const errors = results.filter(r => r.status === 'rejected');
-  // Log ALL errors for debugging
-  errors.forEach((e, i) => console.error('Erreur operation', i, ':', e.reason?.message, e.reason?.stack));
   if (errors.length === 2) {
     console.error('Double échec:', errors.map(e => e.reason?.message));
     return { statusCode: 500, headers: cors(), body: JSON.stringify({ error: 'Erreur serveur' }) };
@@ -65,16 +63,14 @@ async function writeToGoogleSheets(name, email, phone) {
 
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, auth);
   await doc.loadInfo();
-  console.log('Sheets: doc loaded, title=', doc.title, 'sheets=', Object.keys(doc.sheetsByTitle));
   const sheet = doc.sheetsByTitle['📋 Leads'] || doc.sheetsByIndex[0];
-  console.log('Sheets: using sheet title=', sheet.title, 'id=', sheet.sheetId);
-  // Force headers into correct columns (setHeaderRow writes row 1 + loads them)
+
+  // Force les en-têtes dans les bonnes colonnes (google-spreadsheet v4)
   await sheet.setHeaderRow([
     'Date inscription','Prénom','E-mail','Téléphone','Source','Statut',
     'Lead Score','Guide téléchargé','NL ouverte','Répondu','RDV pris',
     'Client MoveWell','Notes'
   ]);
-  console.log('Sheets: headers set, count=', sheet.headerValues.length);
 
   const now = new Date().toLocaleDateString('fr-FR', {
     day: '2-digit', month: '2-digit', year: 'numeric',
