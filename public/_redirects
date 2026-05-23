@@ -1,0 +1,159 @@
+# ============================================================
+# MOVE WELL — _redirects Netlify
+# ============================================================
+
+# www → non-www (version canonique = sans www)
+http://www.movewell.fr/*             https://movewell.fr/:splat           301
+https://www.movewell.fr/*            https://movewell.fr/:splat           301
+http://movewell.fr/*                 https://movewell.fr/:splat           301
+
+# Pages principales Squarespace → nouvelles pages Netlify
+/a-propos                            /about                               301
+/programmes                          /offres                              301
+/services                            /offres                              301
+/selancer                            /diagnostic                          301
+/bilan                               /diagnostic                          301
+/bilan-forme-paris                   /diagnostic                          301
+/point-de-depart                     /diagnostic                          301
+/reservation                         /diagnostic                          301
+/contact                             /diagnostic                          301
+/nous-contacter                      /diagnostic                          301
+/coach-sportif-domicile              /methode                             301
+/notre-methode                       /methode                             301
+/temoignages                         /testimonials                        301
+/resultats                           /testimonials                        301
+/avis-clients                        /testimonials                        301
+/success-stories                     /testimonials                        301
+/team                                /about                               301
+/la-team                             /about                               301
+/sport-en-entreprise                 /offres                              301
+/techno-gear                         /methode                             301
+
+# Blog / newsroom supprimés
+/blog/remettre-son-mari-au-sport     /blog/remettre-son-mari-au-sport     200
+/blog                                /                                    301
+/blog/                               /                                    301
+/blog/*                              /                                    301
+/articles/*                          /                                    301
+/newsroommovewell/*                  /                                    301
+/newsroom/*                          /                                    301
+
+# Cocon sémantique anciens slugs sport-en-couple
+/coach-sportif-couple-paris          /sport-en-couple                     301
+/coach-sportif-couple                /sport-en-couple                     301
+/coaching-couple-paris               /sport-en-couple                     301
+/sport-couple-50-ans                 /sport-en-couple                     301
+/sport-couple-paris                  /sport-en-couple                     301
+/programme-sport-couple              /sport-en-couple                     301
+
+# Cocon sémantique anciens slugs méthode/longévité
+/coaching-longevite-paris            /methode                             301
+/coaching-longevite                  /methode                             301
+/coach-longevite-paris               /methode                             301
+/sport-apres-50-ans                  /methode                             301
+/remise-en-forme-50-ans              /offres                              301
+/remise-en-forme-couple              /offres                              301
+/programme-90-jours                  /offres                              301
+
+# ── REDIRECTS LOCAUX — URLs spécifiques visibles ────────────────
+
+# Neuilly
+/sport-bien-etre-travail-neuilly-seine          /coach-sportif-neuilly-sur-seine   301
+/sport-cse-neuilly-activites-variees-salaries   /coach-sportif-neuilly-sur-seine   301
+/coach-sportif-neuilly                          /coach-sportif-neuilly-sur-seine   301
+/sport-coach-sportif-domicile-neuilly-seine     /coach-sportif-neuilly-sur-seine   301
+
+# Levallois
+/sport-remise-forme-facile-levallois-perret     /coach-sportif-levallois-perret    301
+/sport-levallois-perret-faire-sport-cse-efficacement /coach-sportif-levallois-perret 301
+/sport-reprendre-toute-securite-apres-bilan-levallois /coach-sportif-levallois-perret 301
+/coach-sportif-levallois                        /coach-sportif-levallois-perret    301
+
+# Paris 17e
+/sport-coach-sportif-pres-chez-moi-paris-17    /coach-sportif-paris-17            301
+/sport-defouler-paris-17-activites-physiques   /coach-sportif-paris-17            301
+/sport-coach-sportif-paris-17-entrainer-pres-chez-soi /coach-sportif-paris-17     301
+/sport-coach-sportif-domicile-17e-arrondissement /coach-sportif-paris-17          301
+/coach-sportif-paris-17                        /coach-sportif-paris-17            301
+
+# Paris 16e
+/sport-coach-sportif-domicile-16e-arrondissement /coach-sportif-paris-16          301
+/coach-sportif-paris-16                        /coach-sportif-paris-16            301
+
+# Clichy
+/sport-clichy-garenne-activites-faciles-adultes /coach-sportif-clichy             301
+/sport-entrainement-coach-sportif-clichy-garenne /coach-sportif-clichy            301
+/coach-sportif-clichy                          /coach-sportif-clichy              301
+
+# Courbevoie
+/coach-sportif-courbevoie                      /coach-sportif-courbevoie          301
+
+# Boulogne (pas de page hub — vers offres)
+/sport-reprendre-securite-apres-bilan-boulogne  /offres                           301
+/sport-programme-adapte-boulogne-billancourt    /offres                           301
+/sport-remise-forme-facile-pres-chez-moi-boulogne /offres                         301
+/coach-sportif-boulogne                         /offres                           301
+
+# Asnières
+/coach-sportif-asnieres                         /offres                           301
+
+# Autres arrondissements Paris sans hub dédié
+/coach-sportif-paris-8                         /coach-sportif-paris-16            301
+/coach-sportif-paris-15                        /coach-sportif-paris-16            301
+/coach-sportif-paris-6                         /coach-sportif-paris-16            301
+
+# ── REDIRECTS MANQUANTS — détectés via export Search Console 404 ─
+
+/home                                                    /                                    301
+/diagnostique                                            /diagnostic                          301
+/offre-exclusive-de-maintien-en-forme                    /offres                              301
+/offre-couple-sport-movewell                             /sport-en-couple                     301
+/boutique                                                /offres                              301
+/faq-movewell                                            /                                    301
+/nutrition-trousse-de-performance                        /methode                             301
+/avis-clients-coach-sportif-a-domicile                   /testimonials                        301
+
+# Neuilly manquants
+/sport-neuilly-seine-programme-adapte-tous-ages          /coach-sportif-neuilly-sur-seine     301
+/sport-faire-sport-coach-neuilly-seine                   /coach-sportif-neuilly-sur-seine     301
+
+# Paris 17e manquants
+/sport-activites-faciles-adultes-paris-17                /coach-sportif-paris-17              301
+/sport-exercices-faciles-perdre-poids-paris-17           /coach-sportif-paris-17              301
+
+# Clichy manquants
+/sport-coach-sportif-clichy-garenne-pres-chez-vous       /coach-sportif-clichy                301
+/sport-programme-remise-forme-adultes-clichy             /coach-sportif-clichy                301
+/sport-clichy-garenne-programme-sportif-local-adapte     /coach-sportif-clichy                301
+
+# Boulogne manquant
+/sport-coach-sportif-domicile-boulogne-billancourt       /offres                              301
+
+# Levallois manquant
+/sport-entreprise-faire-sport-levallois-perret           /coach-sportif-levallois-perret      301
+
+# Entreprise / autres
+/sport-entreprise-guide                                  /offres                              301
+
+# Wildcards videos / JO
+/tutos-videos-sport-a-la-maison/*                        /                                    301
+/jo-paris-2024/*                                         /                                    301
+
+# ── WILDCARDS — capture les URLs non listées ci-dessus ──────────
+# (Netlify applique dans l'ordre : les règles spécifiques ci-dessus
+#  prennent le dessus sur ces wildcards)
+/sport-paris-*                       /methode                             301
+
+# Trailing slash
+/about/                              /about                               301
+/offres/                             /offres                              301
+/diagnostic/                         /diagnostic                          301
+/methode/                            /methode                             301
+/sport-en-couple/                    /sport-en-couple                     301
+/testimonials/                       /testimonials                        301
+/coach-sportif-levallois-perret/     /coach-sportif-levallois-perret      301
+/coach-sportif-paris-16/             /coach-sportif-paris-16              301
+/coach-sportif-neuilly-sur-seine/    /coach-sportif-neuilly-sur-seine     301
+/coach-sportif-clichy/               /coach-sportif-clichy                301
+/coach-sportif-courbevoie/           /coach-sportif-courbevoie            301
+/coach-sportif-paris-17/             /coach-sportif-paris-17              301

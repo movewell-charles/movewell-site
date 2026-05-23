@@ -1,0 +1,10 @@
+# MOVE WELL — robots.txt
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/
+Disallow: /.netlify/
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://movewell.fr/sitemap.xml

@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph / LinkedIn / WhatsApp -->
+
+<!-- Twitter Card -->
+
+<!-- Schema.org LocalBusiness -->
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0A0B0D;
+  --ink: #0F1114;
+  --dark: #161920;
+  --mid: #8B95A1;
+  --smoke: #8B95A1;
+  --sand: #4AABFF;
+  --electric: #1E90FF;
+  --warm-white: #F8F9FA;
+  --off: #161920;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: #0A0B0D;
+  color: #F8F9FA;
+  overflow-x: hidden;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: #0F1114;
+  border-bottom: 1px solid #252A33;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: .55rem 0;
+}
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 28s linear infinite;
+}
+.ticker-item {
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #8B95A1;
+  padding: 0 2.5rem;
+}
+.ticker-item::after { content: '◆'; margin-left: 2.5rem; opacity: .35; }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem 3rem;
+  background: #0F1114;
+  border-bottom: 1px solid #252A33;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: .1em;
+  color: var(--warm-white);
+}
+.logo span { color: var(--electric); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(248,249,250,.4);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--warm-white); }
+.nav-btn {
+  background: var(--electric) !important;
+  color: var(--black) !important;
+  padding: .55rem 1.4rem;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0A0B0D 0%, #0F2847 50%, #0A0B0D 100%);
+  padding: 7rem 3rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: 'MÉTHODE';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(10rem, 22vw, 20rem);
+  color: rgba(30,144,255,.25);
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  letter-spacing: .05em;
+  pointer-events: none;
+  line-height: 1;
+}
+.hero-inner { max-width: 820px; position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 2rem;
+  animation: slideUp .8s .1s ease both;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--electric);
+}
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  line-height: .93;
+  color: var(--warm-white);
+  letter-spacing: .02em;
+  animation: slideUp .9s .2s ease both;
+}
+h1 .electric { color: var(--electric); }
+h1 .serif {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: .65em;
+  color: rgba(248,249,250,.4);
+  display: block;
+  letter-spacing: .01em;
+}
+.hero-sub {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(248,249,250,.5);
+  font-weight: 300;
+  max-width: 520px;
+  margin-top: 2rem;
+  animation: slideUp 1s .35s ease both;
+}
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 2rem;
+  animation: slideUp 1s .45s ease both;
+}
+.pill {
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(248,249,250,.5);
+  border: 1px solid rgba(248,249,250,.12);
+  padding: .35rem .9rem;
+}
+
+/* ── SECTIONS ── */
+.section { padding: 6rem 3rem; }
+.container { max-width: 1080px; margin: 0 auto; }
+.section-tag {
+  font-size: .6rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  display: block;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: .95;
+  letter-spacing: .03em;
+  margin-bottom: 2rem;
+}
+.lead {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--mid);
+  font-weight: 300;
+  max-width: 580px;
+}
+
+/* ── BILAN ── */
+.section-bilan { background: #161920; }
+.bilan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3.5rem;
+}
+.bilan-steps { display: flex; flex-direction: column; gap: 0; }
+.bstep {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #252A33;
+  transition: padding-left .2s;
+}
+.bstep:hover { padding-left: .5rem; }
+.bstep-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: rgba(30,144,255,.35);
+  line-height: 1;
+}
+.bstep h4 {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #F8F9FA;
+  margin-bottom: .3rem;
+}
+.bstep p {
+  font-size: .82rem;
+  color: var(--smoke);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.bstep-tag {
+  display: inline-block;
+  font-size: .58rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--electric);
+  background: rgba(10,11,13,.06);
+  padding: .2rem .6rem;
+  margin-top: .5rem;
+}
+
+.bilan-aside {
+  background: #0F1114;
+  border: 1px solid #252A33;
+  padding: 2.5rem;
+  position: sticky;
+  top: 8rem;
+}
+.bilan-aside h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--warm-white);
+  letter-spacing: .06em;
+  margin-bottom: 1.5rem;
+}
+.aside-items { display: flex; flex-direction: column; gap: 1rem; }
+.aside-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(248,249,250,.06);
+}
+.aside-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .1rem; }
+.aside-text p {
+  font-size: .82rem;
+  color: rgba(248,249,250,.5);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.aside-text strong {
+  display: block;
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--warm-white);
+  margin-bottom: .2rem;
+  letter-spacing: .03em;
+}
+.aside-price {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(30,144,255,.2);
+}
+.aside-price span {
+  font-size: .6rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--electric);
+  display: block;
+  margin-bottom: .4rem;
+}
+.aside-price p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--warm-white);
+  letter-spacing: .06em;
+}
+.aside-price small {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: .72rem;
+  color: rgba(248,249,250,.3);
+  font-weight: 300;
+  margin-top: .3rem;
+}
+
+/* ── PROGRAMME 12 SEMAINES ── */
+.section-prog { background: var(--black); }
+
+.prog-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 4rem;
+}
+.prog-header h2 { color: var(--warm-white); margin-bottom: 0; }
+.prog-header .lead { color: rgba(248,249,250,.45); }
+
+.prog-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: rgba(248,249,250,.05);
+}
+
+.pillar {
+  background: #0F1114;
+  border: 1px solid #252A33;
+  padding: 2.5rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+  transition: background .25s;
+}
+.pillar:hover { background: #161920; }
+.pillar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--electric);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s ease;
+}
+.pillar:hover::after { transform: scaleX(1); }
+
+.pillar-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(30,144,255,.3);
+  line-height: 1;
+  margin-bottom: .8rem;
+  letter-spacing: .05em;
+}
+.pillar-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+.pillar h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--warm-white);
+  letter-spacing: .06em;
+  margin-bottom: .8rem;
+  line-height: 1.1;
+}
+.pillar p {
+  font-size: .8rem;
+  color: rgba(248,249,250,.4);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.pillar-badge {
+  display: inline-block;
+  font-size: .58rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--electric);
+  border: 1px solid rgba(30,144,255,.2);
+  padding: .25rem .7rem;
+  margin-top: 1rem;
+}
+
+/* ── SÉANCE TYPE ── */
+.section-seance { background: #0A0B0D; }
+
+.seance-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 3.5rem;
+}
+
+.timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.1rem;
+  top: 2rem;
+  bottom: 2rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--electric), rgba(30,144,255,.1));
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  align-items: start;
+}
+.tl-dot {
+  width: 2.2rem; height: 2.2rem;
+  border-radius: 50%;
+  background: #0F1114;
+  border: 2px solid rgba(30,144,255,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: .6rem;
+  font-weight: 600;
+  color: var(--electric);
+  position: relative;
+  z-index: 1;
+  transition: border-color .2s, background .2s;
+}
+.tl-item:hover .tl-dot {
+  background: #1E90FF;
+  color: #F8F9FA;
+  border-color: var(--electric);
+}
+.tl-content h4 {
+  font-size: .88rem;
+  font-weight: 600;
+  color: #F8F9FA;
+  margin-bottom: .3rem;
+}
+.tl-content p {
+  font-size: .8rem;
+  color: var(--smoke);
+  line-height: 1.65;
+  font-weight: 300;
+}
+.tl-time {
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: .3rem;
+}
+
+.seance-aside { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.tech-card {
+  background: #0F1114;
+  border: 1px solid #252A33;
+  padding: 2rem;
+}
+.tech-card h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--warm-white);
+  letter-spacing: .08em;
+  margin-bottom: .8rem;
+}
+.tech-card p {
+  font-size: .82rem;
+  color: rgba(248,249,250,.4);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1rem;
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--electric);
+}
+.tech-badge::before {
+  content: '';
+  display: block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--electric);
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: .2; }
+}
+
+.flex-card {
+  background: #161920;
+  padding: 1.8rem;
+}
+.flex-card h4 {
+  font-size: .78rem;
+  font-weight: 600;
+  color: #F8F9FA;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.flex-items { display: flex; flex-direction: column; gap: .7rem; }
+.flex-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  font-size: .8rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.5;
+}
+.flex-item::before {
+  content: '→';
+  color: var(--electric);
+  flex-shrink: 0;
+  font-size: .8rem;
+  margin-top: .05rem;
+}
+
+/* ── ENGAGE COMPACT ── */
+.engage-compact { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem; margin-top: 1rem; }
+.engage-compact h4 { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.ec-row { display: flex; gap: 1rem; align-items: flex-start; padding: .8rem 0; border-top: 1px solid var(--border); }
+.ec-label { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .08em; color: var(--electric); width: 2.5rem; flex-shrink: 0; padding-top: .1rem; }
+.ec-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .4rem; }
+.ec-list li { font-size: .75rem; color: var(--muted); font-weight: 300; line-height: 1.5; padding-left: .8rem; position: relative; }
+.ec-list li::before { content: '◆'; position: absolute; left: 0; color: var(--electric); font-size: .4rem; top: .35rem; }
+
+.engage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3.5rem;
+}
+
+.engage-col h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: .08em;
+  margin-bottom: 1.5rem;
+}
+.engage-col.yours h3 { color: var(--electric); }
+.engage-col.mine h3  { color: rgba(248,249,250,.35); }
+
+.engage-list { display: flex; flex-direction: column; gap: .8rem; }
+
+.engage-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+.engage-col.mine .engage-item  { background: rgba(248,249,250,.03); }
+.engage-col.yours .engage-item { background: rgba(30,144,255,.05); border-left: 2px solid rgba(30,144,255,.2); }
+
+.engage-item p {
+  font-size: .82rem;
+  color: rgba(248,249,250,.55);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.engage-col.yours .engage-item p { color: rgba(248,249,250,.75); }
+
+.engage-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* ── TARIFS ── */
+.section-tarifs { background: #161920; }
+
+.tarifs-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  margin-top: 3.5rem;
+  align-items: start;
+}
+
+.bundle-card {
+  background: #0F1114;
+  border: 1px solid #252A33;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.bundle-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; height: 3px;
+  background: var(--electric);
+}
+.bundle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+}
+.bundle-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--warm-white);
+  letter-spacing: .06em;
+  line-height: 1;
+}
+.bundle-title span {
+  display: block;
+  font-size: .6rem;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: .4rem;
+}
+.bundle-price-main {
+  text-align: right;
+}
+.bundle-price-main .price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  color: var(--electric);
+  line-height: 1;
+  letter-spacing: .03em;
+}
+.bundle-price-main .price-label {
+  font-size: .6rem;
+  color: rgba(248,249,250,.3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  display: block;
+  text-align: right;
+}
+
+.bundle-items { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
+.bundle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .9rem 1rem;
+  background: rgba(248,249,250,.04);
+  border-left: 2px solid rgba(30,144,255,.15);
+}
+.bundle-item-name {
+  font-size: .82rem;
+  color: rgba(248,249,250,.65);
+  font-weight: 300;
+}
+.bundle-item-price {
+  font-size: .78rem;
+  font-weight: 500;
+  color: rgba(248,249,250,.4);
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+.bundle-item.highlight { background: rgba(30,144,255,.07); border-left-color: var(--electric); }
+.bundle-item.highlight .bundle-item-name { color: rgba(248,249,250,.9); }
+.bundle-item.highlight .bundle-item-price { color: var(--electric); }
+
+.bundle-note {
+  font-size: .75rem;
+  color: rgba(248,249,250,.25);
+  font-weight: 300;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.tarifs-aside { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.onetime-card {
+  background: #0A0B0D;
+  border: 1px solid rgba(10,11,13,.08);
+  padding: 1.8rem;
+}
+.onetime-card h4 {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  margin-bottom: 1.2rem;
+}
+.onetime-items { display: flex; flex-direction: column; gap: .8rem; }
+.onetime-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid rgba(10,11,13,.06);
+}
+.onetime-item:last-child { border: none; padding-bottom: 0; }
+.onetime-item span { font-size: .82rem; color: #8B95A1; font-weight: 300; }
+.onetime-item strong { font-size: .88rem; font-weight: 600; color: #F8F9FA; }
+
+.perks-card {
+  background: #0F1114;
+  border: 1px solid #252A33;
+  padding: 1.8rem;
+}
+.perks-card h4 {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 1.2rem;
+}
+.perk {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  margin-bottom: .8rem;
+}
+.perk p { font-size: .8rem; color: rgba(248,249,250,.45); font-weight: 300; line-height: 1.5; }
+.perk strong { color: rgba(248,249,250,.75); }
+
+/* ── CTA FINAL ── */
+.section-cta {
+  background: linear-gradient(135deg, #0F2847 0%, #0F1114 60%, #161920 100%);
+  padding: 8rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.section-cta::before {
+  content: 'START';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(12rem, 28vw, 24rem);
+  color: rgba(248,249,250,.03);
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.cta-inner { position: relative; z-index: 1; }
+.cta-inner h2 {
+  color: #F8F9FA;
+  max-width: 640px;
+  margin: 0 auto 1rem;
+  font-size: clamp(3rem, 7vw, 6rem);
+}
+.cta-inner p {
+  font-size: 1rem;
+  color: rgba(248,249,250,.5);
+  max-width: 460px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.btn-black {
+  display: inline-block;
+  background: #1E90FF;
+  color: #F8F9FA;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 1.1rem 3rem;
+  text-decoration: none;
+  transition: opacity .2s, transform .2s;
+}
+.btn-black:hover { opacity: .85; transform: translateY(-2px); }
+.cta-sub {
+  display: block;
+  margin-top: 1.2rem;
+  font-size: .65rem;
+  color: rgba(248,249,250,.3);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 1; transform: none; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .section { padding: 4rem 1.5rem; }
+  .hero { padding: 5rem 1.5rem 4rem; }
+  .bilan-grid { grid-template-columns: 1fr; }
+  .bilan-aside { position: static; }
+  .prog-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .prog-pillars { grid-template-columns: 1fr 1fr; }
+  .seance-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .engage-grid { grid-template-columns: 1fr; }
+  .tarifs-layout { grid-template-columns: 1fr; }
+  .section-cta { padding: 5rem 1.5rem; }
+}
+
+/* ── PLANNING SECTIONS ── */
+.section-planning { padding: 6rem 5vw; }
+.section-planning.dark { background: var(--void); }
+.section-planning.surface { background: var(--surface); }
+.planning-inner { max-width: 1100px; margin: 0 auto; }
+.planning-tag { font-size: .58rem; letter-spacing: .26em; text-transform: uppercase; color: var(--electric); display: block; margin-bottom: .8rem; }
+.planning-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem,4vw,3.2rem); line-height: .95; letter-spacing: .03em; margin-bottom: .6rem; }
+.planning-sub { font-size: .85rem; color: var(--muted); font-weight: 300; font-family: 'Libre Baskerville', serif; font-style: italic; max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; }
+.prog-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.ptab { font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding: .7rem 1.4rem; cursor: pointer; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; background: none; border-top: none; border-left: none; border-right: none; }
+.ptab.active { color: var(--electric); border-bottom-color: var(--electric); }
+.ptab:hover { color: var(--soft); }
+.prog-panel { display: none; }
+.prog-panel.active { display: block; }
+.prog-meta { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 1.2rem; }
+.pm-card { background: var(--deep); border: 1px solid var(--border); padding: 1rem; }
+.pm-label { font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.pm-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--electric); line-height: 1; letter-spacing: .04em; }
+.pm-unit { font-size: .65rem; color: var(--muted); font-weight: 300; }
+.week-grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 5px; }
+.wday { border: 1px solid var(--border); background: var(--deep); overflow: hidden; }
+.wday.type-coach { background: rgba(30,144,255,.08); border-color: rgba(30,144,255,.2); }
+.wday.type-run { background: rgba(30,144,255,.04); border-color: rgba(30,144,255,.12); }
+.wday.type-rise { background: rgba(74,171,255,.04); border-color: rgba(74,171,255,.12); }
+.wday.type-rest { background: var(--surface); border-color: var(--border); }
+.wday.type-swim { background: rgba(30,144,255,.05); border-color: rgba(30,144,255,.12); }
+.wday-head { padding: 5px 7px; border-bottom: 1px solid var(--border); }
+.wday-head.coach-head { background: var(--electric); border-color: var(--electric); }
+.wday-name { font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.coach-head .wday-name { color: rgba(255,255,255,.9); }
+.wday-body { padding: 8px; }
+.wd-type { font-size: .72rem; font-weight: 500; color: var(--soft); margin-bottom: 2px; line-height: 1.2; }
+.wd-detail { font-size: .62rem; color: var(--muted); line-height: 1.4; margin-bottom: 3px; }
+.wd-time { font-size: .6rem; color: var(--electric); font-weight: 500; }
+.wd-pill { display: inline-block; font-size: .55rem; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; margin-top: 5px; font-weight: 500; }
+.wd-pill.blue { background: rgba(30,144,255,.12); color: var(--electric); }
+.wd-pill.grey { background: var(--surface); color: var(--muted); }
+.ibar { height: 2px; background: var(--border); margin-top: 6px; overflow: hidden; }
+.ibar-fill { height: 100%; }
+.plan-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 1rem; }
+.pl-item { display: flex; align-items: center; gap: 5px; font-size: .65rem; color: var(--muted); }
+.pl-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+/* Monthly */
+.monthly-grid { display: grid; grid-template-columns: 70px repeat(7, minmax(0,1fr)); gap: 3px; margin-bottom: 1.5rem; }
+.mg-head { font-size: .5rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-align: center; padding: 4px 0; }
+.week-lbl { display: flex; flex-direction: column; gap: 3px; padding-top: 6px; }
+.wl-n { font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.wl-b { font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; padding: 2px 5px; font-weight: 500; display: inline-block; }
+.mc-cell { padding: 5px; min-height: 54px; border: 1px solid var(--border); background: var(--deep); }
+.mc-cell.type-coach { background: rgba(30,144,255,.08); border-color: rgba(30,144,255,.2); }
+.mc-cell.type-run { background: rgba(30,144,255,.04); border-color: rgba(30,144,255,.1); }
+.mc-cell.type-rise { background: rgba(74,171,255,.04); border-color: rgba(74,171,255,.1); }
+.mc-cell.type-rest { background: var(--surface); }
+.mc-cell.peak { outline: 1px solid rgba(30,144,255,.25); outline-offset: 1px; }
+.mc-d { font-size: .5rem; color: var(--muted); margin-bottom: 3px; }
+.mc-l { font-size: .62rem; font-weight: 500; color: var(--soft); line-height: 1.2; }
+.mc-t { font-size: .55rem; color: var(--muted); margin-top: 2px; }
+.mc-tc { font-size: .55rem; color: var(--electric); margin-top: 1px; font-weight: 500; }
+.insights-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: .5rem; }
+.ins-card { background: var(--deep); border: 1px solid var(--border); padding: 1.2rem 1.5rem; }
+.ins-card-title { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.ins-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.ins-row:last-child { border-bottom: none; padding-bottom: 0; }
+.ins-wk { font-size: .55rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); width: 40px; flex-shrink: 0; padding-top: 2px; }
+.ins-badge { font-size: .5rem; letter-spacing: .06em; text-transform: uppercase; padding: 2px 6px; font-weight: 500; flex-shrink: 0; }
+.ins-txt { font-size: .72rem; color: var(--muted); line-height: 1.5; flex: 1; }
+.ins-dur { font-size: .72rem; font-weight: 500; color: var(--soft); margin-left: auto; flex-shrink: 0; }
+.distrib-card { background: var(--deep); border: 1px solid var(--border); padding: 1.2rem 1.5rem; }
+.distrib-title { font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+.distrib-bars { display: flex; flex-direction: column; gap: 8px; }
+.db-row { display: flex; align-items: center; gap: 10px; }
+.db-label { font-size: .68rem; color: var(--soft); width: 100px; flex-shrink: 0; }
+.db-track { flex: 1; height: 4px; background: var(--border); overflow: hidden; }
+.db-fill { height: 100%; }
+.db-val { font-size: .68rem; color: var(--muted); width: 50px; text-align: right; flex-shrink: 0; }
+@media(max-width:768px){ .week-grid { grid-template-columns: repeat(7,minmax(0,1fr)); } .prog-meta { grid-template-columns: 1fr 1fr; } .monthly-grid { grid-template-columns: 50px repeat(7,minmax(0,1fr)); } .insights-row { grid-template-columns: 1fr; } }
+
+/* ── HAMBURGER MOBILE ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+  z-index: 200;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #F8F9FA;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,11,13,0.98);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.8rem;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.1em;
+  color: #F8F9FA;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover, .mobile-menu a.active { color: #1E90FF; }
+.mobile-menu .menu-cta {
+  margin-top: 1rem;
+  background: #1E90FF;
+  color: #0A0B0D !important;
+  padding: 0.8rem 2.5rem;
+  font-size: 1rem !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.mobile-menu .menu-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-size: 2rem;
+  color: #8B95A1;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+@media (max-width: 960px) {
+  .hamburger { display: flex; }
+}
+
+/* ── METHOD LAYOUT ── */
+.method-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.method-claim {
+  position: sticky;
+  top: 8rem;
+}
+.method-steps { display: flex; flex-direction: column; gap: 0; }
+
+.step {
+  padding: 2rem 0;
+  border-bottom: 1px solid #252A33;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  transition: padding .2s;
+}
+.step {
+  padding: 2rem 0;
+  border-bottom: 1px solid #252A33;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  transition: padding .2s;
+}
+.step:hover { padding-left: .5rem; }
+
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: rgba(10,11,13,.12);
+  line-height: 1;
+  letter-spacing: .05em;
+}
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: rgba(10,11,13,.12);
+  line-height: 1;
+  letter-spacing: .05em;
+}
+.step h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: .95rem;
+  font-weight: 600;
+  color: #F8F9FA;
+  margin-bottom: .4rem;
+  letter-spacing: .02em;
+}
+.step p {
+  font-size: .85rem;
+  color: var(--smoke);
+  line-height: 1.7;
+  font-weight: 300;
+}
+.step-tag {
+  display: inline-block;
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--electric);
+  background: rgba(30,144,255,.1);
+  padding: .2rem .6rem;
+  margin-top: .5rem;
+}
+.big-claim {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: .95;
+  letter-spacing: .03em;
+  color: #F8F9FA;
+}
+.method-claim p {
+  font-size: .85rem;
+  color: var(--smoke);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-top: 1.2rem;
+  max-width: 280px;
+}
+.method-claim .big-claim {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: .95;
+  letter-spacing: .03em;
+  color: #F8F9FA;
+}
+</style>
+
+  <!-- ═══ SEO OPTIMISÉ — Move Well ═══ -->
+  <title>Méthode Move Well | Coach Sportif à Domicile Paris 90 Jours</title>
+  <meta name="description" content="La méthode Move Well : bilan de forme, programme 90 jours sur-mesure, suivi Whoop. Coach à domicile à Paris pour exécutifs et couples 45-60 ans. Résultats dès J10.">
+  <link rel="canonical" href="https://movewell.fr/methode">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://movewell.fr/methode">
+  <meta property="og:title" content="La Méthode Move Well — 90 Jours pour changer de trajectoire">
+  <meta property="og:description" content="Un bilan, un programme sur mesure, un coach dédié à domicile à Paris. Pour exécutifs et couples 45-60 ans qui ne s'arrêtent pas.">
+  <meta property="og:image" content="https://movewell.fr/og-image.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Move Well Coaching">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La Méthode Move Well — 90 Jours">
+  <meta name="twitter:description" content="Bilan, programme sur mesure, coach dédié. À domicile à Paris pour exécutifs 45-60 ans.">
+  <meta name="robots" content="index, follow">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Coach sportif à domicile Paris — Méthode 90 jours Move Well",
+    "description": "Coaching sportif premium à domicile à Paris. Bilan de forme, programme 90 jours personnalisé, suivi Whoop/Polar H10. Pour exécutifs et couples 45-60 ans.",
+    "provider": {"@id": "https://movewell.fr/#business"},
+    "areaServed": [
+      {"@type": "City", "name": "Paris"},
+      {"@type": "City", "name": "Neuilly-sur-Seine"},
+      {"@type": "City", "name": "Levallois-Perret"},
+      {"@type": "City", "name": "Clichy-la-Garenne"}
+    ],
+    "url": "https://movewell.fr/methode",
+    "offers": {
+      "@type": "Offer",
+      "name": "Programme coaching 90 jours à domicile",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+  <!-- ═══ FIN SEO ═══ -->
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">3 mois pour changer la donne</span>
+    <span class="ticker-item">Bilan physique complet inclus</span>
+    <span class="ticker-item">Suivi Whoop offert au lancement</span>
+    <span class="ticker-item">Programme RISE App inclus</span>
+    <span class="ticker-item">Séances courtes · Impact maximum</span>
+    <span class="ticker-item">Individuel & Couple</span>
+    <!-- duplicate -->
+    <span class="ticker-item">3 mois pour changer la donne</span>
+    <span class="ticker-item">Bilan physique complet inclus</span>
+    <span class="ticker-item">Suivi Whoop offert au lancement</span>
+    <span class="ticker-item">Programme RISE App inclus</span>
+    <span class="ticker-item">Séances courtes · Impact maximum</span>
+    <span class="ticker-item">Individuel & Couple</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Move<span> Well</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="methode.html" class="active">La Méthode</a>
+    <a href="offres.html">Programme</a>
+    <a href="sport-en-couple.html">Sport en couple</a>
+    <a href="testimonials.html">Témoignages</a>
+    <a href="about.html">About</a>
+    <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="nav-btn">Commencer</a>
+  </div>
+<button id="hamburger-btn" class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">La Méthode Move Well</span>
+    <h1>
+      Un protocole.<br>
+      <span class="electric">Pas un programme.</span>
+      <span class="serif">La différence change tout.</span>
+    </h1>
+    <p class="hero-sub">
+      Un programme, vous l'abandonnez à la première semaine chargée. Un protocole, lui, s'adapte à votre réalité et continue de travailler pour vous même quand la vie s'accélère.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">12 semaines structurées</span>
+      <span class="pill">Cardio · Force · Mobilité</span>
+      <span class="pill">Suivi hebdomadaire</span>
+      <span class="pill">Technologie Whoop</span>
+      <span class="pill">Paris & Hauts-de-Seine</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BILAN INITIAL ══ -->
+<section class="section section-bilan" id="bilan">
+  <div class="container reveal">
+    <span class="section-tag">Étape 0 · Avant tout</span>
+    <h2>Le bilan.<br>Parce que vous méritez<br>un plan qui vous ressemble.</h2>
+    <div class="bilan-grid">
+      <div class="bilan-steps">
+        <div class="bstep">
+          <div class="bstep-num">01</div>
+          <div>
+            <h4>Entretien objectifs & historique</h4>
+            <p>On part de votre réalité : agenda, contraintes, douleurs éventuelles, niveau actuel.</p>
+            <span class="bstep-tag">30 min</span>
+          </div>
+        </div>
+        <div class="bstep">
+          <div class="bstep-num">02</div>
+          <div>
+            <h4>Tests de mobilité, posture & cardio</h4>
+            <p>Restrictions articulaires, déséquilibres musculaires, capacité aérobie de départ.</p>
+            <span class="bstep-tag">Évaluation fonctionnelle · Polar H10</span>
+          </div>
+        </div>
+        <div class="bstep">
+          <div class="bstep-num">03</div>
+          <div>
+            <h4>Personnalisation complète du programme</h4>
+            <p>Votre programme des 12 semaines est construit sur ces données, dès le premier jour.</p>
+            <span class="bstep-tag">Plan sur-mesure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bilan-aside">
+        <h3>Ce avec quoi tu repars directement</h3>
+        <div class="aside-items">
+          <div class="aside-item">
+            <span class="aside-icon">✓</span>
+            <div class="aside-text">
+              <strong>La certitude de tenir le programme</strong>
+            </div>
+          </div>
+          <div class="aside-item">
+            <span class="aside-icon">✓</span>
+            <div class="aside-text">
+              <strong>Le diagnostic de ce dont vous avez besoin selon vos contraintes et vos objectifs</strong>
+            </div>
+          </div>
+          <div class="aside-item">
+            <span class="aside-icon">✓</span>
+            <div class="aside-text">
+              <strong>Un état général de votre forme physique</strong>
+            </div>
+          </div>
+          <div class="aside-item">
+            <span class="aside-icon">✓</span>
+            <div class="aside-text">
+              <strong>Votre temps sécurisé pour vous</strong>
+            </div>
+          </div>
+        </div>
+        <div class="aside-price">
+          <span>Bilan de forme</span>
+          <p>200€ <small style="font-size:.65rem;opacity:.5">one-time · non renouvelable</small></p>
+          <small>+ Ouverture de compte : 50€ one-time</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROGRAMME 12 SEMAINES ══ -->
+<section class="section section-prog" id="programme">
+  <div class="container reveal">
+    <div class="prog-header">
+      <div>
+        <span class="section-tag">Les 4 piliers · 12 semaines</span>
+        <h2 style="color:var(--warm-white);">Chaque semaine<br>travaille pour<br><span style="color:var(--electric)">la suivante.</span></h2>
+      </div>
+      <p class="lead">Un programme de remise en forme repose sur plusieurs piliers structurés pour tonifier l'ensemble du corps et instaurer un rythme sportif durable.</p>
+    </div>
+    <div class="prog-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <span class="pillar-icon">🏃</span>
+        <h4>Course à pied progressive</h4>
+        <p>Plan 12 semaines avec 2 sorties hebdomadaires. Objectif : courir 10 km en 1 heure. Progression calibrée pour ne jamais vous blesser.</p>
+        <span class="pillar-badge">Dossard Move Well inclus</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <span class="pillar-icon">💪</span>
+        <h4>Renforcement & Mobilité</h4>
+        <p>2 capsules RISE App de 10 à 30 min/semaine + 2 sessions live de 30 min, circuits full body pour corriger les postures et préserver la jeunesse du corps.</p>
+        <span class="pillar-badge">RISE App inclus</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <span class="pillar-icon">🧠</span>
+        <h4>Technique & Engagement</h4>
+        <p>Apprentissage du bon engagement des abdominaux. Capacité à maintenir l'effort intense. Le fondement mécanique que la plupart des gens n'ont jamais appris.</p>
+        <span class="pillar-badge">Gainage fonctionnel</span>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <span class="pillar-icon">📊</span>
+        <h4>Suivi personnalisé & chiffré</h4>
+        <p>Check-in hebdomadaire pour calibrer les efforts. Session mensuelle de 1h pour ajuster l'intensité. Métriques Whoop pour piloter la récupération.</p>
+        <span class="pillar-badge">Données réelles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SÉANCE & ENGAGEMENTS ══ -->
+<section class="section section-seance" id="seance">
+  <div class="container reveal">
+    <span class="section-tag">Le déroulé · Le contrat</span>
+    <h2>Une séance live.<br>De A à Z.</h2>
+    <div class="interrupt reveal" style="margin-bottom:3rem;">
+      <p>Une partie du programme se fait en présence du personal trainer, à domicile, en extérieur ou en salle. L'autre partie est à réaliser en autonomie selon le programme sur-mesure établi ensemble.</p>
+    </div>
+    <div class="seance-layout">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">01</div>
+          <div class="tl-content">
+            <div class="tl-time">5 min</div>
+            <h4>Activation & lecture du corps</h4>
+            <p>Vérification de votre état réel via Whoop. La séance s'ajuste avant même de commencer.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">02</div>
+          <div class="tl-content">
+            <div class="tl-time">8 min</div>
+            <h4>Échauffement ciblé</h4>
+            <p>Travail des zones identifiées au bilan : hanches, épaules, chaîne postérieure. Pas de générique.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">03</div>
+          <div class="tl-content">
+            <div class="tl-time">15–20 min</div>
+            <h4>Circuit full body structuré</h4>
+            <p>Mouvements fonctionnels, engagement abdominal corrigé en temps réel. Intensité modulée selon votre état du jour.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">04</div>
+          <div class="tl-content">
+            <div class="tl-time">5 min</div>
+            <h4>Retour au calme & ancrage</h4>
+            <p>Étirements actifs, respiration. On installe la récupération active, pas on part en courant.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">05</div>
+          <div class="tl-content">
+            <div class="tl-time">2 min</div>
+            <h4>Feedback & ajustement</h4>
+            <p>Sensations, imprévus à venir. L'adaptation de la semaine suivante commence ici.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="seance-aside">
+        <div class="tech-card">
+          <h4>Polar H10 · En séance</h4>
+          <p>Fréquence cardiaque en temps réel. On pilote l'intensité avec des données, pas au ressenti.</p>
+          <span class="tech-badge">Signal actif en séance</span>
+        </div>
+        <div class="tech-card">
+          <h4>Whoop · Entre les séances</h4>
+          <p>Récupération, sommeil, charge physique. Chaque décision d'intensité est éclairée par des métriques précises.</p>
+          <span class="tech-badge" style="color:var(--sand)">Offert au lancement</span>
+        </div>
+        <div class="engage-compact">
+          <h4>Le contrat entre nous</h4>
+          <div class="ec-row">
+            <span class="ec-label">Vous</span>
+            <ul class="ec-list">
+              <li>Réactif sur WhatsApp : feedback, doutes, stress</li>
+              <li>Respecter le programme sauf contre-indication</li>
+              <li>Partager les publications Move Well</li>
+            </ul>
+          </div>
+          <div class="ec-row">
+            <span class="ec-label">Moi</span>
+            <ul class="ec-list">
+              <li>Programme qui évolue semaine après semaine</li>
+              <li>Présent entre les séances, pas fantôme</li>
+              <li>Suivi hebdo + session mensuelle d'1h</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PLANNING MENSUEL ══ -->
+<section class="section-planning dark">
+  <div class="planning-inner">
+    <span class="planning-tag">Move Well Foundation · Vue mensuelle</span>
+    <h2 class="planning-title">Mois 1 —<br><span style="color:var(--electric)">Installation du pilier.</span></h2>
+    <p class="planning-sub">Quatre semaines structurées. Chaque cycle a une intention. La progression n'est pas un hasard.</p>
+
+    <div class="monthly-grid">
+      <div></div>
+      <div class="mg-head">Lun</div><div class="mg-head">Mar</div><div class="mg-head">Mer</div>
+      <div class="mg-head">Jeu</div><div class="mg-head">Ven</div><div class="mg-head">Sam</div><div class="mg-head">Dim</div>
+
+      <div class="week-lbl"><span class="wl-n">Sem 1</span><span class="wl-b" style="background:rgba(74,171,255,.1);color:#4AABFF">Découverte</span></div>
+      <div class="mc-cell type-coach"><div class="mc-d">J1</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run"><div class="mc-d">J2</div><div class="mc-l">Running</div><div class="mc-t">30 min</div></div>
+      <div class="mc-cell type-rise"><div class="mc-d">J3</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+      <div class="mc-cell type-rest"><div class="mc-d">J4</div><div class="mc-l" style="color:var(--muted)">Repos</div></div>
+      <div class="mc-cell type-coach"><div class="mc-d">J5</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run"><div class="mc-d">J6</div><div class="mc-l">Running</div><div class="mc-t">40 min</div></div>
+      <div class="mc-cell type-rise"><div class="mc-d">J7</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+
+      <div class="week-lbl"><span class="wl-n">Sem 2</span><span class="wl-b" style="background:rgba(30,144,255,.12);color:var(--electric)">Charge +</span></div>
+      <div class="mc-cell type-coach peak"><div class="mc-d">J8</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run peak"><div class="mc-d">J9</div><div class="mc-l">Running</div><div class="mc-t">40 min</div></div>
+      <div class="mc-cell type-rise peak"><div class="mc-d">J10</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+      <div class="mc-cell type-rest peak"><div class="mc-d">J11</div><div class="mc-l" style="color:var(--muted)">Repos</div></div>
+      <div class="mc-cell type-coach peak"><div class="mc-d">J12</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run peak"><div class="mc-d">J13</div><div class="mc-l">Running</div><div class="mc-t">50 min</div></div>
+      <div class="mc-cell type-rise peak"><div class="mc-d">J14</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+
+      <div class="week-lbl"><span class="wl-n">Sem 3</span><span class="wl-b" style="background:rgba(37,42,51,.6);color:var(--muted)">Décharge</span></div>
+      <div class="mc-cell type-rise"><div class="mc-d">J15</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+      <div class="mc-cell type-run"><div class="mc-d">J16</div><div class="mc-l">Running</div><div class="mc-t">30 min</div></div>
+      <div class="mc-cell type-rest"><div class="mc-d">J17</div><div class="mc-l" style="color:var(--muted)">Repos</div></div>
+      <div class="mc-cell type-coach"><div class="mc-d">J18</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-rest"><div class="mc-d">J19</div><div class="mc-l" style="color:var(--muted)">Repos</div></div>
+      <div class="mc-cell type-run"><div class="mc-d">J20</div><div class="mc-l">Running</div><div class="mc-t">40 min</div></div>
+      <div class="mc-cell type-rise"><div class="mc-d">J21</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+
+      <div class="week-lbl"><span class="wl-n">Sem 4</span><span class="wl-b" style="background:rgba(30,144,255,.2);color:var(--electric)">Peak</span></div>
+      <div class="mc-cell type-coach peak"><div class="mc-d">J22</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run peak"><div class="mc-d">J23</div><div class="mc-l">Running</div><div class="mc-t">50 min</div></div>
+      <div class="mc-cell type-rise peak"><div class="mc-d">J24</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+      <div class="mc-cell type-rest peak"><div class="mc-d">J25</div><div class="mc-l" style="color:var(--muted)">Repos</div></div>
+      <div class="mc-cell type-coach peak"><div class="mc-d">J26</div><div class="mc-l">Session Live</div><div class="mc-t">45 min</div></div>
+      <div class="mc-cell type-run peak"><div class="mc-d">J27</div><div class="mc-l">Running</div><div class="mc-t">55 min</div></div>
+      <div class="mc-cell type-rise peak"><div class="mc-d">J28</div><div class="mc-l">RISE</div><div class="mc-t">20 min</div></div>
+    </div>
+
+    <div class="insights-row">
+      <div class="ins-card">
+        <div class="ins-card-title">Logique de progression</div>
+        <div class="ins-row"><span class="ins-wk">Sem 1</span><span class="ins-badge" style="background:rgba(74,171,255,.1);color:#4AABFF">Découverte</span><span class="ins-txt">Prise de repères. Intensités modérées. Le corps apprend les patterns.</span><span class="ins-dur">3h00</span></div>
+        <div class="ins-row"><span class="ins-wk">Sem 2</span><span class="ins-badge" style="background:rgba(30,144,255,.12);color:var(--electric)">Charge +</span><span class="ins-txt">Montée en charge. Running allongé. Sessions plus intenses.</span><span class="ins-dur">3h40</span></div>
+        <div class="ins-row"><span class="ins-wk">Sem 3</span><span class="ins-badge" style="background:rgba(37,42,51,.6);color:var(--muted)">Décharge</span><span class="ins-txt">Semaine allégée. Le corps assimile. Whoop surveille la récup.</span><span class="ins-dur">2h35</span></div>
+        <div class="ins-row"><span class="ins-wk">Sem 4</span><span class="ins-badge" style="background:rgba(30,144,255,.2);color:var(--electric)">Peak</span><span class="ins-txt">Consolidation. Volume maximum. Bilan de fin de cycle.</span><span class="ins-dur">3h55</span></div>
+      </div>
+      <div class="distrib-card">
+        <div class="distrib-title">Répartition du mois</div>
+        <div class="distrib-bars">
+          <div class="db-row"><span class="db-label">Sessions Live</span><div class="db-track"><div class="db-fill" style="width:42%;background:var(--electric)"></div></div><span class="db-val">8 × 45 min</span></div>
+          <div class="db-row"><span class="db-label">Running</span><div class="db-track"><div class="db-fill" style="width:28%;background:#2563EB"></div></div><span class="db-val">8 sorties</span></div>
+          <div class="db-row"><span class="db-label">RISE App</span><div class="db-track"><div class="db-fill" style="width:18%;background:#4AABFF"></div></div><span class="db-val">8 × 20 min</span></div>
+          <div class="db-row"><span class="db-label">Repos</span><div class="db-track"><div class="db-fill" style="width:12%;background:var(--border)"></div></div><span class="db-val">8 jours</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function showProg(id, btn) {
+  document.querySelectorAll('.prog-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+<!-- ══ LA MÉTHODE DANS LA VRAIE VIE ══ -->
+<section class="section" style="background:#0c1e33; border-top:1px solid rgba(59,158,255,0.12);">
+  <div class="container reveal">
+    <div class="method-layout">
+      <div class="method-claim">
+        <span class="section-tag">La méthode dans la vraie vie</span>
+        <div class="big-claim">
+          <span class="muted">PAS UNE</span><br>
+          <span class="live">SALLE.</span><br>
+          <span class="muted">UNE</span><br>
+          <span class="live">PRATIQUE.</span>
+        </div>
+      </div>
+      <div class="method-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h4>Les disciplines croisées</h4>
+            <p>Athlétisme, pilates, karaté, natation. C'est en prenant le meilleur de chaque pratique que se développe une palette complète : mobilité, force, vitesse, endurance.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h4>Le circuit du quotidien</h4>
+            <p>20 minutes par jour, 2 séances plus longues dans la semaine, 2 séances de pratique sportive. Rarement plus de 4 séances intenses par semaine.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h4>La récupération comme pilier</h4>
+            <p>Activités cérébrales, sociales, nutrition. Parfois le sport pour se défouler, parfois pour se ressourcer, parfois pour une compétition. L'année jalonnée de moments forts.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h4>La souplesse qui donne la vraie force</h4>
+            <p>C'est cette régularité adaptée qui construit l'énergie constante et la force tranquille au fil des années.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ══ -->
+<section class="section-cta" id="cta">
+  <div class="cta-inner reveal">
+    <h2>Prêt à commencer<br>par le bilan ?</h2>
+    <p>
+      La première étape, c'est comprendre où vous en êtes vraiment. Le bilan, c'est ça. C'est là que tout commence.
+    </p>
+    <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="btn-black">Réserver mon bilan de forme</a>
+    <span class="cta-sub">Paris & Hauts-de-Seine · 200€ · Whoop offert au lancement</span>
+  </div>
+</section>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+reveals.forEach(r => obs.observe(r));
+</script>
+<script>
+(function() {
+  var btn = document.getElementById('hamburger-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.getElementById('menu-close').addEventListener('click', function() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Pages principales -->
+  <url><loc>https://www.movewell.fr/</loc><lastmod>2026-04-24</lastmod><priority>1.0</priority></url>
+  <url><loc>https://www.movewell.fr/offres</loc><lastmod>2026-04-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.movewell.fr/methode</loc><lastmod>2026-04-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.movewell.fr/sport-en-couple</loc><lastmod>2026-04-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.movewell.fr/diagnostic</loc><lastmod>2026-04-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.movewell.fr/about</loc><lastmod>2026-04-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://www.movewell.fr/testimonials</loc><lastmod>2026-04-24</lastmod><priority>0.7</priority></url>
+  <!-- Pages hub locales — cocon sémantique -->
+  <url><loc>https://www.movewell.fr/coach-sportif-levallois-perret</loc><lastmod>2026-04-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.movewell.fr/coach-sportif-paris-16</loc><lastmod>2026-04-24</lastmod><priority>0.9</priority></url>
+  <url><loc>https://www.movewell.fr/coach-sportif-neuilly-sur-seine</loc><lastmod>2026-04-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.movewell.fr/coach-sportif-clichy</loc><lastmod>2026-04-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.movewell.fr/coach-sportif-courbevoie</loc><lastmod>2026-04-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://www.movewell.fr/coach-sportif-paris-17</loc><lastmod>2026-04-24</lastmod><priority>0.8</priority></url>
+</urlset>

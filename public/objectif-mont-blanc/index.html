@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Objectif Mont-Blanc · Move Well</title>
+<meta name="description" content="4808 mètres à parcourir. Un défi solidaire Move Well au profit d'Afuté, association qui œuvre pour l'inclusion des jeunes en situation de handicap par l'emploi." />
+<meta property="og:title" content="Objectif Mont-Blanc · Move Well" />
+<meta property="og:description" content="4808 mètres à parcourir. Un défi solidaire au profit d'Afuté." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     DA Move Well : blanc / noir / typographie forte / air
+     ========================================================= */
+  :root {
+    --black:      #0a0a0a;
+    --ink:        #121212;
+    --muted:      #6a6a6a;
+    --line:       #e8e8e8;
+    --line-soft:  #f2f2f2;
+    --bg:         #ffffff;
+    --bg-alt:     #fafafa;
+    --bg-dark:    #0a0a0a;
+
+    --maxw: 1180px;
+    --pad:  clamp(20px, 4vw, 48px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; }
+
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+
+  /* Flèche utilitaire */
+  .arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  a:hover .arrow, button:hover .arrow { transform: translateX(6px); }
+
+  /* Petite étiquette */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--ink);
+  }
+  .eyebrow--light { color: #ffffff; }
+  .eyebrow--light::before { background: #ffffff; }
+
+  /* =========================================================
+     NAV
+     ========================================================= */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .nav__brand {
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+  }
+  .nav__brand span { color: var(--muted); font-weight: 500; }
+  .nav__links {
+    display: flex;
+    gap: 36px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav__links a { color: var(--ink); }
+  .nav__links a:hover { color: var(--muted); }
+  .nav__cta {
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  @media (max-width: 760px) {
+    .nav__links { display: none; }
+  }
+
+  /* =========================================================
+     HERO
+     ========================================================= */
+  .hero {
+    position: relative;
+    padding-top: clamp(60px, 10vh, 120px);
+    padding-bottom: clamp(60px, 10vh, 120px);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .hero__bg {
+    position: absolute;
+    top: 50%;
+    right: -6%;
+    transform: translateY(-50%);
+    width: min(880px, 80%);
+    height: auto;
+    pointer-events: none;
+    opacity: 0.55;
+    z-index: 0;
+  }
+  .hero__bg path, .hero__bg line, .hero__bg circle, .hero__bg polyline {
+    fill: none;
+    stroke: var(--ink);
+    vector-effect: non-scaling-stroke;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  @media (max-width: 860px) {
+    .hero__bg {
+      right: -20%;
+      width: 130%;
+      opacity: 0.25;
+    }
+  }
+  .hero__kicker {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero__kicker .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--black);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero__kicker .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    animation: blink 1.8s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(48px, 9vw, 132px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--muted);
+  }
+
+  .hero__meta {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  .hero__lead {
+    font-size: clamp(18px, 1.8vw, 21px);
+    line-height: 1.5;
+    max-width: 560px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  @media (max-width: 760px) {
+    .hero__meta { grid-template-columns: 1fr; align-items: flex-start; }
+  }
+
+  /* Boutons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 0;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #fff;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    letter-spacing: -0.005em;
+  }
+  .btn:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn--outline {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn--outline:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+  .btn--light {
+    background: #fff;
+    color: var(--ink);
+    border-color: #fff;
+  }
+  .btn--light:hover {
+    background: transparent;
+    color: #fff;
+  }
+  .btn--ghost-light {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255,255,255,0.3);
+  }
+  .btn--ghost-light:hover {
+    background: #fff;
+    color: var(--ink);
+    border-color: #fff;
+  }
+  .link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .link:hover { color: var(--muted); border-color: var(--muted); }
+
+  /* =========================================================
+     BANDEAU CHIFFRES
+     ========================================================= */
+  .stats {
+    padding: clamp(48px, 8vh, 80px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat {
+    padding: 0 28px;
+    border-left: 1px solid var(--line);
+  }
+  .stat:first-child { border-left: none; padding-left: 0; }
+  .stat__num {
+    font-weight: 800;
+    font-size: clamp(40px, 5vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .stat__lbl {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  @media (max-width: 860px) {
+    .stats__grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+    .stat { border-left: none; padding-left: 0; padding-right: 0; }
+    .stat:nth-child(odd) { padding-right: 20px; }
+  }
+
+  /* =========================================================
+     PROGRESSION
+     ========================================================= */
+  .progress {
+    padding: clamp(80px, 12vh, 140px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .progress__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .progress__title {
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 720px;
+  }
+  .progress__right {
+    text-align: right;
+    min-width: 180px;
+  }
+  .progress__right .num {
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .progress__right .lbl {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .progress__bar {
+    position: relative;
+    height: 6px;
+    background: var(--line);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .progress__fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0%;
+    background: var(--ink);
+    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .progress__scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .progress__scale .current {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  @media (max-width: 760px) {
+    .progress__head { flex-direction: column; align-items: flex-start; }
+    .progress__right { text-align: left; }
+  }
+
+  /* =========================================================
+     SECTION CLASSIQUE
+     ========================================================= */
+  section.block {
+    padding: clamp(80px, 12vh, 140px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .block__head {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .block__title {
+    font-weight: 800;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .block__lead {
+    font-size: clamp(16px, 1.4vw, 18px);
+    color: var(--muted);
+    max-width: 520px;
+    margin-top: 20px;
+  }
+  .eyebrow-wrap {
+    display: block;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 860px) {
+    .block__head { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* =========================================================
+     VIDÉOS
+     ========================================================= */
+  .videos__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 860px) {
+    .videos__grid { grid-template-columns: 1fr; }
+  }
+  .vcard { }
+  .vcard__frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: #0a0a0a;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .vcard__frame iframe,
+  .vcard__frame video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .vcard__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    gap: 18px;
+  }
+  .vcard__play {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .vcard:hover .vcard__play {
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
+  }
+  .vcard__play svg {
+    width: 22px; height: 22px;
+    margin-left: 3px;
+    fill: #fff;
+  }
+  .vcard__ph-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .vcard__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .vcard__num {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    padding-top: 4px;
+  }
+  .vcard__title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .vcard__desc {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 420px;
+  }
+
+  /* =========================================================
+     ÉTAPES
+     ========================================================= */
+  .steps__list {
+    display: flex;
+    flex-direction: column;
+  }
+  .step-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .step-row:last-child { border-bottom: 1px solid var(--line); }
+  .step-row__num {
+    font-weight: 800;
+    font-size: 72px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+  .step-row__title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .step-row__body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 460px;
+  }
+  .step-row__body strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 860px) {
+    .step-row {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding: 32px 0;
+    }
+    .step-row__num { font-size: 56px; }
+  }
+
+  /* =========================================================
+     MISSION
+     ========================================================= */
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+  }
+  @media (max-width: 860px) {
+    .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .mission__text p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .mission__text p.muted { color: var(--muted); }
+  .mission__text strong { font-weight: 700; }
+  .mission__aside {
+    border-left: 1px solid var(--line);
+    padding-left: 40px;
+  }
+  @media (max-width: 860px) {
+    .mission__aside { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
+  }
+  .mission__aside h4 {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .mission__big {
+    font-weight: 800;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+  }
+  .mission__aside p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* =========================================================
+     FINAL CTA
+     ========================================================= */
+  .final {
+    background: var(--bg-dark);
+    color: #fff;
+    padding: clamp(100px, 16vh, 180px) 0;
+    position: relative;
+  }
+  .final__title {
+    font-weight: 800;
+    font-size: clamp(56px, 10vw, 156px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .final__title em {
+    font-style: normal;
+    color: rgba(255,255,255,0.35);
+  }
+  .final__lead {
+    color: rgba(255,255,255,0.65);
+    font-size: 19px;
+    max-width: 560px;
+    margin-bottom: 48px;
+  }
+  .final__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  footer {
+    background: #000;
+    color: #fff;
+    padding: 56px 0 36px;
+  }
+  .foot__top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: flex-end;
+    padding-bottom: 36px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .foot__brand {
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .foot__tag {
+    color: rgba(255,255,255,0.5);
+    font-size: 14px;
+  }
+  .foot__social {
+    display: flex;
+    gap: 12px;
+  }
+  .foot__social a {
+    width: 44px; height: 44px;
+    border: 1px solid #272727;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .foot__social a:hover { background: #fff; color: #000; border-color: #fff; }
+  .foot__social svg { width: 16px; height: 16px; }
+  .foot__bottom {
+    padding-top: 28px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* =========================================================
+     REVEAL
+     ========================================================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Selection */
+  ::selection { background: var(--ink); color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ========================================================= -->
+<!-- NAV                                                         -->
+<!-- ========================================================= -->
+<nav class="nav">
+  <div class="wrap nav__inner">
+    <div class="nav__brand"><strong>Move Well</strong> <span>/ Objectif Mont-Blanc</span></div>
+    <div class="nav__links">
+      <a href="#projet">Projet</a>
+      <a href="#participer">Participer</a>
+      <a href="#affute">Afuté</a>
+    </div>
+    <a href="#participer" class="nav__cta">Je participe <span class="arrow">→</span></a>
+  </div>
+</nav>
+
+<!-- ========================================================= -->
+<!-- HERO                                                        -->
+<!-- ========================================================= -->
+<header class="hero">
+  <!-- Dessin au trait : Mont-Blanc stylisé -->
+  <svg class="hero__bg" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Lignes d'horizon / brume lointaine -->
+    <line x1="0"   y1="560" x2="900" y2="560" stroke-width="0.5" opacity="0.25"/>
+    <line x1="0"   y1="540" x2="900" y2="540" stroke-width="0.5" opacity="0.18"/>
+    <line x1="0"   y1="520" x2="900" y2="520" stroke-width="0.5" opacity="0.12"/>
+
+    <!-- Massif arrière-plan (pâle) -->
+    <polyline stroke-width="0.7" opacity="0.28"
+      points="0,500 80,430 160,470 240,380 320,440 400,360 480,420 560,350 640,410 720,360 820,420 900,380"/>
+
+    <!-- Contours topographiques (courbes de niveau) -->
+    <path stroke-width="0.5" opacity="0.22" d="M200,500 Q350,440 500,460 T800,440"/>
+    <path stroke-width="0.5" opacity="0.22" d="M180,470 Q340,410 510,430 T820,410"/>
+    <path stroke-width="0.5" opacity="0.22" d="M160,440 Q330,380 520,400 T840,380"/>
+
+    <!-- Silhouette principale Mont-Blanc -->
+    <path stroke-width="1.1"
+      d="M0,520 L90,470 L150,440 L210,410 L280,365 L340,395 L395,330 L430,355 L470,275 L520,210 L570,135 L600,80 L640,145 L670,195 L710,240 L750,290 L810,340 L870,380 L900,400"/>
+
+    <!-- Lignes de crête intérieures (détail) -->
+    <path stroke-width="0.6" opacity="0.6"
+      d="M470,275 L505,295 L540,270 L575,310 L600,290 L630,330 L660,310"/>
+    <path stroke-width="0.5" opacity="0.5"
+      d="M395,330 L425,345 L455,320 L485,340"/>
+    <path stroke-width="0.5" opacity="0.5"
+      d="M710,240 L735,260 L760,245 L790,270 L815,255"/>
+
+    <!-- Glacier / stries verticales vers le sommet -->
+    <line x1="590" y1="95"  x2="585" y2="220" stroke-width="0.35" opacity="0.45"/>
+    <line x1="605" y1="110" x2="608" y2="230" stroke-width="0.35" opacity="0.45"/>
+    <line x1="620" y1="130" x2="628" y2="240" stroke-width="0.35" opacity="0.45"/>
+    <line x1="575" y1="150" x2="570" y2="250" stroke-width="0.35" opacity="0.35"/>
+
+    <!-- Petit drapeau au sommet -->
+    <line x1="600" y1="80" x2="600" y2="40" stroke-width="0.8"/>
+    <path stroke-width="0.8" d="M600,42 L620,48 L600,56 Z"/>
+
+    <!-- Croix topographique + altitude -->
+    <circle cx="600" cy="80" r="2" stroke-width="0.6" fill="currentColor"/>
+    <line x1="600" y1="65" x2="600" y2="75" stroke-width="0.4"/>
+    <line x1="590" y1="80" x2="600" y2="80" stroke-width="0.4"/>
+
+    <!-- Soleil / lune stylisé -->
+    <circle cx="760" cy="130" r="38" stroke-width="0.5" opacity="0.35"/>
+    <circle cx="760" cy="130" r="52" stroke-width="0.3" opacity="0.2"/>
+
+    <!-- Grille décorative discrète -->
+    <line x1="0" y1="0" x2="900" y2="0" stroke-width="0.3" opacity="0.1"/>
+    <line x1="0" y1="620" x2="900" y2="620" stroke-width="0.3" opacity="0.1"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="hero__kicker">
+      <span class="pill"><span class="dot"></span>Défi en cours</span>
+      <span>Un projet <strong>Move Well</strong> au profit d'Afuté</span>
+    </div>
+
+    <h1>
+      Porter l'inclusion<br/>
+      au sommet<br/>
+      <em>Mont Blanc, 4808 mètres.</em><br/>
+      <em style="font-size:0.45em; letter-spacing:-0.01em;">1er juin 2026.</em>
+    </h1>
+
+    <div class="hero__meta">
+      <p class="hero__lead">
+        Pour braquer les projecteurs sur l'inclusion des porteurs de handicap mental ou cognitif avec l'association Afuté, j'ai décidé de gravir les 4808 mètres qui mènent sur le toit de l'Europe. Aujourd'hui, je vous invite à porter l'inclusion au sommet, vous aussi, avec vos «&nbsp;4808&nbsp;» à vous.
+      </p>
+      <div class="hero__actions">
+        <a href="https://www.strava.com/clubs/1393972/group_events/3488573973952608328/occurrences/FQIWkOHxofni8-lgHBTUHxQKFDYUEBQAFAAAHBaA3KWAzWcAAA==" target="_blank" rel="noopener" class="btn">Rejoindre le défi <span class="arrow">→</span></a>
+        <a href="#projet" class="link">Découvrir le projet <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========================================================= -->
+<!-- BANDEAU CHIFFRES                                            -->
+<!-- ========================================================= -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stats__grid">
+      <div class="stat reveal">
+        <div class="stat__num">4808</div>
+        <div class="stat__lbl">Mètres à gravir</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__num">3</div>
+        <div class="stat__lbl">Façons d'y arriver</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__num">1</div>
+        <div class="stat__lbl">Cause commune</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__num">100%</div>
+        <div class="stat__lbl">100% inclusion</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- PROGRESSION                                                 -->
+<!-- ========================================================= -->
+<section class="progress">
+  <div class="wrap">
+    <span class="eyebrow eyebrow-wrap reveal">Progression collective</span>
+    <div class="progress__head reveal">
+      <h2 class="progress__title">Ensemble, on avance pour l'inclusion.</h2>
+      <div class="progress__right">
+        <div class="num" id="participantCount">0</div>
+        <div class="lbl">Participants</div>
+      </div>
+    </div>
+
+    <div class="progress__bar reveal" aria-hidden="true">
+      <div class="progress__fill" id="progressFill"></div>
+    </div>
+    <div class="progress__scale reveal">
+      <span class="current"><span id="currentMeters">0</span> m parcourus</span>
+      <span>Objectif : 4 808 m</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- PROJET / VIDÉOS                                             -->
+<!-- ========================================================= -->
+<section class="block" id="projet">
+  <div class="wrap">
+    <div class="block__head">
+      <div class="reveal">
+        <span class="eyebrow eyebrow-wrap">Le projet</span>
+        <h2 class="block__title">Une montagne.<br/>Un engagement.</h2>
+      </div>
+
+    </div>
+
+    <div class="videos__grid" style="grid-template-columns: 1fr; max-width: 720px;">
+      <!-- VIDÉO 1 -->
+      <article class="vcard reveal">
+        <div class="vcard__frame">
+          <video controls preload="metadata" playsinline poster="video1-poster.jpg">
+            <source src="video1.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture vidéo HTML5.
+          </video>
+        </div>
+        <div class="vcard__info">
+          <div>
+            <h3 class="vcard__title">Pourquoi ce défi ?</h3>
+            <p class="vcard__desc">L'origine du projet et ce que votre participation change concrètement.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- ÉTAPES                                                      -->
+<!-- ========================================================= -->
+<section class="block" id="participer">
+  <div class="wrap">
+    <div class="block__head">
+      <div class="reveal">
+        <span class="eyebrow eyebrow-wrap">Comment participer</span>
+        <h2 class="block__title">Un sommet<br/>pour l'inclusion.</h2>
+      </div>
+      <p class="block__lead reveal">
+        Pas de barrière, pas de chrono imposé. Ce défi est conçu pour que chacun,
+        quel que soit son niveau, puisse y contribuer.
+      </p>
+    </div>
+
+    <div class="steps__list">
+      <div class="step-row reveal">
+        <div class="step-row__num">01</div>
+        <div class="step-row__title">Choisis ton moyen.</div>
+        <div class="step-row__body">
+          Course à pied, marche ou à vélo. L'objectif : 4808 m. Seul ou entre amis. Du 27 mai au 02 juin.
+        </div>
+      </div>
+
+      <div class="step-row reveal">
+        <div class="step-row__num">02</div>
+        <div class="step-row__title">Rejoins-nous.</div>
+        <div class="step-row__body">
+          Rejoins la page du challenge sur <strong>Strava</strong>.
+        </div>
+      </div>
+
+      <div class="step-row reveal">
+        <div class="step-row__num">03</div>
+        <div class="step-row__title">Fais ta course.</div>
+        <div class="step-row__body">
+          À partir du <strong>27 mai et jusqu'au 02 juin</strong>, tu peux parcourir tes <strong>4,8 km</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- MISSION / AFFÛTÉ                                            -->
+<!-- ========================================================= -->
+<section class="block" id="affute">
+  <div class="wrap">
+    <div class="block__head">
+      <div class="reveal">
+        <span class="eyebrow eyebrow-wrap">L'association</span>
+        <h2 class="block__title">Afuté.<br/>L'inclusion par l'emploi.</h2>
+      </div>
+    </div>
+
+    <div class="mission-grid">
+      <div class="mission__text reveal">
+        <p>
+          <strong>Afuté</strong> accompagne des jeunes en situation de handicap
+          sur le chemin de l'insertion professionnelle.
+        </p>
+        <p class="muted">
+          L'association crée des passerelles entre les entreprises et ces talents
+          trop souvent invisibilisés. Parce qu'un emploi, c'est une autonomie, une dignité,
+          une place dans la société.
+        </p>
+        <p class="muted">
+          <strong>Move Well</strong> porte les couleurs d'Afuté à travers ce défi sportif solidaire. Bouger ensemble, c'est déjà avancer pour une société plus inclusive.
+        </p>
+      </div>
+
+      <aside class="mission__aside reveal">
+        <h4>Notre conviction</h4>
+        <div class="mission__big">Le sport crée du lien.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FINAL CTA                                                   -->
+<!-- ========================================================= -->
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow eyebrow--light reveal">À toi de jouer</span>
+    <h2 class="final__title reveal">
+      Et toi,<br/>
+      quel est ton<br/>
+      <em>premier move<br/>pour l'inclusion ?</em>
+    </h2>
+    <p class="final__lead reveal">
+      Ouvre Strava, lance ta prochaine sortie, poste et tague. C'est déjà fait.
+    </p>
+    <div class="final__cta reveal">
+      <a href="https://www.strava.com/clubs/1393972/group_events/3488573973952608328/occurrences/FQIWkOHxofni8-lgHBTUHxQKFDYUEBQAFAAAHBaA3KWAzWcAAA==" target="_blank" rel="noopener" class="btn btn--light">
+        Ouvrir Strava <span class="arrow">→</span>
+      </a>
+      <a href="https://www.instagram.com/MoveWellWithCharles/" target="_blank" rel="noopener" class="btn btn--ghost-light">
+        @MoveWellWithCharles <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= -->
+<!-- FOOTER                                                      -->
+<!-- ========================================================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <div class="foot__brand"><strong>Move Well</strong></div>
+        <div class="foot__tag">Porte-drapeau d'Afuté. Le sport au service de l'inclusion.</div>
+      </div>
+      <div class="foot__social">
+        <a href="https://www.instagram.com/MoveWellWithCharles/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://www.strava.com/clubs/1393972/group_events/3488573973952608328/occurrences/FQIWkOHxofni8-lgHBTUHxQKFDYUEBQAFAAAHBaA3KWAzWcAAA==" target="_blank" rel="noopener" aria-label="Strava">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 <strong>Move Well</strong>. Tous droits réservés.</span>
+      <span>Objectif Mont-Blanc · au profit d'Afuté</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     PARAMÈTRES À MODIFIER POUR METTRE À JOUR LA PROGRESSION
+     ========================================================= */
+  const METRES_PARCOURUS  = 0;     // <-- change cette valeur (ex: 1250)
+  const OBJECTIF_METRES   = 4808;  // Sommet du Mont-Blanc
+  const NB_PARTICIPANTS   = 0;     // <-- change cette valeur (ex: 12)
+  /* ========================================================= */
+
+  function animateProgress() {
+    const fillEl    = document.getElementById('progressFill');
+    const currentEl = document.getElementById('currentMeters');
+    const partEl    = document.getElementById('participantCount');
+
+    const pct = Math.min(100, (METRES_PARCOURUS / OBJECTIF_METRES) * 100);
+    partEl.textContent = NB_PARTICIPANTS.toLocaleString('fr-FR');
+
+    let t0 = performance.now();
+    const duration = 1600;
+    function tick(t) {
+      const p = Math.min(1, (t - t0) / duration);
+      const ease = 1 - Math.pow(1 - p, 3);
+      currentEl.textContent = Math.round(METRES_PARCOURUS * ease).toLocaleString('fr-FR');
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    setTimeout(() => { fillEl.style.width = pct + '%'; }, 150);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.id === 'progressFill' || entry.target.classList.contains('progress__bar')) {
+          animateProgress();
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Déclenche aussi l'anim quand la section progress entre dans le viewport
+  const progressSection = document.querySelector('.progress');
+  if (progressSection) {
+    const po = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { animateProgress(); po.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    po.observe(progressSection);
+  }
+</script>
+
+</body>
+</html>

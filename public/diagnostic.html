@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --void:    #0A0B0D;
+  --deep:    #0F1114;
+  --surface: #161920;
+  --border:  #252A33;
+  --pure:    #F8F9FA;
+  --soft:    #DDE1E7;
+  --muted:   #8B95A1;
+  --electric:#1E90FF;
+  --bright:  #4AABFF;
+  --steel:   #2563EB;
+  --gold:    #C9A84C;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--void);
+  color: var(--pure);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: .9rem 2.5rem;
+  background: rgba(10,11,13,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: .18em;
+  color: var(--pure);
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--electric); }
+
+.nav-back {
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--soft); }
+
+/* ── HERO INTRO ── */
+.hero-diag {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-diag::before {
+  content: 'DIAGNOSTIC';
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(6rem, 18vw, 20rem);
+  color: rgba(30,144,255,.03);
+  letter-spacing: .05em;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap;
+}
+
+.diag-tag {
+  display: inline-block;
+  font-size: .6rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--electric);
+  border: 1px solid rgba(30,144,255,.3);
+  padding: .4rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-diag h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: .9;
+  letter-spacing: .03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-diag h1 em {
+  font-style: normal;
+  color: var(--electric);
+}
+
+.hero-diag p {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.diag-meta {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.diag-meta-item {
+  font-size: .65rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.diag-meta-item span {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--soft);
+  letter-spacing: .06em;
+  line-height: 1;
+  margin-bottom: .2rem;
+}
+
+.btn-start {
+  display: inline-block;
+  background: var(--electric);
+  color: var(--void);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 1rem 2.8rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+
+.btn-start:hover {
+  background: var(--bright);
+  transform: translateY(-1px);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, var(--electric), transparent);
+  animation: scrollDown 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── QUIZ SECTION ── */
+#quiz {
+  padding: 6rem 2rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* Progress */
+.progress-wrap {
+  margin-bottom: 4rem;
+  position: sticky;
+  top: 4.5rem;
+  z-index: 50;
+  background: var(--void);
+  padding: 1rem 0;
+}
+
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .7rem;
+}
+
+.progress-label {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.progress-count {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--electric);
+  letter-spacing: .1em;
+}
+
+.progress-bar {
+  height: 2px;
+  background: var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--steel), var(--electric));
+  width: 0%;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+
+/* Questions */
+.question-block {
+  display: none;
+  animation: fadeIn .4s ease;
+}
+
+.question-block.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.q-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(30,144,255,.08);
+  line-height: 1;
+  margin-bottom: -.5rem;
+  letter-spacing: .05em;
+}
+
+.q-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.05;
+  letter-spacing: .03em;
+  color: var(--pure);
+  margin-bottom: .8rem;
+}
+
+.q-sub {
+  font-size: .82rem;
+  color: var(--muted);
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 2.5rem;
+  font-family: 'Libre Baskerville', serif;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--deep);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s, background .2s, transform .15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.option::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: rgba(30,144,255,.07);
+  transition: width .3s ease;
+}
+
+.option:hover {
+  border-color: rgba(30,144,255,.4);
+  transform: translateX(4px);
+}
+
+.option:hover::before { width: 100%; }
+
+.option.selected {
+  border-color: var(--electric);
+  background: rgba(30,144,255,.08);
+}
+
+.option.selected::before { width: 100%; background: rgba(30,144,255,.1); }
+
+.opt-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  color: var(--electric);
+  width: 1.6rem;
+  flex-shrink: 0;
+  letter-spacing: .08em;
+}
+
+.opt-text {
+  font-size: .88rem;
+  color: var(--soft);
+  font-weight: 300;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.opt-check {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color .2s, background .2s;
+}
+
+.option.selected .opt-check {
+  border-color: var(--electric);
+  background: var(--electric);
+}
+
+.option.selected .opt-check::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 5px;
+  width: 5px; height: 9px;
+  border: 2px solid var(--void);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+/* Nav buttons */
+.q-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.btn-prev {
+  font-size: .65rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .6rem 0;
+  transition: color .2s;
+}
+
+.btn-prev:hover { color: var(--soft); }
+.btn-prev:disabled { opacity: 0; pointer-events: none; }
+
+.btn-next {
+  font-size: .65rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--void);
+  background: var(--electric);
+  border: none;
+  padding: .8rem 2rem;
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+  opacity: .4;
+  pointer-events: none;
+}
+
+.btn-next.ready {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.btn-next.ready:hover { background: var(--bright); }
+
+/* ── RÉSULTATS ── */
+#results {
+  display: none;
+  min-height: 100vh;
+  padding: 8rem 2rem 6rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+#results.active { display: block; }
+
+.result-intro {
+  margin-bottom: 4rem;
+}
+
+.result-tag {
+  font-size: .6rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--electric);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+.result-intro h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: .95;
+  letter-spacing: .03em;
+  margin-bottom: 1rem;
+}
+
+.result-intro h2 em {
+  font-style: normal;
+  color: var(--electric);
+}
+
+.result-intro p {
+  font-size: .92rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 520px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+}
+
+/* Profile card */
+.profile-card {
+  background: var(--deep);
+  border: 1px solid var(--border);
+  padding: 3rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--steel), var(--electric));
+}
+
+.profile-eyebrow {
+  font-size: .58rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.profile-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: .95;
+  letter-spacing: .04em;
+  color: var(--pure);
+  margin-bottom: .3rem;
+}
+
+.profile-subtitle {
+  font-size: .78rem;
+  color: var(--electric);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.profile-desc {
+  font-size: .88rem;
+  color: var(--soft);
+  font-weight: 300;
+  line-height: 1.85;
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.profile-traits {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin-bottom: 2.5rem;
+}
+
+.trait {
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  font-size: .82rem;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.trait::before {
+  content: '◆';
+  color: var(--electric);
+  font-size: .5rem;
+  flex-shrink: 0;
+  margin-top: .25rem;
+}
+
+.profile-cta {
+  display: inline-block;
+  background: var(--electric);
+  color: var(--void);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.profile-cta:hover { background: var(--bright); }
+
+.profile-cta-ghost {
+  display: inline-block;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  margin-left: 1rem;
+  transition: border-color .2s, color .2s;
+}
+
+.profile-cta-ghost:hover { border-color: var(--electric); color: var(--soft); }
+
+/* Score bar */
+.score-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.score-title {
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.score-bars { display: flex; flex-direction: column; gap: 1rem; }
+
+.score-bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 2.5rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+.score-bar-label {
+  font-size: .72rem;
+  color: var(--soft);
+  letter-spacing: .06em;
+}
+
+.score-bar-track {
+  height: 3px;
+  background: var(--border);
+  position: relative;
+}
+
+.score-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--steel), var(--electric));
+  width: 0%;
+  transition: width 1s cubic-bezier(.4,0,.2,1) .5s;
+}
+
+.score-bar-pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: .9rem;
+  color: var(--electric);
+  letter-spacing: .08em;
+  text-align: right;
+}
+
+/* Recommandation secondaire */
+.secondary-rec {
+  border: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.secondary-rec h4 {
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.secondary-rec p {
+  font-size: .85rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+.secondary-rec strong { color: var(--soft); }
+
+/* Restart */
+.restart-wrap {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.btn-restart {
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color .2s;
+}
+
+.btn-restart:hover { color: var(--soft); }
+
+@media(max-width: 600px) {
+  .profile-card { padding: 2rem 1.5rem; }
+  .profile-cta-ghost { margin-left: 0; margin-top: .8rem; display: block; }
+  .score-bar-row { grid-template-columns: 100px 1fr 2rem; }
+  .diag-meta { gap: 1rem; }
+}
+</style>
+
+  <!-- ═══ SEO OPTIMISÉ — Move Well ═══ -->
+  <title>Diagnostic Sportif Offert | Quel Programme Move Well ? | Paris</title>
+  <meta name="description" content="8 questions pour identifier votre profil Move Well. Recommandation personnalisée : programme individuel ou coaching couple. Résultat immédiat, sans engagement.">
+  <link rel="canonical" href="https://movewell.fr/diagnostic">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://movewell.fr/diagnostic">
+  <meta property="og:title" content="Diagnostic Move Well — Quel programme vous correspond ?">
+  <meta property="og:description" content="8 questions. 3 minutes. Une recommandation personnalisée pour votre rythme de vie à Paris.">
+  <meta property="og:image" content="https://movewell.fr/og-image.jpg">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Move Well Coaching">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diagnostic Move Well — Quel programme vous correspond ?">
+  <meta name="twitter:description" content="8 questions. 3 minutes. Recommandation personnalisée.">
+  <meta name="robots" content="index, follow">
+  <!-- ═══ FIN SEO ═══ -->
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">MOVE <span>WELL</span></a>
+  <a href="testimonials.html" style="font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-right:1.5rem;transition:color .2s">Témoignages</a><a href="index.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<!-- INTRO -->
+<section class="hero-diag">
+  <span class="diag-tag">Diagnostic Move Well · Confidentiel</span>
+  <h1>Quel athlète<br><em>êtes-vous</em><br>vraiment ?</h1>
+  <p>8 questions. 3 minutes. Une recommandation personnalisée — conçue pour votre rythme de vie, pas pour un client générique.</p>
+  <div class="diag-meta">
+    <div class="diag-meta-item"><span>8</span>Questions</div>
+    <div class="diag-meta-item"><span>3</span>Minutes</div>
+    <div class="diag-meta-item"><span>3</span>Profils</div>
+  </div>
+  <button class="btn-start" onclick="startQuiz()">Commencer le diagnostic</button>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Progression</span>
+      <span class="progress-count" id="progress-count">1 / 8</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-block active" id="q1">
+    <div class="q-number">01</div>
+    <div class="q-text">Où en êtes-vous<br>avec le sport aujourd'hui ?</div>
+    <div class="q-sub">Soyez honnête — c'est la base d'une recommandation juste.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 1, 'A', {F:2,B:0,T:1})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Je ne fais plus rien depuis des mois — voire des années</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 1, 'B', {F:1,B:2,T:1})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">J'essaie de m'y remettre, mais rien ne tient sur la durée</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 1, 'C', {F:1,B:3,T:0})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">J'ai une pratique irrégulière — ça dépend des semaines</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 1, 'D', {F:0,B:2,T:2})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Je m'entraîne régulièrement mais je cherche un vrai système</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" disabled onclick="prevQ(1)">← Précédent</button>
+      <button class="btn-next" id="next1" onclick="nextQ(1)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-block" id="q2">
+    <div class="q-number">02</div>
+    <div class="q-text">Votre plus grand frein<br>en ce moment ?</div>
+    <div class="q-sub">Ce qui vous empêche réellement d'avancer.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 2, 'A', {F:1,B:2,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Le temps — mon agenda ne laisse aucune place</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 2, 'B', {F:2,B:1,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Je ne sais pas par où commencer ni quoi faire</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 2, 'C', {F:1,B:1,T:2})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">La motivation — seul, je ne tiens pas</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 2, 'D', {F:0,B:1,T:3})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Mon partenaire n'est pas dans la même dynamique que moi</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(2)">← Précédent</button>
+      <button class="btn-next" id="next2" onclick="nextQ(2)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-block" id="q3">
+    <div class="q-number">03</div>
+    <div class="q-text">Quel est votre<br>objectif principal ?</div>
+    <div class="q-sub">Choisissez ce qui résonne le plus profondément.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 3, 'A', {F:2,B:1,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Retrouver de l'énergie au quotidien et à long terme</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 3, 'B', {F:1,B:3,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Rester performant malgré un rythme de vie intense</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 3, 'C', {F:1,B:1,T:2})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">Retrouver une complicité physique avec mon partenaire</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 3, 'D', {F:2,B:0,T:1})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Préserver mon capital physique pour les 15 prochaines années</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(3)">← Précédent</button>
+      <button class="btn-next" id="next3" onclick="nextQ(3)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-block" id="q4">
+    <div class="q-number">04</div>
+    <div class="q-text">Combien de temps pouvez-vous<br>consacrer à l'entraînement ?</div>
+    <div class="q-sub">Par semaine, en étant réaliste sur votre agenda actuel.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 4, 'A', {F:0,B:3,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Moins de 2 heures — il faut que ça soit ultra compact</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 4, 'B', {F:1,B:2,T:1})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">2 à 3 heures — quelques créneaux fixes dans la semaine</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 4, 'C', {F:2,B:1,T:1})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">3 à 5 heures — je veux vraiment m'investir</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 4, 'D', {F:1,B:1,T:2})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Flexible — je cherche d'abord un programme que l'on peut faire ensemble</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(4)">← Précédent</button>
+      <button class="btn-next" id="next4" onclick="nextQ(4)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-block" id="q5">
+    <div class="q-number">05</div>
+    <div class="q-text">Comment décririez-vous<br>votre mode de vie ?</div>
+    <div class="q-sub">Pas ce que vous voudriez — ce que c'est réellement.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 5, 'A', {F:2,B:0,T:1})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Cadre / dirigeant · agenda dense · décisions permanentes</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 5, 'B', {F:0,B:3,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Père actif · entre les enfants, le travail et les obligations</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 5, 'C', {F:1,B:1,T:2})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">En couple · on cherche à partager quelque chose de commun</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 5, 'D', {F:1,B:2,T:0})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Professionnel en déplacement · rythme irrégulier · villes multiples</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(5)">← Précédent</button>
+      <button class="btn-next" id="next5" onclick="nextQ(5)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-block" id="q6">
+    <div class="q-number">06</div>
+    <div class="q-text">Quel accompagnement<br>vous convient le mieux ?</div>
+    <div class="q-sub">Votre façon naturelle d'avancer.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 6, 'A', {F:3,B:0,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Un coach dédié qui connaît mon profil et adapte tout en temps réel</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 6, 'B', {F:0,B:3,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Un programme structuré que je suis à mon rythme, en autonomie</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 6, 'C', {F:1,B:1,T:2})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">Un format qui intègre mon partenaire — pour avancer ensemble</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 6, 'D', {F:2,B:1,T:0})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Un mélange des deux — encadrement + outils pour les jours sans coach</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(6)">← Précédent</button>
+      <button class="btn-next" id="next6" onclick="nextQ(6)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-block" id="q7">
+    <div class="q-number">07</div>
+    <div class="q-text">Quel rapport entretenez-vous<br>avec votre corps aujourd'hui ?</div>
+    <div class="q-sub">La question qui change tout.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 7, 'A', {F:2,B:1,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Je sens que je vieillis plus vite que je ne le devrais</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 7, 'B', {F:0,B:3,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Mon corps suit mais il me faudrait plus d'énergie et de récupération</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 7, 'C', {F:1,B:0,T:3})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">J'ai l'impression qu'on s'est éloigné physiquement avec mon partenaire</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 7, 'D', {F:3,B:0,T:0})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Je veux que mon corps soit un atout, pas une contrainte</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(7)">← Précédent</button>
+      <button class="btn-next" id="next7" onclick="nextQ(7)">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-block" id="q8">
+    <div class="q-number">08</div>
+    <div class="q-text">Ce qui vous retient encore<br>de franchir le pas ?</div>
+    <div class="q-sub">La dernière question — et souvent la plus révélatrice.</div>
+    <div class="options">
+      <div class="option" onclick="selectOption(this, 8, 'A', {F:1,B:2,T:0})">
+        <span class="opt-letter">A</span>
+        <span class="opt-text">Je ne suis pas sûr que ça colle avec mon rythme de vie</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 8, 'B', {F:2,B:1,T:0})">
+        <span class="opt-letter">B</span>
+        <span class="opt-text">Je veux comprendre exactement ce qui m'attend avant de m'engager</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 8, 'C', {F:0,B:1,T:3})">
+        <span class="opt-letter">C</span>
+        <span class="opt-text">Je dois en parler à mon partenaire — ça nous concerne tous les deux</span>
+        <div class="opt-check"></div>
+      </div>
+      <div class="option" onclick="selectOption(this, 8, 'D', {F:1,B:3,T:0})">
+        <span class="opt-letter">D</span>
+        <span class="opt-text">Rien — je cherche juste la bonne porte d'entrée</span>
+        <div class="opt-check"></div>
+      </div>
+    </div>
+    <div class="q-nav">
+      <button class="btn-prev" onclick="prevQ(8)">← Précédent</button>
+      <button class="btn-next" id="next8" onclick="showResults()">Voir mon profil →</button>
+    </div>
+  </div>
+
+</section>
+
+<!-- RÉSULTATS -->
+<section id="results">
+
+  <!-- Fondateur -->
+  <div class="result-profile" id="profile-F" style="display:none">
+    <div class="result-intro">
+      <span class="result-tag">Votre profil · Move Well Diagnostic</span>
+      <h2>Le <em>Fondateur</em></h2>
+      <p>Vous ne cherchez pas un programme de fitness. Vous cherchez un système — solide, intelligent, adapté à une vie qui ne s'arrête pas.</p>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-eyebrow">Recommandation personnalisée</div>
+      <div class="profile-title">Move Well<br>Foundation</div>
+      <div class="profile-subtitle">Programme 12 semaines · accompagnement complet</div>
+      <div class="profile-desc">Votre profil appelle un programme structuré sur 90 jours, avec un coach dédié, un suivi physiologique précis et des outils qui tiennent même quand votre agenda explose. C'est exactement ce que le Move Well Foundation a été conçu pour faire.</div>
+      <div class="profile-traits">
+        <div class="trait">Coaching privé hebdomadaire — à domicile, au bureau ou en extérieur</div>
+        <div class="trait">RISE App intégrée — capsules 20 min pour les jours sans coach</div>
+        <div class="trait">Running Program 12 semaines — avec dossard inclus</div>
+        <div class="trait">Suivi Whoop — données physiologiques en temps réel</div>
+        <div class="trait">Éligible au dispositif Services à la personne — jusqu'à 50% de remise</div>
+      </div>
+      <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="profile-cta">Réserver mon bilan de forme</a>
+      <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="profile-cta-ghost">Prendre rendez-vous</a>
+      <a href="offres.html" class="profile-cta-ghost" style="margin-left:0;margin-top:.6rem;display:inline-block">Voir toutes les offres</a>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title">Votre correspondance par profil</div>
+      <div class="score-bars" id="score-bars-F"></div>
+    </div>
+
+    <div class="secondary-rec">
+      <h4>À noter également</h4>
+      <p>La <strong>RISE App</strong> est disponible en accès autonome si vous souhaitez commencer dès aujourd'hui, avant votre bilan. C'est la même méthode, en format digital.</p>
+    </div>
+  </div>
+
+  <!-- Busy Dad -->
+  <div class="result-profile" id="profile-B" style="display:none">
+    <div class="result-intro">
+      <span class="result-tag">Votre profil · Move Well Diagnostic</span>
+      <h2>Le <em>Busy Dad</em></h2>
+      <p>Votre vie est pleine. Le peu de temps que vous avez doit compter double. Vous avez besoin d'un outil qui s'adapte à vous — pas l'inverse.</p>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-eyebrow">Recommandation personnalisée</div>
+      <div class="profile-title">RISE<br>App</div>
+      <div class="profile-subtitle">Accès complet · capsules 20 min · 4 programmes</div>
+      <div class="profile-desc">Votre profil correspond au format RISE — des capsules de 20 minutes, 4 programmes par niveau, conçus pour des hommes dont l'emploi du temps ne pardonne pas. Pas d'excuse, pas de contrainte logistique. Juste de l'efficacité.</div>
+      <div class="profile-traits">
+        <div class="trait">4 programmes — Fondations, Force Fonctionnelle, Athlète Occupé, Mobilité Active</div>
+        <div class="trait">Capsules 20 min — à la maison, en déplacement, n'importe où</div>
+        <div class="trait">Aucun équipement requis pour démarrer</div>
+        <div class="trait">Conçu pour des pères actifs avec des semaines à 60 heures</div>
+      </div>
+      <a href="https://my.playbookapp.io/charles-coissac/programs/7-days-of-fitness-for-busy-people/38979" target="_blank" class="profile-cta">Accéder à RISE App</a>
+      <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="profile-cta-ghost">Prendre rendez-vous</a>
+      <a href="offres.html" target="_blank" class="profile-cta-ghost" style="margin-left:0;margin-top:.6rem;display:inline-block">Voir toutes les offres</a>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title">Votre correspondance par profil</div>
+      <div class="score-bars" id="score-bars-B"></div>
+    </div>
+
+    <div class="secondary-rec">
+      <h4>Envie d'aller plus loin ?</h4>
+      <p>Si vous sentez que l'autonomie seule ne suffit pas, le <strong>Move Well Foundation</strong> intègre la RISE App avec un coaching privé et un suivi hebdomadaire. La prochaine étape naturelle.</p>
+    </div>
+  </div>
+
+  <!-- Tandem -->
+  <div class="result-profile" id="profile-T" style="display:none">
+    <div class="result-intro">
+      <span class="result-tag">Votre profil · Move Well Diagnostic</span>
+      <h2>Le <em>Tandem</em></h2>
+      <p>Vous avez compris quelque chose que peu de gens comprennent : un couple qui bouge ensemble reste ensemble. C'est autant une décision de vie qu'un programme sportif.</p>
+    </div>
+
+    <div class="profile-card">
+      <div class="profile-eyebrow">Recommandation personnalisée</div>
+      <div class="profile-title">Offre Couple<br>Le Rituel</div>
+      <div class="profile-subtitle">Programme sur mesure · 45-60 ans · à domicile</div>
+      <div class="profile-desc">Votre profil appelle Le Rituel — un programme conçu pour les couples à fortes responsabilités qui veulent retrouver une complicité physique active. 20 à 30 minutes par session, à domicile, en coopération. Pas de performance individuelle — de la présence partagée.</div>
+      <div class="profile-traits">
+        <div class="trait">Format 20-30 min — à domicile, en coopération active</div>
+        <div class="trait">Capsules RISE App incluses — chacun à son niveau</div>
+        <div class="trait">Running Program partagé — jusqu'au premier dossard ensemble</div>
+        <div class="trait">Suivi WhatsApp dédié — pour les deux</div>
+        <div class="trait">Éligible Services à la personne — jusqu'à 50% de remise fiscale</div>
+      </div>
+      <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="profile-cta">Prendre rendez-vous</a>
+      <a href="offres.html" target="_blank" class="profile-cta-ghost">Voir toutes les offres</a>
+    </div>
+
+    <div class="score-section">
+      <div class="score-title">Votre correspondance par profil</div>
+      <div class="score-bars" id="score-bars-T"></div>
+    </div>
+
+    <div class="secondary-rec">
+      <h4>Une précision importante</h4>
+      <p>L'Offre Couple est <strong>sur devis personnalisé</strong> — le tarif est adapté à votre situation. Le premier échange est un bilan de 30 minutes pour comprendre où vous en êtes tous les deux.</p>
+    </div>
+  </div>
+
+  <div class="restart-wrap">
+    <button class="btn-restart" onclick="restart()">↺ Recommencer le diagnostic</button>
+  </div>
+
+</section>
+
+<script>
+const TOTAL = 8;
+let answers = {};
+let scores = { F: 0, B: 0, T: 0 };
+
+function selectOption(el, qNum, letter, pts) {
+  // Deselect others
+  el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+
+  // Store answer & score delta
+  answers[qNum] = { letter, pts };
+
+  // Enable next
+  const btn = document.getElementById('next' + qNum);
+  if (btn) btn.classList.add('ready');
+}
+
+function nextQ(current) {
+  if (!answers[current]) return;
+  document.getElementById('q' + current).classList.remove('active');
+  document.getElementById('q' + (current + 1)).classList.add('active');
+  updateProgress(current + 1);
+  window.scrollTo({ top: document.getElementById('quiz').offsetTop - 80, behavior: 'smooth' });
+}
+
+function prevQ(current) {
+  document.getElementById('q' + current).classList.remove('active');
+  document.getElementById('q' + (current - 1)).classList.add('active');
+  updateProgress(current - 1);
+  window.scrollTo({ top: document.getElementById('quiz').offsetTop - 80, behavior: 'smooth' });
+}
+
+function updateProgress(current) {
+  document.getElementById('progress-count').textContent = current + ' / ' + TOTAL;
+  document.getElementById('progress-fill').style.width = ((current - 1) / TOTAL * 100) + '%';
+}
+
+function startQuiz() {
+  document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showResults() {
+  if (!answers[8]) return;
+
+  // Tally scores
+  scores = { F: 0, B: 0, T: 0 };
+  for (let i = 1; i <= TOTAL; i++) {
+    if (answers[i]) {
+      scores.F += answers[i].pts.F;
+      scores.B += answers[i].pts.B;
+      scores.T += answers[i].pts.T;
+    }
+  }
+
+  // Determine winner
+  const winner = Object.keys(scores).reduce((a, b) => scores[a] >= scores[b] ? a : b);
+
+  // Show results section
+  document.getElementById('quiz').style.display = 'none';
+  const resultsEl = document.getElementById('results');
+  resultsEl.style.display = 'block';
+  resultsEl.classList.add('active');
+
+  // Show correct profile
+  document.getElementById('profile-' + winner).style.display = 'block';
+
+  // Build score bars
+  const total = scores.F + scores.B + scores.T || 1;
+  const labels = { F: 'Move Well Foundation', B: 'RISE App', T: 'Offre Couple' };
+  const barId = 'score-bars-' + winner;
+  const container = document.getElementById(barId);
+  container.innerHTML = '';
+
+  ['F', 'B', 'T'].forEach(key => {
+    const pct = Math.round(scores[key] / total * 100);
+    const row = document.createElement('div');
+    row.className = 'score-bar-row';
+    row.innerHTML = `
+      <span class="score-bar-label">${labels[key]}</span>
+      <div class="score-bar-track"><div class="score-bar-fill" data-pct="${pct}"></div></div>
+      <span class="score-bar-pct">${pct}%</span>
+    `;
+    container.appendChild(row);
+  });
+
+  // Animate bars
+  setTimeout(() => {
+    container.querySelectorAll('.score-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 200);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restart() {
+  answers = {};
+  scores = { F: 0, B: 0, T: 0 };
+
+  // Reset UI
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.btn-next').forEach(b => b.classList.remove('ready'));
+  document.querySelectorAll('.question-block').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.result-profile').forEach(p => p.style.display = 'none');
+
+  document.getElementById('q1').classList.add('active');
+  updateProgress(1);
+
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('results').classList.remove('active');
+  document.getElementById('quiz').style.display = 'block';
+
+  window.scrollTo({ top: document.getElementById('quiz').offsetTop - 80, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
