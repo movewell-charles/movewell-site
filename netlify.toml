@@ -7,11 +7,6 @@
   node_bundler = "esbuild"
 
 [[redirects]]
-  from = "/blog/remettre-son-mari-au-sport"
-  to   = "/blog/remettre-son-mari-au-sport.html"
-  status = 200
-
-[[redirects]]
   from = "/*"
   to   = "/index.html"
   status = 200
