@@ -1,0 +1,10 @@
+{
+  "name": "movewell-functions",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "google-spreadsheet": "^4.1.4",
+    "google-auth-library": "^9.14.2",
+    "node-fetch": "^3.3.2"
+  }
+}
