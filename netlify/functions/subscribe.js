@@ -94,6 +94,17 @@ async function writeToGoogleSheets(name, email, phone) {
   });
 }
 
+// ── Helper : fetch Brevo avec contrôle d'erreur ─────────────
+async function brevoFetch(url, headers, body) {
+  const res = await fetch(url, { method: 'POST', headers, body: JSON.stringify(body) });
+  if (!res.ok) {
+    const text = await res.text();
+    console.error(`Brevo error ${res.status} on ${url}:`, text);
+    throw new Error(`Brevo ${res.status}: ${text}`);
+  }
+  return res;
+}
+
 // ── Brevo : contact + envoi guide ───────────────────────────
 async function addToBrevoAndSendGuide(name, email, phone) {
   const headers = {
@@ -102,7 +113,7 @@ async function addToBrevoAndSendGuide(name, email, phone) {
   };
 
   // 1. Créer / mettre à jour le contact Brevo
-  const contactPayload = {
+  await brevoFetch('https://api.brevo.com/v3/contacts', headers, {
     email,
     attributes: {
       PRENOM: name  || '',
@@ -110,56 +121,42 @@ async function addToBrevoAndSendGuide(name, email, phone) {
     },
     listIds: [Number(process.env.BREVO_LIST_ID)],
     updateEnabled: true,
-  };
-
-  await fetch('https://api.brevo.com/v3/contacts', {
-    method: 'POST',
-    headers,
-    body: JSON.stringify(contactPayload),
   });
 
-  // 2. Envoyer le guide par email transactionnel
-  await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      to: [{ email, name: name || email }],
-      templateId: Number(process.env.BREVO_TEMPLATE_ID),
-      params: {
-        PRENOM:  name  || 'toi',
-        PDF_URL: process.env.PDF_URL,
-        PHONE:   phone || '',
-      },
-      sender: {
-        name:  'Charles Coissac · Move Well',
-        email: 'charles@movewell.fr',
-      },
-      replyTo: {
-        email: 'charles@movewell.fr',
-        name:  'Charles Coissac',
-      },
-    }),
+  // 2. Envoyer le guide par email transactionnel (template Brevo)
+  await brevoFetch('https://api.brevo.com/v3/smtp/email', headers, {
+    to: [{ email, name: name || email }],
+    templateId: Number(process.env.BREVO_TEMPLATE_ID),
+    params: {
+      PRENOM:  name  || 'toi',
+      PDF_URL: process.env.PDF_URL,
+      PHONE:   phone || '',
+    },
+    sender: {
+      name:  'Charles Coissac · Move Well',
+      email: 'charles@movewell.fr',
+    },
+    replyTo: {
+      email: 'charles@movewell.fr',
+      name:  'Charles Coissac',
+    },
   });
 
   // 3. Si téléphone renseigné : notification à Charles
   if (phone) {
-    await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({
-        to: [{ email: 'charles@movewell.fr', name: 'Charles Coissac' }],
-        sender: { name: 'Move Well Notifications', email: 'charles@movewell.fr' },
-        subject: `🔥 Nouveau lead chaud — ${name || email} (${phone})`,
-        htmlContent: `
-          <p>Un visiteur a laissé son numéro de téléphone.</p>
-          <table>
-            <tr><td><strong>Prénom :</strong></td><td>${name || 'Non renseigné'}</td></tr>
-            <tr><td><strong>Email :</strong></td><td>${email}</td></tr>
-            <tr><td><strong>Téléphone :</strong></td><td>${phone}</td></tr>
-          </table>
-          <p>→ <a href="https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEET_ID}">Voir dans le CRM</a></p>
-        `,
-      }),
+    await brevoFetch('https://api.brevo.com/v3/smtp/email', headers, {
+      to: [{ email: 'charles@movewell.fr', name: 'Charles Coissac' }],
+      sender: { name: 'Move Well Notifications', email: 'charles@movewell.fr' },
+      subject: `🔥 Nouveau lead chaud — ${name || email} (${phone})`,
+      htmlContent: `
+        <p>Un visiteur a laissé son numéro de téléphone.</p>
+        <table>
+          <tr><td><strong>Prénom :</strong></td><td>${name || 'Non renseigné'}</td></tr>
+          <tr><td><strong>Email :</strong></td><td>${email}</td></tr>
+          <tr><td><strong>Téléphone :</strong></td><td>${phone}</td></tr>
+        </table>
+        <p>→ <a href="https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SHEET_ID}">Voir dans le CRM</a></p>
+      `,
     });
   }
 }
