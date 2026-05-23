@@ -68,8 +68,13 @@ async function writeToGoogleSheets(name, email, phone) {
   console.log('Sheets: doc loaded, title=', doc.title, 'sheets=', Object.keys(doc.sheetsByTitle));
   const sheet = doc.sheetsByTitle['📋 Leads'] || doc.sheetsByIndex[0];
   console.log('Sheets: using sheet title=', sheet.title, 'id=', sheet.sheetId);
-  await sheet.loadHeaderRow();
-  console.log('Sheets: headers loaded=', sheet.headerValues);
+  // Force headers into correct columns (setHeaderRow writes row 1 + loads them)
+  await sheet.setHeaderRow([
+    'Date inscription','Prénom','E-mail','Téléphone','Source','Statut',
+    'Lead Score','Guide téléchargé','NL ouverte','Répondu','RDV pris',
+    'Client MoveWell','Notes'
+  ]);
+  console.log('Sheets: headers set, count=', sheet.headerValues.length);
 
   const now = new Date().toLocaleDateString('fr-FR', {
     day: '2-digit', month: '2-digit', year: 'numeric',
