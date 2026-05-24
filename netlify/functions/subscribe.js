@@ -1,4 +1,4 @@
-// netlify/functions/subscribe.js — v2
+// netlify/functions/subscribe.js — v3
 // ─────────────────────────────────────────────────────────────
 // Variables d'environnement Netlify à configurer :
 //   GOOGLE_SERVICE_ACCOUNT_KEY   → JSON du compte de service Google
@@ -51,6 +51,18 @@ exports.handler = async function (event) {
     body: JSON.stringify({ success: true }),
   };
 };
+
+// ── Normalisation téléphone → format E.164 ──────────────────
+// Convertit les numéros français locaux (06/07...) en +336/7...
+// Laisse passer les numéros déjà internationaux (+33...)
+// Retourne '' si le format est non reconnu (évite les erreurs Brevo)
+function normalizePhone(phone) {
+  if (!phone) return '';
+  const digits = phone.replace(/[\s\-.()/]/g, '');
+  if (/^\+\d{7,15}$/.test(digits)) return digits;         // déjà E.164
+  if (/^0\d{9}$/.test(digits)) return '+33' + digits.slice(1); // numéro FR local
+  return ''; // format non reconnu → on n'envoie pas à Brevo
+}
 
 // ── Écriture dans Google Sheets ─────────────────────────────
 async function writeToGoogleSheets(name, email, phone) {
@@ -113,15 +125,22 @@ async function addToBrevoAndSendGuide(name, email, phone) {
   };
 
   // 1. Créer / mettre à jour le contact Brevo
-  await brevoFetch('https://api.brevo.com/v3/contacts', headers, {
-    email,
-    attributes: {
-      PRENOM: name  || '',
-      SMS:    phone || '',
-    },
-    listIds: [Number(process.env.BREVO_LIST_ID)],
-    updateEnabled: true,
-  });
+  // Normalisé en E.164, isolé en try/catch pour ne pas bloquer le guide
+  const normalizedPhone = normalizePhone(phone);
+  const contactAttrs = { PRENOM: name || '' };
+  if (normalizedPhone) contactAttrs.SMS = normalizedPhone;
+
+  try {
+    await brevoFetch('https://api.brevo.com/v3/contacts', headers, {
+      email,
+      attributes: contactAttrs,
+      listIds: [Number(process.env.BREVO_LIST_ID)],
+      updateEnabled: true,
+    });
+  } catch (err) {
+    // Non bloquant : on logue l'erreur mais on envoie quand même le guide
+    console.error('Contact Brevo non créé (non bloquant):', err.message);
+  }
 
   // 2. Envoyer le guide par email transactionnel (template Brevo)
   await brevoFetch('https://api.brevo.com/v3/smtp/email', headers, {
@@ -142,7 +161,7 @@ async function addToBrevoAndSendGuide(name, email, phone) {
     },
   });
 
-  // 3. Si téléphone renseigné : notification à Charles
+  // 3. Si téléphone renseigné : notification lead chaud à Charles
   if (phone) {
     await brevoFetch('https://api.brevo.com/v3/smtp/email', headers, {
       to: [{ email: 'charles@movewell.fr', name: 'Charles Coissac' }],
