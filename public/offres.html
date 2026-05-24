@@ -2049,11 +2049,12 @@ document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
   const formView=document.getElementById('mw-form-view');
   const successView=document.getElementById('mw-success-view');
   function open(){overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');setTimeout(()=>emailInput.focus(),400);}
-  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');try{localStorage.setItem(KEY,Date.now());}catch(e){}}
+  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');}
+  function closeAndRemember(){try{localStorage.setItem(KEY,Date.now());}catch(e){}close();}
   function showSuccess(phone){
     const msg=document.getElementById('mw-success-msg');
     if(msg&&phone){msg.innerHTML='Le guide arrive dans votre boîte mail.<br><strong style="color:#7ec8ff">Charles vous appellera au '+phone+' dans les 24h.</strong>';}
-    formView.style.display='none';successView.style.display='block';setTimeout(close,4000);
+    formView.style.display='none';successView.style.display='block';setTimeout(closeAndRemember,4000);
   }
   function maybeShow(){
     try{const ts=localStorage.getItem(KEY);if(ts&&Date.now()-parseInt(ts)<DAYS*86400000)return;}catch(e){}

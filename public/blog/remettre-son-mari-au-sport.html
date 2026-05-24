@@ -536,7 +536,8 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
   const successView=document.getElementById('mw-success-view');
 
   function open(){overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');setTimeout(()=>emailInput.focus(),400);}
-  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');try{localStorage.setItem(KEY,Date.now());}catch(e){}}
+  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');}
+  function closeAndRemember(){try{localStorage.setItem(KEY,Date.now());}catch(e){}close();}
   function showSuccess(phone){
     const msg=document.getElementById('mw-success-msg');
     if(msg && phone){
@@ -544,7 +545,7 @@ footer a{color:rgba(255,255,255,.5);text-decoration:none;}
     }
     formView.style.display='none';
     successView.style.display='block';
-    setTimeout(close,4000);
+    setTimeout(closeAndRemember,4000);
   }
 
   function maybeShow(){
