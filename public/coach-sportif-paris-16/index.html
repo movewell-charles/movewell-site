@@ -178,6 +178,7 @@
     .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -365,6 +366,107 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+<style>
+#mw-overlay{position:fixed;inset:0;z-index:9999;background:rgba(7,19,34,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+#mw-overlay.visible{opacity:1;pointer-events:all;}
+.mw-card{background:#0b1e35;border:1px solid rgba(59,158,255,.22);border-radius:12px;width:100%;max-width:460px;padding:40px 36px 32px;position:relative;box-shadow:0 0 60px rgba(59,158,255,.1),0 24px 64px rgba(0,0,0,.6);transform:translateY(24px) scale(.97);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+#mw-overlay.visible .mw-card{transform:translateY(0) scale(1);}
+.mw-close{position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);font-size:1.2rem;line-height:1;transition:color .2s;}
+.mw-close:hover{color:#fff;}
+.mw-badge{display:inline-flex;align-items:center;gap:5px;font-family:'DM Sans',sans-serif;font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3b9eff;border:1px solid rgba(59,158,255,.35);border-radius:50px;padding:3px 10px;margin-bottom:14px;}
+.mw-badge-dot{width:5px;height:5px;border-radius:50%;background:#3b9eff;}
+.mw-baseline{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:#3b9eff;margin-bottom:12px;}
+.mw-popup-title{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;line-height:1.15;color:#fff;margin-bottom:8px;}
+.mw-popup-sub{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:300;}
+.mw-pdf-row{display:flex;align-items:center;gap:12px;background:rgba(59,158,255,.07);border:1px solid rgba(59,158,255,.15);border-radius:8px;padding:12px 14px;margin-bottom:20px;}
+.mw-pdf-icon{width:38px;height:38px;flex-shrink:0;background:#3b9eff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.mw-pdf-meta strong{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
+.mw-pdf-meta span{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,.45);}
+.mw-form{display:flex;flex-direction:column;gap:10px;}
+.mw-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.mw-input::placeholder{color:rgba(255,255,255,.3);}
+.mw-input:focus{border-color:#3b9eff;box-shadow:0 0 0 3px rgba(59,158,255,.15);}
+.mw-input.error{border-color:#ff5a5a;}
+.mw-cta{background:#3b9eff;border:none;border-radius:8px;padding:14px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:#071322;cursor:pointer;transition:filter .2s,transform .15s;margin-top:2px;}
+.mw-cta:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.mw-cta:disabled{opacity:.65;transform:none;cursor:not-allowed;}
+.mw-legal{text-align:center;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,.28);line-height:1.5;}
+.mw-skip{display:block;text-align:center;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,.25);cursor:pointer;background:none;border:none;transition:color .2s;}
+.mw-skip:hover{color:rgba(255,255,255,.5);}
+.mw-success{display:none;text-align:center;padding:8px 0;}
+.mw-success .mw-check{font-size:2.8rem;margin-bottom:12px;}
+.mw-success strong{display:block;font-family:'Playfair Display',serif;font-size:19px;color:#fff;margin-bottom:8px;}
+.mw-success p{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;}
+</style>
+<div id="mw-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mw-card">
+    <button class="mw-close" id="mw-close-btn">✕</button>
+    <div id="mw-form-view">
+      <div class="mw-badge"><span class="mw-badge-dot"></span>Guide gratuit · PDF immédiat</div>
+      <p class="mw-baseline">« Tu cours pas, je couche pas. »</p>
+      <div class="mw-popup-title">Le guide pour (enfin) remettre son mari au sport</div>
+      <p class="mw-popup-sub">Les 5 façons d'aborder le sujet sans passer pour la chiante. Même si vous avez déjà tout essayé.</p>
+      <div class="mw-pdf-row">
+        <div class="mw-pdf-icon">📋</div>
+        <div class="mw-pdf-meta">
+          <strong>Guide PDF · 5 pages</strong>
+          <span>Move Well · Accès dans votre boîte mail</span>
+        </div>
+      </div>
+      <div class="mw-form">
+        <input class="mw-input" type="text" id="mw-name" placeholder="Votre prénom" autocomplete="given-name">
+        <input class="mw-input" type="email" id="mw-email" placeholder="Votre adresse e-mail" autocomplete="email" required>
+        <div style="position:relative;">
+          <input class="mw-input" type="tel" id="mw-phone" placeholder="Votre téléphone (optionnel — pour être rappelé)" autocomplete="tel" style="width:100%;padding-right:14px;">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:10px;color:rgba(255,255,255,.3);font-family:'DM Sans',sans-serif;pointer-events:none;">Optionnel</span>
+        </div>
+        <button class="mw-cta" id="mw-submit-btn">Recevoir le guide maintenant →</button>
+      </div>
+      <p class="mw-legal">Zéro spam. Désabonnement en 1 clic.</p>
+      <button class="mw-skip" id="mw-skip-btn">Non merci, mon mari va très bien sur son canapé</button>
+    </div>
+    <div class="mw-success" id="mw-success-view">
+      <div class="mw-check">📬</div>
+      <strong>Le guide est en route !</strong>
+      <p id="mw-success-msg">Vérifiez votre boîte mail dans les 2 minutes.<br>En attendant, votre mari profite du canapé. Pour l'instant.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const DELAY=4000,KEY='mw_popup_v3',DAYS=7;
+  const overlay=document.getElementById('mw-overlay');
+  const emailInput=document.getElementById('mw-email');
+  const formView=document.getElementById('mw-form-view');
+  const successView=document.getElementById('mw-success-view');
+  function open(){overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');setTimeout(()=>emailInput.focus(),400);}
+  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');try{localStorage.setItem(KEY,Date.now());}catch(e){}}
+  function showSuccess(phone){
+    const msg=document.getElementById('mw-success-msg');
+    if(msg&&phone){msg.innerHTML='Le guide arrive dans votre boîte mail.<br><strong style="color:#7ec8ff">Charles vous appellera au '+phone+' dans les 24h.</strong>';}
+    formView.style.display='none';successView.style.display='block';setTimeout(close,4000);
+  }
+  function maybeShow(){
+    try{const ts=localStorage.getItem(KEY);if(ts&&Date.now()-parseInt(ts)<DAYS*86400000)return;}catch(e){}
+    setTimeout(open,DELAY);
+  }
+  const submitBtn=document.getElementById('mw-submit-btn');
+  submitBtn.addEventListener('click',function(){
+    const email=emailInput.value.trim(),name=document.getElementById('mw-name').value.trim(),phone=document.getElementById('mw-phone').value.trim();
+    emailInput.classList.remove('error');
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){emailInput.classList.add('error');emailInput.focus();return;}
+    submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';
+    fetch('/.netlify/functions/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone})})
+    .then(r=>r.ok?showSuccess(phone):Promise.reject()).catch(()=>showSuccess(phone));
+  });
+  document.getElementById('mw-close-btn').addEventListener('click',close);
+  document.getElementById('mw-skip-btn').addEventListener('click',close);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  maybeShow();
+})();
 </script>
 </body>
 </html>
