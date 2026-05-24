@@ -5,3 +5,6 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[functions."drip-sequence"]
+  schedule = "0 6 * * *"
