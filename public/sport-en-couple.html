@@ -10,280 +10,243 @@
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 :root {
-  --blue:       #1A3A6E;
-  --blue-mid:   #2A5298;
-  --blue-light: #EEF3FB;
-  --rose:       #C24D6A;
-  --rose-mid:   #D4758A;
-  --rose-light: #FDF0F3;
-  --ink:        #0D1B2A;
-  --ink2:       #3D4F63;
-  --ink3:       #8A98A8;
-  --white:      #FFFFFF;
-  --off:        #F8F9FC;
-  --rule:       rgba(13,27,42,.08);
-  --grad:       linear-gradient(135deg, #1A3A6E 0%, #C24D6A 100%);
-  --page-max:   900px;
-  --section-px: 40px;
+  --blue:#1A3A6E; --blue-mid:#2A5298; --blue-light:#EEF3FB;
+  --rose:#C24D6A; --rose-mid:#D4758A; --rose-light:#FDF0F3;
+  --ink:#0D1B2A; --ink2:#3D4F63; --ink3:#8A98A8;
+  --white:#FFFFFF; --off:#F8F9FC; --rule:rgba(13,27,42,.08);
+  --grad:linear-gradient(135deg,#1A3A6E 0%,#C24D6A 100%);
+  --page-max:900px; --section-px:40px;
 }
-html { scroll-behavior: smooth; }
-body { background:var(--white); color:var(--ink); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
-#progress-bar { position:fixed; top:0; left:0; z-index:200; height:2px; width:0%; background:var(--grad); transition:width .1s linear; pointer-events:none; }
-nav { position:sticky; top:0; z-index:100; background:rgba(255,255,255,.96); backdrop-filter:blur(16px); border-bottom:1px solid var(--rule); height:64px; display:flex; align-items:center; padding:0 var(--section-px); }
-.nav-inner { max-width:var(--page-max); margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; }
-.nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; }
-.nav-logo-symbols { display:flex; align-items:center; gap:2px; font-size:15px; }
-.sym-f { color:var(--rose); } .sym-m { color:var(--blue); }
-.nav-logo-text { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; letter-spacing:.04em; color:var(--ink); }
-.nav-logo-text span { color:var(--blue); }
-.nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
-.nav-links a { font-size:12.5px; font-weight:400; letter-spacing:.04em; color:var(--ink2); text-decoration:none; transition:color .2s; }
-.nav-links a:hover { color:var(--blue); }
-.nav-cta { background:var(--blue) !important; color:var(--white) !important; font-size:11.5px !important; font-weight:600 !important; letter-spacing:.1em !important; text-transform:uppercase; padding:9px 20px; border-radius:2px; transition:background .2s !important; }
-.nav-cta:hover { background:var(--blue-mid) !important; }
-.hero { min-height:calc(100vh - 64px); display:grid; grid-template-columns:1fr 340px; gap:60px; align-items:center; max-width:var(--page-max); margin:0 auto; padding:80px var(--section-px); }
-.hero-badge { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--rule); border-radius:100px; padding:6px 16px; margin-bottom:32px; font-size:10.5px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); }
-.badge-dot { width:6px; height:6px; border-radius:50%; background:var(--grad); }
-.hero-sym-inline { display:flex; align-items:center; gap:6px; margin-bottom:20px; }
-.hero-sym-inline span { font-size:22px; line-height:1; }
-.hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(38px,4.5vw,60px); font-weight:300; line-height:1.12; color:var(--ink); letter-spacing:-.01em; margin-bottom:28px; }
-.hero h1 em { font-style:italic; color:var(--rose); }
-.hero h1 strong { font-weight:600; color:var(--ink); }
-.hero-tagline { display:flex; flex-direction:column; gap:5px; padding:24px 28px; background:var(--rose-light); border-left:3px solid var(--rose); margin-bottom:32px; }
-.tagline-thought { font-size:10px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--rose); opacity:.8; }
-.tagline-text { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:clamp(20px,2.5vw,26px); color:var(--ink); line-height:1.3; }
-.tagline-note { font-size:12.5px; font-weight:300; color:var(--ink3); font-style:italic; margin-top:2px; }
-.hero-sub { font-size:16px; font-weight:300; line-height:1.78; color:var(--ink2); margin-bottom:36px; }
-.hero-sub strong { color:var(--ink); font-weight:500; }
-.hero-ctas { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
-.btn-primary { background:var(--blue); color:var(--white); text-decoration:none; font-family:'DM Sans',sans-serif; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:15px 32px; border-radius:2px; display:inline-block; transition:background .2s, transform .15s; }
-.btn-primary:hover { background:var(--blue-mid); transform:translateY(-1px); }
-.btn-ghost { color:var(--ink2); text-decoration:none; font-size:12.5px; font-weight:400; letter-spacing:.04em; display:inline-flex; align-items:center; gap:6px; padding:15px 4px; transition:color .2s; }
-.btn-ghost:hover { color:var(--rose); }
-.btn-ghost svg { transition:transform .2s; }
-.btn-ghost:hover svg { transform:translateX(4px); }
-.hero-panel { background:var(--off); border:1px solid var(--rule); border-radius:4px; padding:36px 28px; display:flex; flex-direction:column; gap:0; }
-.panel-stat { padding:20px 0; border-bottom:1px solid var(--rule); display:flex; flex-direction:column; gap:4px; }
-.panel-stat:first-child { padding-top:0; }
-.panel-stat:last-child { border-bottom:none; padding-bottom:0; }
-.panel-num { font-family:'Cormorant Garamond',serif; font-size:40px; font-weight:600; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.panel-label { font-size:11.5px; font-weight:400; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; }
-.panel-note { font-size:12px; color:var(--ink2); font-weight:300; font-style:italic; margin-top:3px; }
-section { padding:96px var(--section-px); }
-.section-inner { max-width:var(--page-max); margin:0 auto; }
-.section-eyebrow { display:flex; align-items:center; gap:12px; font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ink3); margin-bottom:20px; }
-.section-eyebrow::before { content:''; display:block; width:24px; height:1px; background:var(--grad); }
-.section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,3.5vw,44px); font-weight:400; line-height:1.22; color:var(--ink); letter-spacing:-.01em; margin-bottom:36px; }
-.section-title em { font-style:italic; color:var(--rose); }
-.section-title strong { font-weight:700; color:var(--blue); }
-.section-fausses { background:var(--white); border-top:1px solid var(--rule); }
-.fausses-intro { font-size:15px; color:var(--ink2); font-weight:300; line-height:1.75; max-width:640px; margin-bottom:36px; }
-.fausses-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
-.fausse-card { border:1px solid var(--rule); border-radius:4px; padding:24px 20px; background:var(--off); position:relative; }
-.fausse-card::after { content:'✗'; position:absolute; top:14px; right:16px; color:var(--ink3); font-size:12px; font-weight:600; }
-.fausse-icon { font-size:24px; margin-bottom:10px; display:block; }
-.fausse-card h4 { font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--ink); margin-bottom:6px; }
-.fausse-card p { font-size:13px; color:var(--ink3); line-height:1.6; font-weight:300; }
-.fausses-conclusion { background:var(--ink); color:var(--white); border-radius:4px; padding:28px 32px; display:flex; align-items:center; gap:20px; }
-.fausses-conclusion-icon { font-size:28px; flex-shrink:0; }
-.fausses-conclusion p { font-size:15px; color:rgba(255,255,255,.75); font-weight:300; line-height:1.7; }
-.fausses-conclusion p strong { color:var(--white); font-weight:500; }
-.section-problem { background:var(--off); }
-.problem-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
-.problem-card-wide { grid-column:1/-1; }
-.problem-card { background:var(--white); border:1px solid var(--rule); border-radius:4px; padding:32px 28px; position:relative; overflow:hidden; transition:box-shadow .3s, border-color .3s; }
-.problem-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--rose-mid); }
-.problem-card:hover { box-shadow:0 8px 28px rgba(194,77,106,.1); border-color:rgba(194,77,106,.2); }
-.problem-icon { font-size:26px; margin-bottom:14px; display:block; }
-.problem-card h3 { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:600; color:var(--ink); margin-bottom:10px; }
-.problem-card p { font-size:14px; color:var(--ink2); line-height:1.75; font-weight:300; }
-.problem-quote { margin-top:0; border-left:3px solid var(--rose); padding:28px 36px; background:var(--rose-light); border-radius:0 4px 4px 0; }
-.problem-quote p { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:19px; color:var(--ink); line-height:1.65; }
-.problem-quote span { display:block; margin-top:14px; font-family:'DM Sans',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--rose); }
-.section-vision { background:var(--blue); position:relative; overflow:hidden; }
-.section-vision .section-eyebrow { color:rgba(255,255,255,.4); }
-.section-vision .section-eyebrow::before { background:rgba(255,255,255,.25); }
-.section-vision .section-title { color:var(--white); margin-bottom:40px; }
-.section-vision .section-title em { color:var(--rose-mid); }
-.vision-sym-bg { position:absolute; right:-80px; top:50%; transform:translateY(-50%); font-size:460px; line-height:1; opacity:.03; color:var(--white); pointer-events:none; user-select:none; font-weight:300; }
-.vision-list { display:flex; flex-direction:column; gap:12px; }
-.vision-item { display:grid; grid-template-columns:36px 1fr; gap:20px; align-items:start; padding:22px 24px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:4px; transition:background .25s; }
-.vision-item:hover { background:rgba(255,255,255,.1); }
-.vision-check { width:28px; height:28px; border-radius:50%; background:var(--rose); display:flex; align-items:center; justify-content:center; font-size:12px; color:white; font-weight:700; flex-shrink:0; margin-top:2px; }
-.vision-item-text h4 { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; color:var(--white); margin-bottom:5px; }
-.vision-item-text p { font-size:13.5px; color:rgba(255,255,255,.58); font-weight:300; line-height:1.7; }
-.vision-cta { margin-top:44px; }
-.btn-rose { background:var(--rose); color:var(--white); text-decoration:none; font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; padding:15px 32px; border-radius:2px; display:inline-block; transition:background .2s, transform .15s; }
-.btn-rose:hover { background:var(--rose-mid); transform:translateY(-1px); }
-.section-proof { background:var(--white); }
-.testi-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px; }
-.testi-card { border:1px solid var(--rule); border-radius:4px; padding:32px; position:relative; transition:box-shadow .3s; }
-.testi-card:hover { box-shadow:0 6px 24px rgba(13,27,42,.07); }
-.testi-card::after { content:'“'; position:absolute; top:16px; right:22px; font-family:'Cormorant Garamond',serif; font-size:72px; line-height:1; color:var(--rule); }
-.testi-stars { color:var(--rose); font-size:12px; margin-bottom:14px; letter-spacing:2px; }
-.testi-card blockquote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--ink); line-height:1.65; margin-bottom:22px; }
-.testi-author { display:flex; align-items:center; gap:12px; }
-.testi-avatar { width:38px; height:38px; border-radius:50%; background:var(--grad); display:flex; align-items:center; justify-content:center; font-size:13px; color:white; font-weight:600; flex-shrink:0; }
-.testi-meta strong { display:block; font-size:13px; font-weight:600; color:var(--ink); }
-.testi-meta span { font-size:11.5px; color:var(--ink3); }
-.proof-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; }
-.stat-cell { background:var(--off); padding:32px 28px; text-align:center; }
-.stat-cell .num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:600; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:8px; display:block; }
-.stat-cell .label { font-size:11.5px; color:var(--ink3); letter-spacing:.06em; text-transform:uppercase; }
-.section-guide { background:var(--off); }
-.timeline { margin-top:48px; position:relative; display:flex; flex-direction:column; gap:0; }
-.timeline::before { content:''; position:absolute; left:27px; top:28px; bottom:28px; width:1px; background:var(--rule); }
-.timeline-step { display:flex; gap:28px; align-items:flex-start; padding-bottom:40px; position:relative; }
-.timeline-step:last-child { padding-bottom:0; }
-.step-dot { flex-shrink:0; width:56px; height:56px; border-radius:50%; border:1px solid var(--rule); background:var(--white); display:flex; align-items:center; justify-content:center; position:relative; z-index:1; }
-.step-dot.blue { background:var(--blue); border-color:var(--blue); color:white; }
-.step-dot.rose { background:var(--rose); border-color:var(--rose); color:white; }
-.step-dot-num { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:700; }
-.step-content { flex:1; padding-top:11px; padding-bottom:4px; }
-.step-tag { display:inline-block; font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; padding:3px 10px; border-radius:100px; margin-bottom:9px; }
-.tag-blue { background:var(--blue-light); color:var(--blue); }
-.tag-rose { background:var(--rose-light); color:var(--rose); }
-.step-content h3 { font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600; color:var(--ink); margin-bottom:8px; }
-.step-content p { font-size:14px; color:var(--ink2); line-height:1.75; font-weight:300; }
-.step-note { display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12px; color:var(--blue); font-weight:500; font-style:italic; }
-.step-note::before { content:'→'; }
-.section-implication { background:var(--white); border-top:1px solid var(--rule); }
-.if-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
-.if-card { border-radius:4px; padding:36px 32px; border:1px solid var(--rule); }
-.if-card.negative { background:#FFF9FA; border-color:rgba(194,77,106,.18); }
-.if-card.positive { background:var(--blue-light); border-color:rgba(26,58,110,.15); }
-.if-card-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
-.if-card-icon { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
-.if-card.negative .if-card-icon { background:rgba(194,77,106,.12); color:var(--rose); }
-.if-card.positive .if-card-icon { background:rgba(26,58,110,.12); color:var(--blue); }
-.if-card h4 { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:600; letter-spacing:.01em; }
-.if-card.negative h4 { color:var(--rose); }
-.if-card.positive h4 { color:var(--blue); }
-.if-question { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--ink); line-height:1.65; margin-bottom:14px; display:block; }
-.if-question:last-child { margin-bottom:0; }
-.implication-cta { margin-top:52px; text-align:center; }
-.implication-cta p { font-size:13px; color:var(--ink3); margin-top:14px; letter-spacing:.02em; }
-.section-calibrer { background:var(--off); }
-.calibrer-cols { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:48px; }
-.calibrer-col h3 { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; margin-bottom:20px; padding-bottom:14px; border-bottom:2px solid; }
-.calibrer-col.yes h3 { color:var(--blue); border-color:var(--blue); }
-.calibrer-col.no h3 { color:var(--ink3); border-color:var(--rule); }
-.calibrer-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
-.calibrer-list li { display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--ink2); line-height:1.65; }
-.calibrer-list li::before { flex-shrink:0; margin-top:2px; font-size:12px; font-weight:700; }
-.calibrer-col.yes .calibrer-list li::before { content:'✓'; color:var(--blue); }
-.calibrer-col.no .calibrer-list li::before { content:'✗'; color:var(--ink3); }
-.objections-title { display:flex; align-items:center; gap:12px; font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ink3); margin-top:48px; margin-bottom:20px; }
-.objections-title::before { content:''; display:block; width:24px; height:1px; background:var(--grad); }
-.objections { display:flex; flex-direction:column; gap:8px; }
-.objection { border:1px solid var(--rule); border-radius:4px; overflow:hidden; transition:border-color .2s; }
-.objection.open { border-color:rgba(26,58,110,.25); }
-.objection-q { padding:18px 24px; font-size:14px; font-weight:500; color:var(--ink); background:var(--white); display:flex; justify-content:space-between; align-items:center; cursor:pointer; user-select:none; transition:background .2s; gap:16px; }
-.objection-q:hover { background:var(--off); }
-.objection-q .q-icon { flex-shrink:0; width:22px; height:22px; border:1px solid var(--rule); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--ink3); font-weight:400; transition:transform .3s, background .2s, color .2s; line-height:1; }
-.objection.open .q-icon { transform:rotate(45deg); background:var(--blue); border-color:var(--blue); color:white; }
-.objection-a { padding:0 24px; max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s ease; background:var(--blue-light); font-size:14px; color:var(--blue); line-height:1.75; font-weight:300; }
-.objection.open .objection-a { max-height:250px; padding:18px 24px 22px; }
-.section-cta-final { background:var(--ink); position:relative; overflow:hidden; text-align:center; }
-.cta-final-symbols { position:absolute; inset:0; pointer-events:none; display:flex; align-items:center; justify-content:center; gap:120px; }
-.cta-final-sym { font-size:280px; line-height:1; opacity:.04; font-weight:300; }
-.cta-sym-f { color:var(--rose); }
-.cta-sym-m { color:var(--blue-mid); }
-.cta-final-inner { position:relative; z-index:1; }
-.cta-final-inner .section-eyebrow { color:rgba(255,255,255,.35); justify-content:center; }
-.cta-final-inner .section-eyebrow::before { background:rgba(255,255,255,.2); }
-.cta-final-inner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,5vw,58px); font-weight:300; color:var(--white); line-height:1.2; letter-spacing:-.01em; margin-bottom:20px; }
-.cta-final-inner h2 em { font-style:italic; color:var(--rose-mid); }
-.cta-final-inner > p { font-size:16px; color:rgba(255,255,255,.55); font-weight:300; max-width:480px; margin:0 auto 36px; line-height:1.75; }
-.promises { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:0 auto 44px; max-width:780px; }
-.promise-item { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:4px; padding:24px 20px; text-align:left; }
-.promise-num { font-family:'Cormorant Garamond',serif; font-size:32px; font-weight:600; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-bottom:10px; line-height:1; }
-.promise-item h4 { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:600; color:var(--white); margin-bottom:6px; }
-.promise-item p { font-size:12.5px; color:rgba(255,255,255,.45); font-weight:300; line-height:1.6; }
-.cta-final-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-.btn-outline-white { color:rgba(255,255,255,.6); text-decoration:none; font-size:12px; font-weight:400; letter-spacing:.06em; display:inline-flex; align-items:center; gap:6px; padding:15px 28px; border:1px solid rgba(255,255,255,.2); border-radius:2px; transition:border-color .2s, color .2s; }
-.btn-outline-white:hover { border-color:rgba(255,255,255,.5); color:#fff; }
-.cta-mention { margin-top:22px; font-size:11.5px; color:rgba(255,255,255,.25); letter-spacing:.06em; }
-footer { background:var(--white); border-top:1px solid var(--rule); padding:28px var(--section-px); }
-.footer-inner { max-width:var(--page-max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
-.footer-logo { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:600; color:var(--ink); text-decoration:none; display:flex; align-items:center; gap:6px; }
-footer p { font-size:11.5px; color:var(--ink3); }
-.footer-links { display:flex; gap:22px; list-style:none; }
-.footer-links a { font-size:11.5px; color:var(--ink3); text-decoration:none; }
-.footer-links a:hover { color:var(--blue); }
-.fade-up { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
-.fade-up.visible { opacity:1; transform:translateY(0); }
-.stagger > * { opacity:0; transform:translateY(20px); transition:opacity .5s ease, transform .5s ease; }
-.stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:.05s; }
-.stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:.15s; }
-.stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:.25s; }
-.stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:.35s; }
-.stagger.visible > *:nth-child(5) { opacity:1; transform:translateY(0); transition-delay:.45s; }
-@media (max-width:860px) {
-  :root { --section-px:24px; }
-  .hero { grid-template-columns:1fr; padding:56px var(--section-px) 72px; min-height:auto; }
-  .hero-panel { display:grid; grid-template-columns:repeat(2,1fr); gap:0; }
-  .panel-stat { padding:16px 20px; border-bottom:none; border-right:1px solid var(--rule); }
-  .panel-stat:nth-child(even) { border-right:none; border-top:1px solid var(--rule); }
-  .panel-stat:first-child, .panel-stat:nth-child(2) { border-top:none; }
-  .fausses-grid { grid-template-columns:1fr 1fr; }
-  .problem-grid { grid-template-columns:1fr; }
-  .problem-card-wide { grid-column:auto; }
-  .testi-grid { grid-template-columns:1fr; }
-  .if-grid { grid-template-columns:1fr; }
-  .calibrer-cols { grid-template-columns:1fr; }
-  .proof-stats { grid-template-columns:1fr 1fr; }
-  .proof-stats .stat-cell:last-child { grid-column:1/-1; }
-  .promises { grid-template-columns:1fr; }
-  .nav-links { display:none; }
-  .cta-final-btns { flex-direction:column; align-items:center; }
-  footer { flex-direction:column; text-align:center; }
-  .footer-links { justify-content:center; }
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+#progress-bar{position:fixed;top:0;left:0;z-index:200;height:2px;width:0%;background:var(--grad);transition:width .1s linear;pointer-events:none;}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--rule);height:64px;display:flex;align-items:center;padding:0 var(--section-px);}
+.nav-inner{max-width:var(--page-max);margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.nav-logo-symbols{display:flex;align-items:center;gap:2px;font-size:15px;}
+.sym-f{color:var(--rose);} .sym-m{color:var(--blue);}
+.nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.04em;color:var(--ink);}
+.nav-logo-text span{color:var(--blue);}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
+.nav-links a{font-size:12.5px;font-weight:400;letter-spacing:.04em;color:var(--ink2);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--blue);}
+.nav-cta{background:var(--blue)!important;color:var(--white)!important;font-size:11.5px!important;font-weight:600!important;letter-spacing:.1em!important;text-transform:uppercase;padding:9px 20px;border-radius:2px;transition:background .2s!important;}
+.nav-cta:hover{background:var(--blue-mid)!important;}
+.hero{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:center;max-width:var(--page-max);margin:0 auto;padding:80px var(--section-px);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--rule);border-radius:100px;padding:6px 16px;margin-bottom:32px;font-size:10.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--grad);}
+.hero-sym-inline{display:flex;align-items:center;gap:6px;margin-bottom:20px;}
+.hero-sym-inline span{font-size:22px;line-height:1;}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,60px);font-weight:300;line-height:1.12;color:var(--ink);letter-spacing:-.01em;margin-bottom:28px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero h1 strong{font-weight:600;color:var(--ink);}
+.hero-tagline{display:flex;flex-direction:column;gap:5px;padding:24px 28px;background:var(--rose-light);border-left:3px solid var(--rose);margin-bottom:32px;}
+.tagline-thought{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);opacity:.8;}
+.tagline-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(20px,2.5vw,26px);color:var(--ink);line-height:1.3;}
+.tagline-note{font-size:12.5px;font-weight:300;color:var(--ink3);font-style:italic;margin-top:2px;}
+.hero-sub{font-size:16px;font-weight:300;line-height:1.78;color:var(--ink2);margin-bottom:36px;}
+.hero-sub strong{color:var(--ink);font-weight:500;}
+.hero-ctas{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-primary{background:var(--blue);color:var(--white);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;border-radius:2px;display:inline-block;transition:background .2s,transform .15s;}
+.btn-primary:hover{background:var(--blue-mid);transform:translateY(-1px);}
+.btn-ghost{color:var(--ink2);text-decoration:none;font-size:12.5px;font-weight:400;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;padding:15px 4px;transition:color .2s;}
+.btn-ghost:hover{color:var(--rose);}
+.hero-panel{background:var(--off);border:1px solid var(--rule);border-radius:4px;padding:36px 28px;display:flex;flex-direction:column;gap:0;}
+.panel-stat{padding:20px 0;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:4px;}
+.panel-stat:first-child{padding-top:0;}
+.panel-stat:last-child{border-bottom:none;padding-bottom:0;}
+.panel-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.panel-label{font-size:11.5px;font-weight:400;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;}
+.panel-note{font-size:12px;color:var(--ink2);font-weight:300;font-style:italic;margin-top:3px;}
+section{padding:96px var(--section-px);}
+.section-inner{max-width:var(--page-max);margin:0 auto;}
+.section-eyebrow{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;}
+.section-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--grad);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.22;color:var(--ink);letter-spacing:-.01em;margin-bottom:36px;}
+.section-title em{font-style:italic;color:var(--rose);}
+.section-title strong{font-weight:700;color:var(--blue);}
+.section-fausses{background:var(--white);border-top:1px solid var(--rule);}
+.fausses-intro{font-size:15px;color:var(--ink2);font-weight:300;line-height:1.75;max-width:640px;margin-bottom:36px;}
+.fausses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+.fausse-card{border:1px solid var(--rule);border-radius:4px;padding:24px 20px;background:var(--off);position:relative;}
+.fausse-card::after{content:'✗';position:absolute;top:14px;right:16px;color:var(--ink3);font-size:12px;font-weight:600;}
+.fausse-icon{font-size:24px;margin-bottom:10px;display:block;}
+.fausse-card h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.fausse-card p{font-size:13px;color:var(--ink3);line-height:1.6;font-weight:300;}
+.fausses-conclusion{background:var(--ink);color:var(--white);border-radius:4px;padding:28px 32px;display:flex;align-items:center;gap:20px;}
+.fausses-conclusion-icon{font-size:28px;flex-shrink:0;}
+.fausses-conclusion p{font-size:15px;color:rgba(255,255,255,.75);font-weight:300;line-height:1.7;}
+.fausses-conclusion p strong{color:var(--white);font-weight:500;}
+.section-problem{background:var(--off);}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;}
+.problem-card-wide{grid-column:1/-1;}
+.problem-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:32px 28px;position:relative;overflow:hidden;transition:box-shadow .3s,border-color .3s;}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--rose-mid);}
+.problem-card:hover{box-shadow:0 8px 28px rgba(194,77,106,.1);border-color:rgba(194,77,106,.2);}
+.problem-icon{font-size:26px;margin-bottom:14px;display:block;}
+.problem-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;}
+.problem-card p{font-size:14px;color:var(--ink2);line-height:1.75;font-weight:300;}
+.problem-quote{margin-top:0;border-left:3px solid var(--rose);padding:28px 36px;background:var(--rose-light);border-radius:0 4px 4px 0;}
+.problem-quote p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--ink);line-height:1.65;}
+.problem-quote span{display:block;margin-top:14px;font-family:'DM Sans',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);}
+.section-vision{background:var(--blue);position:relative;overflow:hidden;}
+.section-vision .section-eyebrow{color:rgba(255,255,255,.4);}
+.section-vision .section-eyebrow::before{background:rgba(255,255,255,.25);}
+.section-vision .section-title{color:var(--white);margin-bottom:40px;}
+.section-vision .section-title em{color:var(--rose-mid);}
+.vision-sym-bg{position:absolute;right:-80px;top:50%;transform:translateY(-50%);font-size:460px;line-height:1;opacity:.03;color:var(--white);pointer-events:none;user-select:none;font-weight:300;}
+.vision-list{display:flex;flex-direction:column;gap:12px;}
+.vision-item{display:grid;grid-template-columns:36px 1fr;gap:20px;align-items:start;padding:22px 24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;transition:background .25s;}
+.vision-item:hover{background:rgba(255,255,255,.1);}
+.vision-check{width:28px;height:28px;border-radius:50%;background:var(--rose);display:flex;align-items:center;justify-content:center;font-size:12px;color:white;font-weight:700;flex-shrink:0;margin-top:2px;}
+.vision-item-text h4{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--white);margin-bottom:5px;}
+.vision-item-text p{font-size:13.5px;color:rgba(255,255,255,.58);font-weight:300;line-height:1.7;}
+.vision-cta{margin-top:44px;}
+.btn-rose{background:var(--rose);color:var(--white);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;border-radius:2px;display:inline-block;transition:background .2s,transform .15s;}
+.btn-rose:hover{background:var(--rose-mid);transform:translateY(-1px);}
+.section-proof{background:var(--white);}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;}
+.testi-card{border:1px solid var(--rule);border-radius:4px;padding:32px;position:relative;transition:box-shadow .3s;}
+.testi-card:hover{box-shadow:0 6px 24px rgba(13,27,42,.07);}
+.testi-card::after{content:'"';position:absolute;top:16px;right:22px;font-family:'Cormorant Garamond',serif;font-size:72px;line-height:1;color:var(--rule);}
+.testi-stars{color:var(--rose);font-size:12px;margin-bottom:14px;letter-spacing:2px;}
+.testi-card blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ink);line-height:1.65;margin-bottom:22px;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-avatar{width:38px;height:38px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;color:white;font-weight:600;flex-shrink:0;}
+.testi-meta strong{display:block;font-size:13px;font-weight:600;color:var(--ink);}
+.testi-meta span{font-size:11.5px;color:var(--ink3);}
+.proof-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden;}
+.stat-cell{background:var(--off);padding:32px 28px;text-align:center;}
+.stat-cell .num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px;display:block;}
+.stat-cell .label{font-size:11.5px;color:var(--ink3);letter-spacing:.06em;text-transform:uppercase;}
+.section-guide{background:var(--off);}
+.timeline{margin-top:48px;position:relative;display:flex;flex-direction:column;gap:0;}
+.timeline::before{content:'';position:absolute;left:27px;top:28px;bottom:28px;width:1px;background:var(--rule);}
+.timeline-step{display:flex;gap:28px;align-items:flex-start;padding-bottom:40px;position:relative;}
+.timeline-step:last-child{padding-bottom:0;}
+.step-dot{flex-shrink:0;width:56px;height:56px;border-radius:50%;border:1px solid var(--rule);background:var(--white);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;}
+.step-dot.blue{background:var(--blue);border-color:var(--blue);color:white;}
+.step-dot.rose{background:var(--rose);border-color:var(--rose);color:white;}
+.step-dot-num{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;}
+.step-content{flex:1;padding-top:11px;padding-bottom:4px;}
+.step-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:9px;}
+.tag-blue{background:var(--blue-light);color:var(--blue);}
+.tag-rose{background:var(--rose-light);color:var(--rose);}
+.step-content h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;}
+.step-content p{font-size:14px;color:var(--ink2);line-height:1.75;font-weight:300;}
+.step-note{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:12px;color:var(--blue);font-weight:500;font-style:italic;}
+.step-note::before{content:'→';}
+.section-implication{background:var(--white);border-top:1px solid var(--rule);}
+.if-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px;}
+.if-card{border-radius:4px;padding:36px 32px;border:1px solid var(--rule);}
+.if-card.negative{background:#FFF9FA;border-color:rgba(194,77,106,.18);}
+.if-card.positive{background:var(--blue-light);border-color:rgba(26,58,110,.15);}
+.if-card-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.if-card-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.if-card.negative .if-card-icon{background:rgba(194,77,106,.12);color:var(--rose);}
+.if-card.positive .if-card-icon{background:rgba(26,58,110,.12);color:var(--blue);}
+.if-card h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;letter-spacing:.01em;}
+.if-card.negative h4{color:var(--rose);}
+.if-card.positive h4{color:var(--blue);}
+.if-question{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--ink);line-height:1.65;margin-bottom:14px;display:block;}
+.if-question:last-child{margin-bottom:0;}
+.implication-cta{margin-top:52px;text-align:center;}
+.implication-cta p{font-size:13px;color:var(--ink3);margin-top:14px;letter-spacing:.02em;}
+.section-calibrer{background:var(--off);}
+.calibrer-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:48px;}
+.calibrer-col h3{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid;}
+.calibrer-col.yes h3{color:var(--blue);border-color:var(--blue);}
+.calibrer-col.no h3{color:var(--ink3);border-color:var(--rule);}
+.calibrer-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.calibrer-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--ink2);line-height:1.65;}
+.calibrer-list li::before{flex-shrink:0;margin-top:2px;font-size:12px;font-weight:700;}
+.calibrer-col.yes .calibrer-list li::before{content:'✓';color:var(--blue);}
+.calibrer-col.no .calibrer-list li::before{content:'✗';color:var(--ink3);}
+.objections-title{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);margin-top:48px;margin-bottom:20px;}
+.objections-title::before{content:'';display:block;width:24px;height:1px;background:var(--grad);}
+.objections{display:flex;flex-direction:column;gap:8px;}
+.objection{border:1px solid var(--rule);border-radius:4px;overflow:hidden;transition:border-color .2s;}
+.objection.open{border-color:rgba(26,58,110,.25);}
+.objection-q{padding:18px 24px;font-size:14px;font-weight:500;color:var(--ink);background:var(--white);display:flex;justify-content:space-between;align-items:center;cursor:pointer;user-select:none;transition:background .2s;gap:16px;}
+.objection-q:hover{background:var(--off);}
+.objection-q .q-icon{flex-shrink:0;width:22px;height:22px;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ink3);font-weight:400;transition:transform .3s,background .2s,color .2s;line-height:1;}
+.objection.open .q-icon{transform:rotate(45deg);background:var(--blue);border-color:var(--blue);color:white;}
+.objection-a{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;background:var(--blue-light);font-size:14px;color:var(--blue);line-height:1.75;font-weight:300;}
+.objection.open .objection-a{max-height:250px;padding:18px 24px 22px;}
+.section-cta-final{background:var(--ink);position:relative;overflow:hidden;text-align:center;}
+.cta-final-symbols{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;gap:120px;}
+.cta-final-sym{font-size:280px;line-height:1;opacity:.04;font-weight:300;}
+.cta-sym-f{color:var(--rose);}
+.cta-sym-m{color:var(--blue-mid);}
+.cta-final-inner{position:relative;z-index:1;}
+.cta-final-inner .section-eyebrow{color:rgba(255,255,255,.35);justify-content:center;}
+.cta-final-inner .section-eyebrow::before{background:rgba(255,255,255,.2);}
+.cta-final-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,58px);font-weight:300;color:var(--white);line-height:1.2;letter-spacing:-.01em;margin-bottom:20px;}
+.cta-final-inner h2 em{font-style:italic;color:var(--rose-mid);}
+.cta-final-inner > p{font-size:16px;color:rgba(255,255,255,.55);font-weight:300;max-width:480px;margin:0 auto 36px;line-height:1.75;}
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 auto 44px;max-width:780px;}
+.promise-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:24px 20px;text-align:left;}
+.promise-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:10px;line-height:1;}
+.promise-item h4{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:6px;}
+.promise-item p{font-size:12.5px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.6;}
+.cta-final-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-outline-white{color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;font-weight:400;letter-spacing:.06em;display:inline-flex;align-items:center;gap:6px;padding:15px 28px;border:1px solid rgba(255,255,255,.2);border-radius:2px;transition:border-color .2s,color .2s;}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+.cta-mention{margin-top:22px;font-size:11.5px;color:rgba(255,255,255,.25);letter-spacing:.06em;}
+footer{background:var(--white);border-top:1px solid var(--rule);padding:28px var(--section-px);}
+.footer-inner{max-width:var(--page-max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;}
+footer p{font-size:11.5px;color:var(--ink3);}
+.footer-links{display:flex;gap:22px;list-style:none;}
+.footer-links a{font-size:11.5px;color:var(--ink3);text-decoration:none;}
+.footer-links a:hover{color:var(--blue);}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.stagger>*{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
+.stagger.visible>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s;}
+.stagger.visible>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.15s;}
+.stagger.visible>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.25s;}
+.stagger.visible>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.35s;}
+.stagger.visible>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.45s;}
+@media(max-width:860px){
+  :root{--section-px:24px;}
+  .hero{grid-template-columns:1fr;padding:56px var(--section-px) 72px;min-height:auto;}
+  .hero-panel{display:grid;grid-template-columns:repeat(2,1fr);gap:0;}
+  .panel-stat{padding:16px 20px;border-bottom:none;border-right:1px solid var(--rule);}
+  .panel-stat:nth-child(even){border-right:none;border-top:1px solid var(--rule);}
+  .panel-stat:first-child,.panel-stat:nth-child(2){border-top:none;}
+  .fausses-grid{grid-template-columns:1fr 1fr;}
+  .problem-grid{grid-template-columns:1fr;}
+  .problem-card-wide{grid-column:auto;}
+  .testi-grid{grid-template-columns:1fr;}
+  .if-grid{grid-template-columns:1fr;}
+  .calibrer-cols{grid-template-columns:1fr;}
+  .proof-stats{grid-template-columns:1fr 1fr;}
+  .proof-stats .stat-cell:last-child{grid-column:1/-1;}
+  .promises{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .cta-final-btns{flex-direction:column;align-items:center;}
 }
-@media (max-width:480px) {
-  .fausses-grid { grid-template-columns:1fr; }
-  .hero h1 { font-size:34px; }
-  .proof-stats { grid-template-columns:1fr; }
-  .proof-stats .stat-cell:last-child { grid-column:auto; }
+@media(max-width:480px){
+  .fausses-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:34px;}
+  .proof-stats{grid-template-columns:1fr;}
+  .proof-stats .stat-cell:last-child{grid-column:auto;}
 }
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-symbols"><span class="sym-f">♀</span><span class="sym-m">♂</span></div>
-      <span class="nav-logo-text">Move <span>Well</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#methode">La méthode</a></li>
-      <li><a href="#temoignages">Résultats</a></li>
-      <li><a href="#calibrer">Pour vous ?</a></li>
-      <li><a href="https://cal.com/charles-coissac-juax81/30min" class="nav-cta">Bilan offert</a></li>
-    </ul>
-  </div>
-</nav>
-<div style="background:var(--white); padding:0 var(--section-px);">
+<nav><div class="nav-inner"><a href="#" class="nav-logo"><div class="nav-logo-symbols"><span class="sym-f">♀</span><span class="sym-m">♂</span></div><span class="nav-logo-text">Move <span>Well</span></span></a><ul class="nav-links"><li><a href="#methode">La méthode</a></li><li><a href="#temoignages">Résultats</a></li><li><a href="#calibrer">Pour vous ?</a></li><li><a href="https://cal.com/charles-coissac-juax81/30min" class="nav-cta">Bilan offert</a></li></ul></div></nav>
+<div style="background:var(--white);padding:0 var(--section-px);">
   <div class="hero">
     <div class="hero-content">
       <div class="hero-badge"><span class="badge-dot"></span>Coaching sport pour couples · Paris &amp; Hauts-de-Seine</div>
-      <div class="hero-sym-inline">
-        <span style="color:var(--rose)">♀</span>
-        <span style="color:var(--ink3);font-size:13px;letter-spacing:.2em">×</span>
-        <span style="color:var(--blue)">♂</span>
-      </div>
+      <div class="hero-sym-inline"><span style="color:var(--rose)">♀</span><span style="color:var(--ink3);font-size:13px;letter-spacing:.2em">×</span><span style="color:var(--blue)">♂</span></div>
       <h1>Vous avez tout essayé<br>pour le remettre au sport.<br><em>Il résiste encore.</em></h1>
-      <div class="hero-tagline">
-        <span class="tagline-thought">— Vous avez pensé :</span>
-        <span class="tagline-text">« Tu cours pas, je couche pas. »</span>
-        <span class="tagline-note">Vous ne l'avez jamais dit. Pour ne pas passer pour la chiante.</span>
-      </div>
+      <div class="hero-tagline"><span class="tagline-thought">— Vous avez pensé :</span><span class="tagline-text">« Tu cours pas, je couche pas. »</span><span class="tagline-note">Vous ne l'avez jamais dit. Pour ne pas passer pour la chiante.</span></div>
       <p class="hero-sub">Vous êtes énergique, vous prenez soin de vous, vous gérez tout. Lui est hermétique à tout ce que vous proposez. Move Well installe un rituel sport à deux en 90 jours — <strong>sans que vous ayez à insister, à porter ça seule, ou à perdre encore de l'influence.</strong></p>
-      <div class="hero-ctas">
-        <a href="https://cal.com/charles-coissac-juax81/30min" class="btn-primary">Réserver mon bilan offert</a>
-        <a href="#methode" class="btn-ghost">Comment ça marche<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
+      <div class="hero-ctas"><a href="https://cal.com/charles-coissac-juax81/30min" class="btn-primary">Réserver mon bilan offert</a><a href="#methode" class="btn-ghost">Comment ça marche<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
     </div>
     <div class="hero-panel">
       <div class="panel-stat"><span class="panel-num">90j</span><span class="panel-label">Le rituel sport intégré</span><span class="panel-note">Et vous n'aurez plus à le défendre</span></div>
@@ -293,105 +256,86 @@ footer p { font-size:11.5px; color:var(--ink3); }
     </div>
   </div>
 </div>
-<section class="section-fausses fade-up">
-  <div class="section-inner">
-    <div class="section-eyebrow">Ce que vous avez déjà essayé</div>
-    <h2 class="section-title">Vous n'avez pas <em>échoué.</em><br>Vous n'aviez juste pas<br>le bon outil.</h2>
-    <p class="fausses-intro">Avant d'arriver ici, vous avez probablement tenté plusieurs choses. Elles ont peut-être marché 2 semaines. Puis il est retourné au canapé, et vous avez fini par lâcher — pas par manque de volonté, mais parce que aucune de ces approches n'était conçue pour deux.</p>
-    <div class="fausses-grid stagger">
-      <div class="fausse-card"><span class="fausse-icon">🧘</span><h4>L'inviter à votre cours de pilates</h4><p>Son terrain à vous. Lui se sentait décalé, pas à sa place. Il n'est pas revenu.</p></div>
-      <div class="fausse-card"><span class="fausse-icon">👟</span><h4>Le footing du dimanche</h4><p>« C'est facile pour commencer ». Sauf que vous n'avez pas le même rythme, et ça s'est terminé en tension.</p></div>
-      <div class="fausse-card"><span class="fausse-icon">🛍️</span><h4>Les nouvelles baskets / l'équipement</h4><p>Bel investissement. Toujours dans le placard. L'enthousiasme du début a duré une semaine.</p></div>
-      <div class="fausse-card"><span class="fausse-icon">📅</span><h4>Lui payer une salle ou un coach solo</h4><p>Il y est allé 3 fois. Tout seul, sans vous, sans ancrage. Rien pour que ça tienne vraiment.</p></div>
-      <div class="fausse-card"><span class="fausse-icon">🏠</span><h4>Prendre toute la logistique en charge</h4><p>Pour qu'il ait du temps. Il a utilisé ce temps pour autre chose. Vous avez encore plus porté.</p></div>
-      <div class="fausse-card"><span class="fausse-icon">⏳</span><h4>Attendre que ça se calme au boulot</h4><p>Ça fait 6 mois. Ou 2 ans. Ça ne se calme jamais vraiment. Et l'écart se creuse.</p></div>
-    </div>
-    <div class="fausses-conclusion"><span class="fausses-conclusion-icon">💡</span><p>Ce qui manquait dans chacune de ces tentatives : <strong>quelqu'un d'extérieur au couple qui prend en charge la motivation de lui</strong>, avec un programme conçu pour deux niveaux différents, dans votre quotidien réel. C'est exactement ce que fait Move Well.</p></div>
+<section class="section-fausses fade-up"><div class="section-inner">
+  <div class="section-eyebrow">Ce que vous avez déjà essayé</div>
+  <h2 class="section-title">Vous n'avez pas <em>échoué.</em><br>Vous n'aviez juste pas<br>le bon outil.</h2>
+  <p class="fausses-intro">Avant d'arriver ici, vous avez probablement tenté plusieurs choses. Elles ont peut-être marché 2 semaines. Puis il est retourné au canapé, et vous avez fini par lâcher — pas par manque de volonté, mais parce que aucune de ces approches n'était conçue pour deux.</p>
+  <div class="fausses-grid stagger">
+    <div class="fausse-card"><span class="fausse-icon">🧘</span><h4>L'inviter à votre cours de pilates</h4><p>Son terrain à vous. Lui se sentait décalé, pas à sa place. Il n'est pas revenu.</p></div>
+    <div class="fausse-card"><span class="fausse-icon">👟</span><h4>Le footing du dimanche</h4><p>« C'est facile pour commencer ». Sauf que vous n'avez pas le même rythme, et ça s'est terminé en tension.</p></div>
+    <div class="fausse-card"><span class="fausse-icon">🛍️</span><h4>Les nouvelles baskets / l'équipement</h4><p>Bel investissement. Toujours dans le placard. L'enthousiasme du début a duré une semaine.</p></div>
+    <div class="fausse-card"><span class="fausse-icon">📅</span><h4>Lui payer une salle ou un coach solo</h4><p>Il y est allé 3 fois. Tout seul, sans vous, sans ancrage. Rien pour que ça tienne vraiment.</p></div>
+    <div class="fausse-card"><span class="fausse-icon">🏠</span><h4>Prendre toute la logistique en charge</h4><p>Pour qu'il ait du temps. Il a utilisé ce temps pour autre chose. Vous avez encore plus porté.</p></div>
+    <div class="fausse-card"><span class="fausse-icon">⏳</span><h4>Attendre que ça se calme au boulot</h4><p>Ça fait 6 mois. Ou 2 ans. Ça ne se calme jamais vraiment. Et l'écart se creuse.</p></div>
   </div>
-</section>
-<section class="section-problem fade-up">
-  <div class="section-inner">
-    <div class="section-eyebrow">Ce que vous vivez vraiment</div>
-    <h2 class="section-title">Ce n'est pas juste une question<br>de sport. C'est une question<br>d'<em>énergie partagée.</em></h2>
-    <div class="problem-grid stagger">
-      <div class="problem-card"><span class="problem-icon">🧱</span><h3>Il est devenu hermétique</h3><p>Vous avez essayé l'humour, la douceur, la franchise. Chaque tentative glisse. Il ne dit pas non — il diffère, il relativise, il oublie. Vous ne savez plus comment avoir de l'influence sur lui, et cette impuissance est épuisante. Ce n'est pas vous. C'est que vous n'êtes pas la bonne personne pour ce rôle.</p></div>
-      <div class="problem-card"><span class="problem-icon">⚖️</span><h3>L'asymétrie qui ronge</h3><p>Vous faites attention à ce que vous mangez, à votre corps, à votre énergie. Lui se laisse aller, tranquillement, sans culpabilité. Vos efforts ne sont ni reconnus, ni partagés. Cette injustice silencieuse installe une distance — pas dramatique, pas nommée, mais réelle. Et vous la ressentez tous les jours.</p></div>
-      <div class="problem-card problem-card-wide"><span class="problem-icon">🪞</span><h3>La fracture qui s'installe en silence</h3><p>Ce n'est pas seulement une question de kilos ou de canapé. C'est le sentiment que vos énergies ne matchent plus — lui s'engloutit dans le travail ou les écrans le week-end, vous voulez continuer à vivre à fond, à avoir des projets, de la complicité. Ce décalage d'énergie creuse une distance que ni l'un ni l'autre ne nomme vraiment, mais que vous ressentez tous les deux. Et avec le temps — les cycles hormonaux, les corps qui changent, la libido qui fluctue — cette distance a tendance à se solidifier.</p></div>
-    </div>
-    <div class="problem-quote"><p>« Vous ne manquez pas de bonne volonté. Vous n'avez pas échoué. Faire bouger quelqu'un qui résiste — quand les agendas sont surchargés, que le couple est en pilote automatique, et que vous portez déjà beaucoup — c'est objectivement impossible à faire seule. Et ce n'est pas votre rôle. »</p><span>Move Well prend le relais. Vous n'avez plus à porter ça.</span></div>
+  <div class="fausses-conclusion"><span class="fausses-conclusion-icon">💡</span><p>Ce qui manquait dans chacune de ces tentatives : <strong>quelqu'un d'extérieur au couple qui prend en charge la motivation de lui</strong>, avec un programme conçu pour deux niveaux différents, dans votre quotidien réel. C'est exactement ce que fait Move Well.</p></div>
+</div></section>
+<section class="section-problem fade-up"><div class="section-inner">
+  <div class="section-eyebrow">Ce que vous vivez vraiment</div>
+  <h2 class="section-title">Ce n'est pas juste une question<br>de sport. C'est une question<br>d'<em>énergie partagée.</em></h2>
+  <div class="problem-grid stagger">
+    <div class="problem-card"><span class="problem-icon">🧱</span><h3>Il est devenu hermétique</h3><p>Vous avez essayé l'humour, la douceur, la franchise. Chaque tentative glisse. Il ne dit pas non — il diffère, il relativise, il oublie. Vous ne savez plus comment avoir de l'influence sur lui, et cette impuissance est épuisante. Ce n'est pas vous. C'est que vous n'êtes pas la bonne personne pour ce rôle.</p></div>
+    <div class="problem-card"><span class="problem-icon">⚖️</span><h3>L'asymétrie qui ronge</h3><p>Vous faites attention à ce que vous mangez, à votre corps, à votre énergie. Lui se laisse aller, tranquillement, sans culpabilité. Vos efforts ne sont ni reconnus, ni partagés. Cette injustice silencieuse installe une distance — pas dramatique, pas nommée, mais réelle. Et vous la ressentez tous les jours.</p></div>
+    <div class="problem-card problem-card-wide"><span class="problem-icon">🪞</span><h3>La fracture qui s'installe en silence</h3><p>Ce n'est pas seulement une question de kilos ou de canapé. C'est le sentiment que vos énergies ne matchent plus — lui s'engloutit dans le travail ou les écrans le week-end, vous voulez continuer à vivre à fond, à avoir des projets, de la complicité. Ce décalage d'énergie creuse une distance que ni l'un ni l'autre ne nomme vraiment, mais que vous ressentez tous les deux. Et avec le temps — les cycles hormonaux, les corps qui changent, la libido qui fluctue — cette distance a tendance à se solidifier.</p></div>
   </div>
-</section>
-<section class="section-vision fade-up">
-  <span class="vision-sym-bg">♀♂</span>
-  <div class="section-inner">
-    <div class="section-eyebrow">Ce que vous voulez vraiment</div>
-    <h2 class="section-title">Redevenir <em>une équipe.</em><br>Avec la même énergie.<br>Enfin.</h2>
-    <div class="vision-list stagger">
-      <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Ne plus jamais être celle qui porte la motivation</h4><p>C'est Charles qui s'occupe de lui — de le motiver, de construire les séances, de faire tenir le rythme. Vous, vous venez. Vous n'avez plus rien à gérer, plus rien à défendre.</p></div></div>
-      <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Un moment à deux sans les enfants, sans les écrans</h4><p>3 fois par semaine, 45 minutes qui vous appartiennent. Pas de négociation, pas de logistique. Un vrai moment ensemble — pas entre deux portes, pas pour la logistique, pour vous.</p></div></div>
-      <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Redevenir désirable — et désiré</h4><p>Deux corps qui bougent ensemble, c'est une énergie partagée qui change tout dans le couple. La vitalité, la complicité, le désir — tout ça se rebranche quand les deux sont dans la même dynamique.</p></div></div>
-      <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Un nouveau projet commun qui remet de la dynamique</h4><p>Plus de routine en pilote automatique. Un projet physique partagé remet une énergie nouvelle dans le quotidien — et prouve que vous êtes toujours une équipe qui avance ensemble.</p></div></div>
-      <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Vous parler enfin de tout — sans qu'il soit sur la défensive</h4><p>Quand le sport n'est plus votre sujet de tension, la communication s'ouvre. Vous pouvez vous parler de tout sans que l'autre soit constamment sur la défensive. La cocotte-minute se désamorce.</p></div></div>
-    </div>
-    <div class="vision-cta"><a href="https://cal.com/charles-coissac-juax81/30min" class="btn-rose">Je veux ce couple-là — bilan offert</a></div>
+  <div class="problem-quote"><p>« Vous ne manquez pas de bonne volonté. Vous n'avez pas échoué. Faire bouger quelqu'un qui résiste — quand les agendas sont surchargés, que le couple est en pilote automatique, et que vous portez déjà beaucoup — c'est objectivement impossible à faire seule. Et ce n'est pas votre rôle. »</p><span>Move Well prend le relais. Vous n'avez plus à porter ça.</span></div>
+</div></section>
+<section class="section-vision fade-up"><span class="vision-sym-bg">♀♂</span><div class="section-inner">
+  <div class="section-eyebrow">Ce que vous voulez vraiment</div>
+  <h2 class="section-title">Redevenir <em>une équipe.</em><br>Avec la même énergie.<br>Enfin.</h2>
+  <div class="vision-list stagger">
+    <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Ne plus jamais être celle qui porte la motivation</h4><p>C'est Charles qui s'occupe de lui — de le motiver, de construire les séances, de faire tenir le rythme. Vous, vous venez. Vous n'avez plus rien à gérer, plus rien à défendre.</p></div></div>
+    <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Un moment à deux sans les enfants, sans les écrans</h4><p>3 fois par semaine, 45 minutes qui vous appartiennent. Pas de négociation, pas de logistique. Un vrai moment ensemble — pas entre deux portes, pas pour la logistique, pour vous.</p></div></div>
+    <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Redevenir désirable — et désiré</h4><p>Deux corps qui bougent ensemble, c'est une énergie partagée qui change tout dans le couple. La vitalité, la complicité, le désir — tout ça se rebranche quand les deux sont dans la même dynamique.</p></div></div>
+    <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Un nouveau projet commun qui remet de la dynamique</h4><p>Plus de routine en pilote automatique. Un projet physique partagé remet une énergie nouvelle dans le quotidien — et prouve que vous êtes toujours une équipe qui avance ensemble.</p></div></div>
+    <div class="vision-item"><div class="vision-check">✓</div><div class="vision-item-text"><h4>Vous parler enfin de tout — sans qu'il soit sur la défensive</h4><p>Quand le sport n'est plus votre sujet de tension, la communication s'ouvre. Vous pouvez vous parler de tout sans que l'autre soit constamment sur la défensive. La cocotte-minute se désamorce.</p></div></div>
   </div>
-</section>
-<section class="section-proof fade-up" id="temoignages">
-  <div class="section-inner">
-    <div class="section-eyebrow">Ils l'ont fait avant vous</div>
-    <h2 class="section-title">Ce que disent<br>les couples <em>Move Well</em>.</h2>
-    <div class="testi-grid stagger">
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>« Je n'avais pas réalisé à quel point on s'était perdu dans les agendas. En 3 semaines, on a retrouvé quelque chose. C'est devenu notre moment à nous — sans que j'aie eu à me battre pour l'imposer. »</blockquote><div class="testi-author"><div class="testi-avatar">S</div><div class="testi-meta"><strong>Sophie &amp; Romain</strong><span>Dirigeante &amp; CEO · 48 ans · Paris 16e</span></div></div></div>
-      <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>« Le sport n'est plus une obligation qu'il subissait. C'est devenu son idée. Je ne sais pas ce que Charles lui a dit lors du bilan, mais en 2 semaines quelque chose avait changé. »</blockquote><div class="testi-author"><div class="testi-avatar">C</div><div class="testi-meta"><strong>Claire &amp; Thomas</strong><span>Consultante &amp; Directeur · 51 ans · Neuilly</span></div></div></div>
-    </div>
-    <div class="proof-stats">
-      <div class="stat-cell"><span class="num">90j</span><span class="label">pour installer le rituel</span></div>
-      <div class="stat-cell"><span class="num">96%</span><span class="label">continuent après 3 mois</span></div>
-      <div class="stat-cell"><span class="num">2×</span><span class="label">plus de complicité déclarée</span></div>
-    </div>
+  <div class="vision-cta"><a href="https://cal.com/charles-coissac-juax81/30min" class="btn-rose">Je veux ce couple-là — bilan offert</a></div>
+</div></section>
+<section class="section-proof fade-up" id="temoignages"><div class="section-inner">
+  <div class="section-eyebrow">Ils l'ont fait avant vous</div>
+  <h2 class="section-title">Ce que disent<br>les couples <em>Move Well</em>.</h2>
+  <div class="testi-grid stagger">
+    <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>« Je n'avais pas réalisé à quel point on s'était perdu dans les agendas. En 3 semaines, on a retrouvé quelque chose. C'est devenu notre moment à nous — sans que j'aie eu à me battre pour l'imposer. »</blockquote><div class="testi-author"><div class="testi-avatar">S</div><div class="testi-meta"><strong>Sophie &amp; Romain</strong><span>Dirigeante &amp; CEO · 48 ans · Paris 16e</span></div></div></div>
+    <div class="testi-card"><div class="testi-stars">★★★★★</div><blockquote>« Le sport n'est plus une obligation qu'il subissait. C'est devenu son idée. Je ne sais pas ce que Charles lui a dit lors du bilan, mais en 2 semaines quelque chose avait changé. »</blockquote><div class="testi-author"><div class="testi-avatar">C</div><div class="testi-meta"><strong>Claire &amp; Thomas</strong><span>Consultante &amp; Directeur · 51 ans · Neuilly</span></div></div></div>
   </div>
-</section>
-<section class="section-guide fade-up" id="methode">
-  <div class="section-inner">
-    <div class="section-eyebrow">Comment ça marche</div>
-    <h2 class="section-title">Le chemin vers<br><em>le couple que vous voulez être.</em></h2>
-    <div class="timeline">
-      <div class="timeline-step"><div class="step-dot blue"><span class="step-dot-num">1</span></div><div class="step-content"><span class="step-tag tag-blue">Jour 1 — Le bilan</span><h3>On part de votre réalité — pas d'un idéal</h3><p>Agendas chargés, niveaux différents, motivations opposées : tout ça est posé sur la table dès le premier appel. Je construis un programme qui tient compte de votre vie telle qu'elle est. Et dès cet appel, je parle à lui directement — pas à travers vous. La résistance commence à tomber avant même la première séance.</p><span class="step-note">Vous n'êtes plus l'initiateur. Je prends le relais.</span></div></div>
-      <div class="timeline-step"><div class="step-dot rose"><span class="step-dot-num">2</span></div><div class="step-content"><span class="step-tag tag-rose">Semaine 1 — Le déclic</span><h3>Après la 1ère séance, quelque chose a changé</h3><p>Vous avez bougé ensemble. Pas côte à côte sur des tapis différents — vraiment ensemble. Il rentre autrement. Vous aussi. Ce n'est pas vous qui avez insisté. C'était prévu comme ça. Pour la première fois depuis longtemps, vous avez un projet commun qui ne génère pas de tension.</p></div></div>
-      <div class="timeline-step"><div class="step-dot blue"><span class="step-dot-num">3</span></div><div class="step-content"><span class="step-tag tag-blue">Mois 1 — Le rituel</span><h3>Les séances sont dans l'agenda — et n'en bougent plus</h3><p>Calées comme un rendez-vous professionnel, protégées contre les imprévus. Vous n'avez plus à les défendre. Vous n'avez plus à relancer. La cocotte-minute se désamorce. Vous commencez à vous parler autrement — pas entre deux portes, pas pour la logistique.</p><span class="step-note">Le sujet « sport » disparaît de vos tensions.</span></div></div>
-      <div class="timeline-step"><div class="step-dot rose"><span class="step-dot-num">4</span></div><div class="step-content"><span class="step-tag tag-rose">90 jours — La bascule</span><h3>C'est lui qui propose la prochaine séance.</h3><p>Le sport n'est plus votre combat. C'est devenu leur sport à eux deux — leur projet commun. Vous n'avez pas à gérer, pas à relancer, pas à vous répéter. Vous êtes redevenue une équipe qui avance dans la même direction. Et ça, ça change aussi tout le reste.</p></div></div>
-    </div>
+  <div class="proof-stats"><div class="stat-cell"><span class="num">90j</span><span class="label">pour installer le rituel</span></div><div class="stat-cell"><span class="num">96%</span><span class="label">continuent après 3 mois</span></div><div class="stat-cell"><span class="num">2×</span><span class="label">plus de complicité déclarée</span></div></div>
+</div></section>
+<section class="section-guide fade-up" id="methode"><div class="section-inner">
+  <div class="section-eyebrow">Comment ça marche</div>
+  <h2 class="section-title">Le chemin vers<br><em>le couple que vous voulez être.</em></h2>
+  <div class="timeline">
+    <div class="timeline-step"><div class="step-dot blue"><span class="step-dot-num">1</span></div><div class="step-content"><span class="step-tag tag-blue">Jour 1 — Le bilan</span><h3>On part de votre réalité — pas d'un idéal</h3><p>Agendas chargés, niveaux différents, motivations opposées : tout ça est posé sur la table dès le premier appel. Je construis un programme qui tient compte de votre vie telle qu'elle est. Et dès cet appel, je parle à lui directement — pas à travers vous. La résistance commence à tomber avant même la première séance.</p><span class="step-note">Vous n'êtes plus l'initiateur. Je prends le relais.</span></div></div>
+    <div class="timeline-step"><div class="step-dot rose"><span class="step-dot-num">2</span></div><div class="step-content"><span class="step-tag tag-rose">Semaine 1 — Le déclic</span><h3>Après la 1ère séance, quelque chose a changé</h3><p>Vous avez bougé ensemble. Pas côte à côte sur des tapis différents — vraiment ensemble. Il rentre autrement. Vous aussi. Ce n'est pas vous qui avez insisté. C'était prévu comme ça. Pour la première fois depuis longtemps, vous avez un projet commun qui ne génère pas de tension.</p></div></div>
+    <div class="timeline-step"><div class="step-dot blue"><span class="step-dot-num">3</span></div><div class="step-content"><span class="step-tag tag-blue">Mois 1 — Le rituel</span><h3>Les séances sont dans l'agenda — et n'en bougent plus</h3><p>Calées comme un rendez-vous professionnel, protégées contre les imprévus. Vous n'avez plus à les défendre. Vous n'avez plus à relancer. La cocotte-minute se désamorce. Vous commencez à vous parler autrement — pas entre deux portes, pas pour la logistique.</p><span class="step-note">Le sujet « sport » disparaît de vos tensions.</span></div></div>
+    <div class="timeline-step"><div class="step-dot rose"><span class="step-dot-num">4</span></div><div class="step-content"><span class="step-tag tag-rose">90 jours — La bascule</span><h3>C'est lui qui propose la prochaine séance.</h3><p>Le sport n'est plus votre combat. C'est devenu leur sport à eux deux — leur projet commun. Vous n'avez pas à gérer, pas à relancer, pas à vous répéter. Vous êtes redevenue une équipe qui avance dans la même direction. Et ça, ça change aussi tout le reste.</p></div></div>
   </div>
-</section>
-<section class="section-implication fade-up">
-  <div class="section-inner">
-    <div class="section-eyebrow">Et si…</div>
-    <h2 class="section-title">Vous avez le choix<br><em>de la suite.</em></h2>
-    <div class="if-grid">
-      <div class="if-card negative"><div class="if-card-header"><div class="if-card-icon">↻</div><h4>Si vous ne changez rien</h4></div><span class="if-question">« Et si dans 6 mois vous portiez encore ça seule — en faisant attention à ne pas passer pour la chiante ? »</span><span class="if-question">« Et si l'écart d'énergie entre vous deux continuait à se creuser, silencieusement, jusqu'à remettre en doute votre complicité ? »</span><span class="if-question">« Et si vous finissiez par lâcher — pas parce que vous avez abandonné, mais parce que vous êtes épuisée de vous battre ? »</span></div>
-      <div class="if-card positive"><div class="if-card-header"><div class="if-card-icon">→</div><h4>Si vous faites ce pas maintenant</h4></div><span class="if-question">« Et si dans 90 jours c'est lui qui vous proposait la séance du jeudi ? »</span><span class="if-question">« Et si vous n'aviez plus jamais à choisir entre dire ce que vous pensez et passer pour la chiante ? »</span><span class="if-question">« Et si vous retrouviez le couple que vous voulez être — sans vous être battue pour y arriver ? »</span></div>
-    </div>
-    <div class="implication-cta"><a href="https://cal.com/charles-coissac-juax81/30min" class="btn-primary">Réserver mon bilan de forme offert</a><p>Entretien 30 min · Offert · Sans engagement · Paris &amp; Hauts-de-Seine</p></div>
+</div></section>
+<section class="section-implication fade-up"><div class="section-inner">
+  <div class="section-eyebrow">Et si…</div>
+  <h2 class="section-title">Vous avez le choix<br><em>de la suite.</em></h2>
+  <div class="if-grid">
+    <div class="if-card negative"><div class="if-card-header"><div class="if-card-icon">↻</div><h4>Si vous ne changez rien</h4></div><span class="if-question">« Et si dans 6 mois vous portiez encore ça seule — en faisant attention à ne pas passer pour la chiante ? »</span><span class="if-question">« Et si l'écart d'énergie entre vous deux continuait à se creuser, silencieusement, jusqu'à remettre en doute votre complicité ? »</span><span class="if-question">« Et si vous finissiez par lâcher — pas parce que vous avez abandonné, mais parce que vous êtes épuisée de vous battre ? »</span></div>
+    <div class="if-card positive"><div class="if-card-header"><div class="if-card-icon">→</div><h4>Si vous faites ce pas maintenant</h4></div><span class="if-question">« Et si dans 90 jours c'est lui qui vous proposait la séance du jeudi ? »</span><span class="if-question">« Et si vous n'aviez plus jamais à choisir entre dire ce que vous pensez et passer pour la chiante ? »</span><span class="if-question">« Et si vous retrouviez le couple que vous voulez être — sans vous être battue pour y arriver ? »</span></div>
   </div>
-</section>
-<section class="section-calibrer fade-up" id="calibrer">
-  <div class="section-inner">
-    <div class="section-eyebrow">Pour vous — ou pas</div>
-    <h2 class="section-title">Move Well est fait<br>pour vous <strong>si…</strong></h2>
-    <div class="calibrer-cols">
-      <div class="calibrer-col yes"><h3>♀♂ C'est pour vous</h3><ul class="calibrer-list"><li>Vous en avez assez de porter seule la motivation pour deux — et de vous répéter</li><li>Vous avez déjà essayé le pilates, le jogging, les équipements. Rien n'a tenu durablement</li><li>Vous voulez arrêter de passer pour celle qui insiste — sans pour autant abandonner l'idée</li><li>Vous cherchez quelqu'un qui tient compte de vos responsabilités et de vos agendas réels</li><li>Vous voulez un projet commun qui redonne de l'élan au couple — pas juste au corps</li><li>Vous êtes prête à caler 3 × 45 min par semaine — si quelqu'un d'autre s'occupe du reste</li></ul></div>
-      <div class="calibrer-col no"><h3>✗ Ce n'est pas pour vous</h3><ul class="calibrer-list"><li>Vous pensez qu'il finira bien par s'y mettre tout seul, un jour</li><li>Vous attendez que les choses se calment au boulot pour commencer</li><li>Vous pensez que moins on parle des choses qui fâchent, mieux c'est</li><li>Vous voulez juste un coach sportif — sans toucher à la dynamique de couple</li><li>Vous pensez que votre situation est trop particulière pour qu'une méthode fonctionne</li></ul></div>
-    </div>
-    <div class="objections-title">Vos questions</div>
-    <div class="objections">
-      <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Et s'il pense que c'est encore moi qui force ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est exactement ce qu'on évite. Dès le premier échange, je lui parle directement — pas à travers vous. Il comprend que c'est un projet pour lui autant que pour vous. Vous n'êtes plus l'initiateur. Vous êtes celle qui a eu l'intelligence de trouver la bonne porte d'entrée.</div></div>
-      <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>On n'a vraiment pas le même niveau — ça peut marcher quand même ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est prévu dès le départ. Les séances fonctionnent avec deux niveaux différents en simultané — souplesse, cardio, force. Chacun est challengé à son niveau. Personne n'attend l'autre, personne ne se sent le boulet. C'est une des choses que les couples apprécient le plus au bout de la première séance.</div></div>
-      <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>On n'est pas disponibles aux mêmes horaires — lui est du soir, moi du matin</span><span class="q-icon">+</span></div><div class="objection-a">C'est une des premières choses qu'on règle lors du bilan. On cale les séances sur un créneau qui convient à tous les deux — pas un idéal théorique, votre réalité concrète de la semaine. Les familles que j'accompagne ont toutes des contraintes de ce type.</div></div>
-      <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Nos agendas sont impossibles — et les enfants ?</span><span class="q-icon">+</span></div><div class="objection-a">On ne démarre pas en se disant "on verra bien". Les séances sont calées dès le premier appel comme un rendez-vous pro qu'on ne déplace pas — y compris en tenant compte des contraintes d'organisation avec les enfants. La plupart des couples que j'accompagne ont des enfants et des semaines chargées.</div></div>
-      <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Et si on tient 3 semaines puis qu'on arrête comme d'habitude ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est la vraie question — et c'est précisément ce que la méthode est conçue pour éviter. Le rituel est construit pour résister aux imprévus : on anticipe les semaines chargées, on adapte avant de subir, et le suivi WhatsApp sert à ça. À 90 jours, 96% des couples continuent.</div></div>
-    </div>
+  <div class="implication-cta"><a href="https://cal.com/charles-coissac-juax81/30min" class="btn-primary">Réserver mon bilan de forme offert</a><p>Entretien 30 min · Offert · Sans engagement · Paris &amp; Hauts-de-Seine</p></div>
+</div></section>
+<section class="section-calibrer fade-up" id="calibrer"><div class="section-inner">
+  <div class="section-eyebrow">Pour vous — ou pas</div>
+  <h2 class="section-title">Move Well est fait<br>pour vous <strong>si…</strong></h2>
+  <div class="calibrer-cols">
+    <div class="calibrer-col yes"><h3>♀♂ C'est pour vous</h3><ul class="calibrer-list"><li>Vous en avez assez de porter seule la motivation pour deux — et de vous répéter</li><li>Vous avez déjà essayé le pilates, le jogging, les équipements. Rien n'a tenu durablement</li><li>Vous voulez arrêter de passer pour celle qui insiste — sans pour autant abandonner l'idée</li><li>Vous cherchez quelqu'un qui tient compte de vos responsabilités et de vos agendas réels</li><li>Vous voulez un projet commun qui redonne de l'élan au couple — pas juste au corps</li><li>Vous êtes prête à caler 3 × 45 min par semaine — si quelqu'un d'autre s'occupe du reste</li></ul></div>
+    <div class="calibrer-col no"><h3>✗ Ce n'est pas pour vous</h3><ul class="calibrer-list"><li>Vous pensez qu'il finira bien par s'y mettre tout seul, un jour</li><li>Vous attendez que les choses se calment au boulot pour commencer</li><li>Vous pensez que moins on parle des choses qui fâchent, mieux c'est</li><li>Vous voulez juste un coach sportif — sans toucher à la dynamique de couple</li><li>Vous pensez que votre situation est trop particulière pour qu'une méthode fonctionne</li></ul></div>
   </div>
-</section>
+  <div class="objections-title">Vos questions</div>
+  <div class="objections">
+    <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Et s'il pense que c'est encore moi qui force ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est exactement ce qu'on évite. Dès le premier échange, je lui parle directement — pas à travers vous. Il comprend que c'est un projet pour lui autant que pour vous. Vous n'êtes plus l'initiateur. Vous êtes celle qui a eu l'intelligence de trouver la bonne porte d'entrée.</div></div>
+    <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>On n'a vraiment pas le même niveau — ça peut marcher quand même ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est prévu dès le départ. Les séances fonctionnent avec deux niveaux différents en simultané — souplesse, cardio, force. Chacun est challengé à son niveau. Personne n'attend l'autre, personne ne se sent le boulet.</div></div>
+    <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>On n'est pas disponibles aux mêmes horaires — lui est du soir, moi du matin</span><span class="q-icon">+</span></div><div class="objection-a">C'est une des premières choses qu'on règle lors du bilan. On cale les séances sur un créneau qui convient à tous les deux — pas un idéal théorique, votre réalité concrète de la semaine.</div></div>
+    <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Nos agendas sont impossibles — et les enfants ?</span><span class="q-icon">+</span></div><div class="objection-a">On ne démarre pas en se disant "on verra bien". Les séances sont calées dès le premier appel comme un rendez-vous pro qu'on ne déplace pas — y compris en tenant compte des contraintes d'organisation avec les enfants.</div></div>
+    <div class="objection"><div class="objection-q" role="button" tabindex="0"><span>Et si on tient 3 semaines puis qu'on arrête comme d'habitude ?</span><span class="q-icon">+</span></div><div class="objection-a">C'est la vraie question — et c'est précisément ce que la méthode est conçue pour éviter. Le rituel est construit pour résister aux imprévus. À 90 jours, 96% des couples continuent.</div></div>
+  </div>
+</div></section>
 <section class="section-cta-final fade-up">
   <div class="cta-final-symbols"><span class="cta-final-sym cta-sym-f">♀</span><span class="cta-final-sym cta-sym-m">♂</span></div>
   <div class="section-inner cta-final-inner">
@@ -407,37 +351,110 @@ footer p { font-size:11.5px; color:var(--ink3); }
     <p class="cta-mention">Entretien offert · Sans engagement · Paris &amp; Hauts-de-Seine</p>
   </div>
 </section>
-<footer>
-  <div class="footer-inner">
-    <a href="#" class="footer-logo"><span style="color:var(--rose)">♀</span><span style="color:var(--blue)">♂</span>Move Well</a>
-    <p>© 2026 Charles Coissac · Move Well · Paris</p>
-    <ul class="footer-links"><li><a href="/methode">Méthode</a></li><li><a href="/offres">Offres</a></li><li><a href="/sport-en-couple">Sport en couple</a></li><li><a href="https://cal.com/charles-coissac-juax81/30min">Contact</a></li></ul>
-  </div>
-</footer>
+<footer><div class="footer-inner"><a href="#" class="footer-logo"><span style="color:var(--rose)">♀</span><span style="color:var(--blue)">♂</span>Move Well</a><p>© 2026 Charles Coissac · Move Well · Paris</p><ul class="footer-links"><li><a href="/methode">Méthode</a></li><li><a href="/offres">Offres</a></li><li><a href="/sport-en-couple">Sport en couple</a></li><li><a href="https://cal.com/charles-coissac-juax81/30min">Contact</a></li></ul></div></footer>
 <script>
-const bar = document.getElementById('progress-bar');
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const total = document.documentElement.scrollHeight - window.innerHeight;
-  bar.style.width = (scrolled / total * 100) + '%';
-}, { passive:true });
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+const bar=document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{const s=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(s/t*100)+'%';},{passive:true});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.fade-up,.stagger').forEach(el=>obs.observe(el));
+document.querySelectorAll('.objection-q').forEach(btn=>{btn.addEventListener('click',()=>{const o=btn.closest('.objection'),open=o.classList.contains('open');document.querySelectorAll('.objection').forEach(x=>x.classList.remove('open'));if(!open)o.classList.add('open');});btn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();btn.click();}});});
+</script>
+<style>
+#mw-overlay{position:fixed;inset:0;z-index:9999;background:rgba(7,19,34,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .5s ease;}
+#mw-overlay.visible{opacity:1;pointer-events:all;}
+.mw-card{background:#0b1e35;border:1px solid rgba(59,158,255,.22);border-radius:12px;width:100%;max-width:460px;padding:40px 36px 32px;position:relative;box-shadow:0 0 60px rgba(59,158,255,.1),0 24px 64px rgba(0,0,0,.6);transform:translateY(24px) scale(.97);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+#mw-overlay.visible .mw-card{transform:translateY(0) scale(1);}
+.mw-close{position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);font-size:1.2rem;line-height:1;transition:color .2s;}
+.mw-close:hover{color:#fff;}
+.mw-badge{display:inline-flex;align-items:center;gap:5px;font-family:'DM Sans',sans-serif;font-size:7px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3b9eff;border:1px solid rgba(59,158,255,.35);border-radius:50px;padding:3px 10px;margin-bottom:14px;}
+.mw-badge-dot{width:5px;height:5px;border-radius:50%;background:#3b9eff;}
+.mw-baseline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#3b9eff;margin-bottom:12px;}
+.mw-popup-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;line-height:1.15;color:#fff;margin-bottom:8px;}
+.mw-popup-sub{font-size:12px;color:rgba(255,255,255,.55);line-height:1.6;margin-bottom:20px;font-family:'DM Sans',sans-serif;font-weight:300;}
+.mw-pdf-row{display:flex;align-items:center;gap:12px;background:rgba(59,158,255,.07);border:1px solid rgba(59,158,255,.15);border-radius:8px;padding:12px 14px;margin-bottom:20px;}
+.mw-pdf-icon{width:38px;height:38px;flex-shrink:0;background:#3b9eff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.mw-pdf-meta strong{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;color:#fff;margin-bottom:2px;}
+.mw-pdf-meta span{font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,.45);}
+.mw-form{display:flex;flex-direction:column;gap:10px;}
+.mw-input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:#fff;outline:none;transition:border-color .2s,box-shadow .2s;}
+.mw-input::placeholder{color:rgba(255,255,255,.3);}
+.mw-input:focus{border-color:#3b9eff;box-shadow:0 0 0 3px rgba(59,158,255,.15);}
+.mw-input.error{border-color:#ff5a5a;}
+.mw-cta{background:#3b9eff;border:none;border-radius:8px;padding:14px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:#071322;cursor:pointer;transition:filter .2s,transform .15s;margin-top:2px;}
+.mw-cta:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.mw-cta:disabled{opacity:.65;transform:none;cursor:not-allowed;}
+.mw-legal{text-align:center;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,.28);line-height:1.5;}
+.mw-skip{display:block;text-align:center;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(255,255,255,.25);cursor:pointer;background:none;border:none;transition:color .2s;}
+.mw-skip:hover{color:rgba(255,255,255,.5);}
+.mw-success{display:none;text-align:center;padding:8px 0;}
+.mw-success .mw-check{font-size:2.8rem;margin-bottom:12px;}
+.mw-success strong{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;color:#fff;margin-bottom:8px;}
+.mw-success p{font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;}
+</style>
+<div id="mw-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="mw-card">
+    <button class="mw-close" id="mw-close-btn">✕</button>
+    <div id="mw-form-view">
+      <div class="mw-badge"><span class="mw-badge-dot"></span>Guide gratuit · PDF immédiat</div>
+      <p class="mw-baseline">« Tu cours pas, je couche pas. »</p>
+      <div class="mw-popup-title">Le guide pour (enfin) remettre son mari au sport</div>
+      <p class="mw-popup-sub">Les 5 façons d'aborder le sujet sans passer pour la chiante. Même si vous avez déjà tout essayé.</p>
+      <div class="mw-pdf-row">
+        <div class="mw-pdf-icon">📋</div>
+        <div class="mw-pdf-meta"><strong>Guide PDF · 5 pages</strong><span>Move Well · Accès dans votre boîte mail</span></div>
+      </div>
+      <div class="mw-form">
+        <input class="mw-input" type="text" id="mw-name" placeholder="Votre prénom" autocomplete="given-name">
+        <input class="mw-input" type="email" id="mw-email" placeholder="Votre adresse e-mail" autocomplete="email" required>
+        <div style="position:relative;">
+          <input class="mw-input" type="tel" id="mw-phone" placeholder="Votre téléphone (optionnel — pour être rappelé)" autocomplete="tel" style="width:100%;padding-right:14px;">
+          <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:10px;color:rgba(255,255,255,.3);font-family:'DM Sans',sans-serif;pointer-events:none;">Optionnel</span>
+        </div>
+        <button class="mw-cta" id="mw-submit-btn">Recevoir le guide maintenant →</button>
+      </div>
+      <p class="mw-legal">Zéro spam. Désabonnement en 1 clic.</p>
+      <button class="mw-skip" id="mw-skip-btn">Non merci, mon mari va très bien sur son canapé</button>
+    </div>
+    <div class="mw-success" id="mw-success-view">
+      <div class="mw-check">📬</div>
+      <strong>Le guide est en route !</strong>
+      <p id="mw-success-msg">Vérifiez votre boîte mail dans les 2 minutes.<br>En attendant, votre mari profite du canapé. Pour l'instant.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const DELAY=4000,KEY='mw_popup_v3',DAYS=7;
+  const overlay=document.getElementById('mw-overlay');
+  const emailInput=document.getElementById('mw-email');
+  const formView=document.getElementById('mw-form-view');
+  const successView=document.getElementById('mw-success-view');
+  function open(){overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');setTimeout(()=>emailInput.focus(),400);}
+  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');try{localStorage.setItem(KEY,Date.now());}catch(e){}}
+  function showSuccess(phone){
+    const msg=document.getElementById('mw-success-msg');
+    if(msg&&phone){msg.innerHTML='Le guide arrive dans votre boîte mail.<br><strong style="color:#7ec8ff">Charles vous appellera au '+phone+' dans les 24h.</strong>';}
+    formView.style.display='none';successView.style.display='block';setTimeout(close,4000);
+  }
+  function maybeShow(){
+    try{const ts=localStorage.getItem(KEY);if(ts&&Date.now()-parseInt(ts)<DAYS*86400000)return;}catch(e){}
+    setTimeout(open,DELAY);
+  }
+  const submitBtn=document.getElementById('mw-submit-btn');
+  submitBtn.addEventListener('click',function(){
+    const email=emailInput.value.trim(),name=document.getElementById('mw-name').value.trim(),phone=document.getElementById('mw-phone').value.trim();
+    emailInput.classList.remove('error');
+    if(!email||!/^[^s@]+@[^s@]+.[^s@]+$/.test(email)){emailInput.classList.add('error');emailInput.focus();return;}
+    submitBtn.disabled=true;submitBtn.textContent='Envoi en cours…';
+    fetch('/.netlify/functions/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,phone})})
+    .then(r=>r.ok?showSuccess(phone):Promise.reject()).catch(()=>showSuccess(phone));
   });
-}, { threshold: 0.08 });
-document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
-document.querySelectorAll('.objection-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const obj = btn.closest('.objection');
-    const isOpen = obj.classList.contains('open');
-    document.querySelectorAll('.objection').forEach(o => o.classList.remove('open'));
-    if (!isOpen) obj.classList.add('open');
-  });
-  btn.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
-  });
-});
+  document.getElementById('mw-close-btn').addEventListener('click',close);
+  document.getElementById('mw-skip-btn').addEventListener('click',close);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+  maybeShow();
+})();
 </script>
 </body>
 </html>
