@@ -545,7 +545,7 @@
       <a href="sport-en-couple.html">Sport en couple</a>
       <a href="testimonials.html">Témoignages</a>
       <a href="about.html" class="active">About</a>
-      <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="nav-btn">Commencer</a>
+      <a href="https://calendar.app.google/RHTCvs1b6RQhBKps9" target="_blank" class="nav-btn">Commencer</a>
     </div>
     <button id="hamburger-btn" class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
@@ -559,7 +559,7 @@
     <a href="sport-en-couple.html">Sport en couple</a>
     <a href="testimonials.html">Témoignages</a>
     <a href="about.html" class="active">About</a>
-    <a href="https://cal.com/charles-coissac-juax81/30min" target="_blank" class="menu-cta">Commencer</a>
+    <a href="https://calendar.app.google/RHTCvs1b6RQhBKps9" target="_blank" class="menu-cta">Commencer</a>
   </div>
 
   <!-- HERO -->
@@ -798,12 +798,11 @@
   const formView=document.getElementById('mw-form-view');
   const successView=document.getElementById('mw-success-view');
   function open(){overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');setTimeout(()=>emailInput.focus(),400);}
-  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');}
-  function closeAndRemember(){try{localStorage.setItem(KEY,Date.now());}catch(e){}close();}
+  function close(){overlay.classList.remove('visible');overlay.setAttribute('aria-hidden','true');try{localStorage.setItem(KEY,Date.now());}catch(e){}}
   function showSuccess(phone){
     const msg=document.getElementById('mw-success-msg');
     if(msg&&phone){msg.innerHTML='Le guide arrive dans votre boîte mail.<br><strong style="color:#7ec8ff">Charles vous appellera au '+phone+' dans les 24h.</strong>';}
-    formView.style.display='none';successView.style.display='block';setTimeout(closeAndRemember,4000);
+    formView.style.display='none';successView.style.display='block';setTimeout(close,4000);
   }
   function maybeShow(){
     try{const ts=localStorage.getItem(KEY);if(ts&&Date.now()-parseInt(ts)<DAYS*86400000)return;}catch(e){}
